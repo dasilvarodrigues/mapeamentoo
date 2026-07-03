@@ -1,0 +1,23 @@
+node:internal/fs/watchers:329
+    throw error;
+    ^
+
+Error: ENOSPC: System limit for number of file watchers reached, watch '/var/www/html/mapeamento/.superpowers/brainstorm/2026992-1783116999/content'
+    at FSWatcher.<computed> (node:internal/fs/watchers:321:19)
+    at Object.watch (node:fs:2548:36)
+    at startServer (/home/alexander/.cache/opencode/packages/superpowers@git+https:/github.com/obra/superpowers.git/node_modules/superpowers/skills/brainstorming/scripts/server.cjs:276:22)
+    at Object.<anonymous> (/home/alexander/.cache/opencode/packages/superpowers@git+https:/github.com/obra/superpowers.git/node_modules/superpowers/skills/brainstorming/scripts/server.cjs:351:3)
+    at Module._compile (node:internal/modules/cjs/loader:1854:14)
+    at Object..js (node:internal/modules/cjs/loader:1985:10)
+    at Module.load (node:internal/modules/cjs/loader:1577:32)
+    at Module._load (node:internal/modules/cjs/loader:1379:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5) {
+  errno: -28,
+  syscall: 'watch',
+  code: 'ENOSPC',
+  path: '/var/www/html/mapeamento/.superpowers/brainstorm/2026992-1783116999/content',
+  filename: '/var/www/html/mapeamento/.superpowers/brainstorm/2026992-1783116999/content'
+}
+
+Node.js v24.16.0
