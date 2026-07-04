@@ -67,12 +67,41 @@ const categorias = [
 ];
 
 async function main() {
+  // Estados brasileiros
+  const estados = await Promise.all([
+    prisma.estado.create({ data: { id: "35", nome: "São Paulo", uf: "SP" } }),
+    prisma.estado.create({ data: { id: "33", nome: "Rio de Janeiro", uf: "RJ" } }),
+    prisma.estado.create({ data: { id: "31", nome: "Minas Gerais", uf: "MG" } }),
+    prisma.estado.create({ data: { id: "41", nome: "Paraná", uf: "PR" } }),
+    prisma.estado.create({ data: { id: "43", nome: "Rio Grande do Sul", uf: "RS" } }),
+    prisma.estado.create({ data: { id: "29", nome: "Bahia", uf: "BA" } }),
+    prisma.estado.create({ data: { id: "53", nome: "Distrito Federal", uf: "DF" } }),
+  ]);
+
+  const sp = estados.find(e => e.uf === "SP")!;
+
+  const municipiosData = [
+    { nome: "São Paulo", estadoId: sp.id },
+    { nome: "Guarulhos", estadoId: sp.id },
+    { nome: "Campinas", estadoId: sp.id },
+    { nome: "São Bernardo do Campo", estadoId: sp.id },
+    { nome: "Santo André", estadoId: sp.id },
+    { nome: "Osasco", estadoId: sp.id },
+    { nome: "Sorocaba", estadoId: sp.id },
+    { nome: "Ribeirão Preto", estadoId: sp.id },
+  ];
+  await prisma.municipio.createMany({ data: municipiosData });
+
   // Clear existing data
+  await prisma.rua.deleteMany();
+  await prisma.setor.deleteMany();
   await prisma.visita.deleteMany();
   await prisma.demanda.deleteMany();
   await prisma.comunidade.deleteMany();
   await prisma.bairro.deleteMany();
   await prisma.regiao.deleteMany();
+  await prisma.municipio.deleteMany();
+  await prisma.estado.deleteMany();
 
   const regioes = [];
   for (const r of regioesSP) {
