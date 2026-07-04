@@ -30,6 +30,9 @@ src/
 │   ├── demandas/
 │   │   ├── page.tsx                # Gestão de Demandas
 │   │   └── layout.tsx              # Metadata
+│   ├── crm/
+│   │   ├── page.tsx                # CRM Comunitário
+│   │   └── layout.tsx              # Metadata
 │   └── api/
 │       ├── dashboard/
 │       │   ├── kpis/route.ts       # Indicadores agregados
@@ -45,10 +48,14 @@ src/
 │           ├── comunidades/route.ts# CRUD Comunidade
 │           ├── setores/route.ts    # CRUD Setor
 │           └── ruas/route.ts       # CRUD Rua
-│       └── demandas/
-│           ├── route.ts            # GET (list) + POST (create)
-│           ├── [id]/route.ts       # GET + PUT + DELETE
-│           └── [id]/status/route.ts# PATCH (status)
+│       ├── demandas/
+│       │   ├── route.ts            # GET (list) + POST (create)
+│       │   ├── [id]/route.ts       # GET + PUT + DELETE
+│       │   └── [id]/status/route.ts# PATCH (status)
+│       └── crm/
+│           ├── contatos/route.ts   # GET (list) + POST (create)
+│           ├── contatos/[id]/route.ts # GET + PUT + DELETE
+│           └── interacoes/route.ts # GET (by contatoId) + POST
 ├── components/
 │   ├── dashboard/
 │   │   ├── CardKPI.tsx             # Cartão com contagem animada
@@ -67,6 +74,12 @@ src/
 │   │   ├── KanbanDemandas.tsx       # Quadro kanban com drag & drop
 │   │   ├── FormularioDemanda.tsx    # Formulário criar/editar
 │   │   └── ModalDemanda.tsx         # Modal de detalhes
+│   ├── crm/
+│   │   ├── ListaContatos.tsx       # Tabela com busca
+│   │   ├── TimelineInteracoes.tsx  # Timeline vertical
+│   │   ├── FormularioContato.tsx   # Form criar/editar contato
+│   │   ├── FormularioInteracao.tsx # Form registrar interação
+│   │   └── ModalContato.tsx        # Modal detalhes + timeline
 │   └── territorio/
 │       ├── BreadcrumbTerritorio.tsx # Navegação hierárquica
 │       ├── ArvoreHierarquica.tsx    # Árvore lateral
@@ -145,6 +158,18 @@ npm start
 | PATCH | `/api/demandas/[id]/status` | Atualizar status (drag & drop) |
 | DELETE | `/api/demandas/[id]` | Excluir demanda |
 
+### CRM Comunitário
+
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| GET | `/api/crm/contatos?busca=&bairroId=` | Listar contatos |
+| GET | `/api/crm/contatos/[id]` | Detalhe com interações |
+| POST | `/api/crm/contatos` | Criar contato |
+| PUT | `/api/crm/contatos/[id]` | Atualizar contato |
+| DELETE | `/api/crm/contatos/[id]` | Excluir contato |
+| GET | `/api/crm/interacoes?contatoId=` | Listar interações |
+| POST | `/api/crm/interacoes` | Criar interação |
+
 ## Banco de Dados
 
 ### Modelos do Dashboard
@@ -172,6 +197,14 @@ Bairro    → Setor[], Rua[], Comunidade[], Demanda[]
 Demanda → (categoria, tipo, status, prioridade, responsavel, regiaoId, bairroId)
 ```
 
+### Modelos do CRM
+
+```
+Contato → Interacao[]
+Contato → Bairro?, Comunidade?
+Interacao → Contato, Demanda?
+```
+
 ## Seed Data
 
 - 7 estados (SP, RJ, MG, PR, RS, BA, DF)
@@ -187,3 +220,4 @@ Demanda → (categoria, tipo, status, prioridade, responsavel, regiaoId, bairroI
 - **Dashboard Executivo** — KPIs, mapa interativo, heatmap, gráficos, ranking, timeline, alertas em tempo real via SSE
 - **Cadastro Territorial** — Hierarquia Estado → Rua com árvore lateral, breadcrumb, formulário dinâmico, mapa com ferramentas de desenho (leaflet-draw), importação GIS (GeoJSON/KML)
 - **Gestão de Demandas** — CRUD completo com tabela filtrável, kanban com drag & drop (@hello-pangea/dnd), modais de criação/edição/detalhes, barra de filtros (status/categoria/busca)
+- **CRM Comunitário** — Cadastro de contatos (nome, telefone, email, cargo, redes sociais, vínculo territorial), timeline de interações (visita/ligação/reunião/mensagem), modal de detalhes com timeline + formulários de criação/edição
