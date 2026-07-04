@@ -82,19 +82,21 @@ model Comunidade {
 }
 
 model Demanda {
-  id        String    @id @default(cuid())
-  categoria String
-  descricao String    @db.Text
-  status    String    @default("aberta")
-  prioridade Int      @default(0)
-  latitude  Float?
-  longitude Float?
-  regiaoId  String?
-  regiao    Regiao?   @relation(fields: [regiaoId], references: [id])
-  bairroId  String?
-  bairro    Bairro?   @relation(fields: [bairroId], references: [id])
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id         String    @id @default(cuid())
+  categoria  String
+  descricao  String    @db.Text
+  tipo       String    @default("rotina")
+  status     String    @default("aberta")
+  prioridade Int       @default(0)
+  responsavel String?
+  latitude   Float?
+  longitude  Float?
+  regiaoId   String?
+  regiao     Regiao?   @relation(fields: [regiaoId], references: [id])
+  bairroId   String?
+  bairro     Bairro?   @relation(fields: [bairroId], references: [id])
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
   resolvedAt DateTime?
 }
 

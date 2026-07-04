@@ -42,8 +42,10 @@ export type DemandaMinAggregateOutputType = {
   id: string | null
   categoria: string | null
   descricao: string | null
+  tipo: string | null
   status: string | null
   prioridade: number | null
+  responsavel: string | null
   latitude: number | null
   longitude: number | null
   regiaoId: string | null
@@ -57,8 +59,10 @@ export type DemandaMaxAggregateOutputType = {
   id: string | null
   categoria: string | null
   descricao: string | null
+  tipo: string | null
   status: string | null
   prioridade: number | null
+  responsavel: string | null
   latitude: number | null
   longitude: number | null
   regiaoId: string | null
@@ -72,8 +76,10 @@ export type DemandaCountAggregateOutputType = {
   id: number
   categoria: number
   descricao: number
+  tipo: number
   status: number
   prioridade: number
+  responsavel: number
   latitude: number
   longitude: number
   regiaoId: number
@@ -101,8 +107,10 @@ export type DemandaMinAggregateInputType = {
   id?: true
   categoria?: true
   descricao?: true
+  tipo?: true
   status?: true
   prioridade?: true
+  responsavel?: true
   latitude?: true
   longitude?: true
   regiaoId?: true
@@ -116,8 +124,10 @@ export type DemandaMaxAggregateInputType = {
   id?: true
   categoria?: true
   descricao?: true
+  tipo?: true
   status?: true
   prioridade?: true
+  responsavel?: true
   latitude?: true
   longitude?: true
   regiaoId?: true
@@ -131,8 +141,10 @@ export type DemandaCountAggregateInputType = {
   id?: true
   categoria?: true
   descricao?: true
+  tipo?: true
   status?: true
   prioridade?: true
+  responsavel?: true
   latitude?: true
   longitude?: true
   regiaoId?: true
@@ -233,8 +245,10 @@ export type DemandaGroupByOutputType = {
   id: string
   categoria: string
   descricao: string
+  tipo: string
   status: string
   prioridade: number
+  responsavel: string | null
   latitude: number | null
   longitude: number | null
   regiaoId: string | null
@@ -271,8 +285,10 @@ export type DemandaWhereInput = {
   id?: Prisma.StringFilter<"Demanda"> | string
   categoria?: Prisma.StringFilter<"Demanda"> | string
   descricao?: Prisma.StringFilter<"Demanda"> | string
+  tipo?: Prisma.StringFilter<"Demanda"> | string
   status?: Prisma.StringFilter<"Demanda"> | string
   prioridade?: Prisma.IntFilter<"Demanda"> | number
+  responsavel?: Prisma.StringNullableFilter<"Demanda"> | string | null
   latitude?: Prisma.FloatNullableFilter<"Demanda"> | number | null
   longitude?: Prisma.FloatNullableFilter<"Demanda"> | number | null
   regiaoId?: Prisma.StringNullableFilter<"Demanda"> | string | null
@@ -288,8 +304,10 @@ export type DemandaOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   categoria?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   status?: Prisma.SortOrder
   prioridade?: Prisma.SortOrder
+  responsavel?: Prisma.SortOrderInput | Prisma.SortOrder
   latitude?: Prisma.SortOrderInput | Prisma.SortOrder
   longitude?: Prisma.SortOrderInput | Prisma.SortOrder
   regiaoId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -308,8 +326,10 @@ export type DemandaWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.DemandaWhereInput | Prisma.DemandaWhereInput[]
   categoria?: Prisma.StringFilter<"Demanda"> | string
   descricao?: Prisma.StringFilter<"Demanda"> | string
+  tipo?: Prisma.StringFilter<"Demanda"> | string
   status?: Prisma.StringFilter<"Demanda"> | string
   prioridade?: Prisma.IntFilter<"Demanda"> | number
+  responsavel?: Prisma.StringNullableFilter<"Demanda"> | string | null
   latitude?: Prisma.FloatNullableFilter<"Demanda"> | number | null
   longitude?: Prisma.FloatNullableFilter<"Demanda"> | number | null
   regiaoId?: Prisma.StringNullableFilter<"Demanda"> | string | null
@@ -325,8 +345,10 @@ export type DemandaOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   categoria?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   status?: Prisma.SortOrder
   prioridade?: Prisma.SortOrder
+  responsavel?: Prisma.SortOrderInput | Prisma.SortOrder
   latitude?: Prisma.SortOrderInput | Prisma.SortOrder
   longitude?: Prisma.SortOrderInput | Prisma.SortOrder
   regiaoId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -348,8 +370,10 @@ export type DemandaScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Demanda"> | string
   categoria?: Prisma.StringWithAggregatesFilter<"Demanda"> | string
   descricao?: Prisma.StringWithAggregatesFilter<"Demanda"> | string
+  tipo?: Prisma.StringWithAggregatesFilter<"Demanda"> | string
   status?: Prisma.StringWithAggregatesFilter<"Demanda"> | string
   prioridade?: Prisma.IntWithAggregatesFilter<"Demanda"> | number
+  responsavel?: Prisma.StringNullableWithAggregatesFilter<"Demanda"> | string | null
   latitude?: Prisma.FloatNullableWithAggregatesFilter<"Demanda"> | number | null
   longitude?: Prisma.FloatNullableWithAggregatesFilter<"Demanda"> | number | null
   regiaoId?: Prisma.StringNullableWithAggregatesFilter<"Demanda"> | string | null
@@ -363,8 +387,10 @@ export type DemandaCreateInput = {
   id?: string
   categoria: string
   descricao: string
+  tipo?: string
   status?: string
   prioridade?: number
+  responsavel?: string | null
   latitude?: number | null
   longitude?: number | null
   createdAt?: Date | string
@@ -378,8 +404,10 @@ export type DemandaUncheckedCreateInput = {
   id?: string
   categoria: string
   descricao: string
+  tipo?: string
   status?: string
   prioridade?: number
+  responsavel?: string | null
   latitude?: number | null
   longitude?: number | null
   regiaoId?: string | null
@@ -393,8 +421,10 @@ export type DemandaUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoria?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   prioridade?: Prisma.IntFieldUpdateOperationsInput | number
+  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -408,8 +438,10 @@ export type DemandaUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoria?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   prioridade?: Prisma.IntFieldUpdateOperationsInput | number
+  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   regiaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -423,8 +455,10 @@ export type DemandaCreateManyInput = {
   id?: string
   categoria: string
   descricao: string
+  tipo?: string
   status?: string
   prioridade?: number
+  responsavel?: string | null
   latitude?: number | null
   longitude?: number | null
   regiaoId?: string | null
@@ -438,8 +472,10 @@ export type DemandaUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoria?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   prioridade?: Prisma.IntFieldUpdateOperationsInput | number
+  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -451,8 +487,10 @@ export type DemandaUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoria?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   prioridade?: Prisma.IntFieldUpdateOperationsInput | number
+  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   regiaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -476,8 +514,10 @@ export type DemandaCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   categoria?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   status?: Prisma.SortOrder
   prioridade?: Prisma.SortOrder
+  responsavel?: Prisma.SortOrder
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   regiaoId?: Prisma.SortOrder
@@ -497,8 +537,10 @@ export type DemandaMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   categoria?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   status?: Prisma.SortOrder
   prioridade?: Prisma.SortOrder
+  responsavel?: Prisma.SortOrder
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   regiaoId?: Prisma.SortOrder
@@ -512,8 +554,10 @@ export type DemandaMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   categoria?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   status?: Prisma.SortOrder
   prioridade?: Prisma.SortOrder
+  responsavel?: Prisma.SortOrder
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   regiaoId?: Prisma.SortOrder
@@ -629,8 +673,10 @@ export type DemandaCreateWithoutRegiaoInput = {
   id?: string
   categoria: string
   descricao: string
+  tipo?: string
   status?: string
   prioridade?: number
+  responsavel?: string | null
   latitude?: number | null
   longitude?: number | null
   createdAt?: Date | string
@@ -643,8 +689,10 @@ export type DemandaUncheckedCreateWithoutRegiaoInput = {
   id?: string
   categoria: string
   descricao: string
+  tipo?: string
   status?: string
   prioridade?: number
+  responsavel?: string | null
   latitude?: number | null
   longitude?: number | null
   bairroId?: string | null
@@ -686,8 +734,10 @@ export type DemandaScalarWhereInput = {
   id?: Prisma.StringFilter<"Demanda"> | string
   categoria?: Prisma.StringFilter<"Demanda"> | string
   descricao?: Prisma.StringFilter<"Demanda"> | string
+  tipo?: Prisma.StringFilter<"Demanda"> | string
   status?: Prisma.StringFilter<"Demanda"> | string
   prioridade?: Prisma.IntFilter<"Demanda"> | number
+  responsavel?: Prisma.StringNullableFilter<"Demanda"> | string | null
   latitude?: Prisma.FloatNullableFilter<"Demanda"> | number | null
   longitude?: Prisma.FloatNullableFilter<"Demanda"> | number | null
   regiaoId?: Prisma.StringNullableFilter<"Demanda"> | string | null
@@ -701,8 +751,10 @@ export type DemandaCreateWithoutBairroInput = {
   id?: string
   categoria: string
   descricao: string
+  tipo?: string
   status?: string
   prioridade?: number
+  responsavel?: string | null
   latitude?: number | null
   longitude?: number | null
   createdAt?: Date | string
@@ -715,8 +767,10 @@ export type DemandaUncheckedCreateWithoutBairroInput = {
   id?: string
   categoria: string
   descricao: string
+  tipo?: string
   status?: string
   prioridade?: number
+  responsavel?: string | null
   latitude?: number | null
   longitude?: number | null
   regiaoId?: string | null
@@ -755,8 +809,10 @@ export type DemandaCreateManyRegiaoInput = {
   id?: string
   categoria: string
   descricao: string
+  tipo?: string
   status?: string
   prioridade?: number
+  responsavel?: string | null
   latitude?: number | null
   longitude?: number | null
   bairroId?: string | null
@@ -769,8 +825,10 @@ export type DemandaUpdateWithoutRegiaoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoria?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   prioridade?: Prisma.IntFieldUpdateOperationsInput | number
+  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -783,8 +841,10 @@ export type DemandaUncheckedUpdateWithoutRegiaoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoria?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   prioridade?: Prisma.IntFieldUpdateOperationsInput | number
+  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   bairroId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -797,8 +857,10 @@ export type DemandaUncheckedUpdateManyWithoutRegiaoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoria?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   prioridade?: Prisma.IntFieldUpdateOperationsInput | number
+  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   bairroId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -811,8 +873,10 @@ export type DemandaCreateManyBairroInput = {
   id?: string
   categoria: string
   descricao: string
+  tipo?: string
   status?: string
   prioridade?: number
+  responsavel?: string | null
   latitude?: number | null
   longitude?: number | null
   regiaoId?: string | null
@@ -825,8 +889,10 @@ export type DemandaUpdateWithoutBairroInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoria?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   prioridade?: Prisma.IntFieldUpdateOperationsInput | number
+  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -839,8 +905,10 @@ export type DemandaUncheckedUpdateWithoutBairroInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoria?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   prioridade?: Prisma.IntFieldUpdateOperationsInput | number
+  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   regiaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -853,8 +921,10 @@ export type DemandaUncheckedUpdateManyWithoutBairroInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoria?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   prioridade?: Prisma.IntFieldUpdateOperationsInput | number
+  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   regiaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -869,8 +939,10 @@ export type DemandaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   categoria?: boolean
   descricao?: boolean
+  tipo?: boolean
   status?: boolean
   prioridade?: boolean
+  responsavel?: boolean
   latitude?: boolean
   longitude?: boolean
   regiaoId?: boolean
@@ -886,8 +958,10 @@ export type DemandaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   categoria?: boolean
   descricao?: boolean
+  tipo?: boolean
   status?: boolean
   prioridade?: boolean
+  responsavel?: boolean
   latitude?: boolean
   longitude?: boolean
   regiaoId?: boolean
@@ -903,8 +977,10 @@ export type DemandaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   categoria?: boolean
   descricao?: boolean
+  tipo?: boolean
   status?: boolean
   prioridade?: boolean
+  responsavel?: boolean
   latitude?: boolean
   longitude?: boolean
   regiaoId?: boolean
@@ -920,8 +996,10 @@ export type DemandaSelectScalar = {
   id?: boolean
   categoria?: boolean
   descricao?: boolean
+  tipo?: boolean
   status?: boolean
   prioridade?: boolean
+  responsavel?: boolean
   latitude?: boolean
   longitude?: boolean
   regiaoId?: boolean
@@ -931,7 +1009,7 @@ export type DemandaSelectScalar = {
   resolvedAt?: boolean
 }
 
-export type DemandaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "categoria" | "descricao" | "status" | "prioridade" | "latitude" | "longitude" | "regiaoId" | "bairroId" | "createdAt" | "updatedAt" | "resolvedAt", ExtArgs["result"]["demanda"]>
+export type DemandaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "categoria" | "descricao" | "tipo" | "status" | "prioridade" | "responsavel" | "latitude" | "longitude" | "regiaoId" | "bairroId" | "createdAt" | "updatedAt" | "resolvedAt", ExtArgs["result"]["demanda"]>
 export type DemandaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   regiao?: boolean | Prisma.Demanda$regiaoArgs<ExtArgs>
   bairro?: boolean | Prisma.Demanda$bairroArgs<ExtArgs>
@@ -955,8 +1033,10 @@ export type $DemandaPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: string
     categoria: string
     descricao: string
+    tipo: string
     status: string
     prioridade: number
+    responsavel: string | null
     latitude: number | null
     longitude: number | null
     regiaoId: string | null
@@ -1392,8 +1472,10 @@ export interface DemandaFieldRefs {
   readonly id: Prisma.FieldRef<"Demanda", 'String'>
   readonly categoria: Prisma.FieldRef<"Demanda", 'String'>
   readonly descricao: Prisma.FieldRef<"Demanda", 'String'>
+  readonly tipo: Prisma.FieldRef<"Demanda", 'String'>
   readonly status: Prisma.FieldRef<"Demanda", 'String'>
   readonly prioridade: Prisma.FieldRef<"Demanda", 'Int'>
+  readonly responsavel: Prisma.FieldRef<"Demanda", 'String'>
   readonly latitude: Prisma.FieldRef<"Demanda", 'Float'>
   readonly longitude: Prisma.FieldRef<"Demanda", 'Float'>
   readonly regiaoId: Prisma.FieldRef<"Demanda", 'String'>

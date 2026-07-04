@@ -1,13 +1,13 @@
 # Cassol Mapeamento Regional
 
-SaaS de mapeamento regional com dashboard executivo georreferenciado.
+SaaS de mapeamento regional com dashboard executivo e cadastro territorial georreferenciados.
 
 ## Stack
 
 | Camada | Tecnologia |
 |--------|-----------|
 | Frontend | Next.js 16, TypeScript, Tailwind CSS v4, ShadCN UI |
-| Mapas | Leaflet, react-leaflet, leaflet.heat |
+| Mapas | Leaflet, react-leaflet, leaflet.heat, leaflet-draw |
 | Gráficos | Recharts |
 | Data Fetching | TanStack React Query |
 | Animações | Framer Motion |
@@ -24,28 +24,48 @@ src/
 │   ├── layout.tsx                  # Layout global
 │   ├── providers.tsx               # React Query provider
 │   ├── loading.tsx                 # Loading state
-│   └── api/dashboard/
-│       ├── kpis/route.ts           # Indicadores agregados
-│       ├── mapa/route.ts           # GeoJSON pontos
-│       ├── graficos/route.ts       # Série temporal + categorias
-│       ├── ranking/route.ts        # Regiões ordenadas
-│       ├── timeline/route.ts       # Atividades recentes
-│       └── alertas/route.ts        # SSE stream
-├── components/dashboard/
-│   ├── CardKPI.tsx                 # Cartão com contagem animada
-│   ├── MapaInterativo.tsx          # Wrapper dinâmico (SSR-safe)
-│   ├── MapaLeaflet.tsx             # Mapa Leaflet real
-│   ├── MapaCalor.tsx               # Wrapper heatmap
-│   ├── MapaCalorLeaflet.tsx        # Heatmap Leaflet real
-│   ├── GraficoCrescimento.tsx      # Gráfico de linhas
-│   ├── RankingRegional.tsx         # Tabela rankeada
-│   ├── Timeline.tsx                # Linha do tempo
-│   └── PainelAlertas.tsx           # Alertas SSE
+│   ├── territorio/
+│   │   ├── page.tsx                # Cadastro Territorial
+│   │   └── layout.tsx              # Metadata
+│   └── api/
+│       ├── dashboard/
+│       │   ├── kpis/route.ts       # Indicadores agregados
+│       │   ├── mapa/route.ts       # GeoJSON pontos
+│       │   ├── graficos/route.ts   # Série temporal + categorias
+│       │   ├── ranking/route.ts    # Regiões ordenadas
+│       │   ├── timeline/route.ts   # Atividades recentes
+│       │   └── alertas/route.ts    # SSE stream
+│       └── territorio/
+│           ├── estados/route.ts    # CRUD Estado
+│           ├── municipios/route.ts # CRUD Municipio
+│           ├── bairros/route.ts    # CRUD Bairro
+│           ├── comunidades/route.ts# CRUD Comunidade
+│           ├── setores/route.ts    # CRUD Setor
+│           └── ruas/route.ts       # CRUD Rua
+├── components/
+│   ├── dashboard/
+│   │   ├── CardKPI.tsx             # Cartão com contagem animada
+│   │   ├── MapaInterativo.tsx      # Wrapper dinâmico (SSR-safe)
+│   │   ├── MapaLeaflet.tsx         # Mapa Leaflet real
+│   │   ├── MapaCalor.tsx           # Wrapper heatmap
+│   │   ├── MapaCalorLeaflet.tsx    # Heatmap Leaflet real
+│   │   ├── GraficoCrescimento.tsx  # Gráfico de linhas
+│   │   ├── RankingRegional.tsx     # Tabela rankeada
+│   │   ├── Timeline.tsx            # Linha do tempo
+│   │   └── PainelAlertas.tsx       # Alertas SSE
+│   └── territorio/
+│       ├── BreadcrumbTerritorio.tsx # Navegação hierárquica
+│       ├── ArvoreHierarquica.tsx    # Árvore lateral
+│       ├── FormularioLocalidade.tsx # Formulário dinâmico
+│       ├── MapaTerritorial.tsx      # Wrapper SSR-safe
+│       ├── MapaTerritorialLeaflet.tsx # Mapa + draw controls
+│       └── ModalImportacao.tsx      # Upload GIS
 ├── lib/
 │   ├── prisma.ts                   # Prisma client config
 │   └── utils.ts                    # cn(), formatDate(), formatDateTime()
 └── types/
-    └── dashboard.ts                # Interfaces TypeScript
+    ├── dashboard.ts                # Interfaces do dashboard
+    └── territorio.ts               # Interfaces do cadastro territorial
 ```
 
 ## Pré-requisitos
@@ -78,6 +98,8 @@ npm start
 
 ## API Endpoints
 
+### Dashboard
+
 | Método | Rota | Descrição |
 |--------|------|-----------|
 | GET | `/api/dashboard/kpis` | Total de regiões, bairros, comunidades, demandas, visitas |
@@ -87,9 +109,22 @@ npm start
 | GET | `/api/dashboard/timeline` | Últimas 15 atividades |
 | GET | `/api/dashboard/alertas` | SSE — eventos a cada 15s |
 
+### Cadastro Territorial
+
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| GET | `/api/territorio/estados` | Listar estados |
+| GET | `/api/territorio/municipios?estadoId=` | Listar municípios por estado |
+| GET | `/api/territorio/bairros?municipioId=` | Listar bairros por município |
+| GET | `/api/territorio/comunidades?bairroId=` | Listar comunidades por bairro |
+| GET | `/api/territorio/setores?bairroId=` | Listar setores por bairro |
+| GET | `/api/territorio/ruas?bairroId=` | Listar ruas por bairro |
+
 ## Banco de Dados
 
-```prisma
+### Modelos do Dashboard
+
+```
 Regiao    → Bairro[]  → Comunidade[]
 Regiao    → Demanda[]
 Regiao    → Visita[]
@@ -97,14 +132,26 @@ Bairro    → Demanda[]
 Demanda   → (categoria, status, prioridade, lat/lng)
 ```
 
+### Modelos do Cadastro Territorial
+
+```
+Estado    → Municipio[]
+Municipio → Bairro[]
+Regiao    → Bairro[]
+Bairro    → Setor[], Rua[], Comunidade[], Demanda[]
+```
+
 ## Seed Data
 
+- 7 estados (SP, RJ, MG, PR, RS, BA, DF)
+- 8 municípios (São Paulo, Guarulhos, Campinas, etc.)
 - 6 regiões (Zona Norte, Sul, Leste, Oeste, Centro, Rural)
 - 18 bairros (3 por região)
 - 36 comunidades
 - 204 demandas (6 categorias, 3 status)
 - 120 visitas (últimos 6 meses)
 
-## Módulo Atual
+## Módulos Implementados
 
-**Dashboard Executivo** — primeira entrega do ecossistema. Próximos módulos: Cadastro Territorial, Gestão de Demandas, CRM, BI, IA, App Mobile.
+- **Dashboard Executivo** — KPIs, mapa interativo, heatmap, gráficos, ranking, timeline, alertas em tempo real via SSE
+- **Cadastro Territorial** — Hierarquia Estado → Rua com árvore lateral, breadcrumb, formulário dinâmico, mapa com ferramentas de desenho (leaflet-draw), importação GIS (GeoJSON/KML)
