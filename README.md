@@ -27,6 +27,9 @@ src/
 │   ├── territorio/
 │   │   ├── page.tsx                # Cadastro Territorial
 │   │   └── layout.tsx              # Metadata
+│   ├── demandas/
+│   │   ├── page.tsx                # Gestão de Demandas
+│   │   └── layout.tsx              # Metadata
 │   └── api/
 │       ├── dashboard/
 │       │   ├── kpis/route.ts       # Indicadores agregados
@@ -42,6 +45,10 @@ src/
 │           ├── comunidades/route.ts# CRUD Comunidade
 │           ├── setores/route.ts    # CRUD Setor
 │           └── ruas/route.ts       # CRUD Rua
+│       └── demandas/
+│           ├── route.ts            # GET (list) + POST (create)
+│           ├── [id]/route.ts       # GET + PUT + DELETE
+│           └── [id]/status/route.ts# PATCH (status)
 ├── components/
 │   ├── dashboard/
 │   │   ├── CardKPI.tsx             # Cartão com contagem animada
@@ -53,6 +60,13 @@ src/
 │   │   ├── RankingRegional.tsx     # Tabela rankeada
 │   │   ├── Timeline.tsx            # Linha do tempo
 │   │   └── PainelAlertas.tsx       # Alertas SSE
+│   ├── demandas/
+│   │   ├── FiltrosDemandas.tsx      # Barra de filtros
+│   │   ├── TabelaDemandas.tsx       # Tabela ordenável
+│   │   ├── CardDemanda.tsx          # Card do kanban
+│   │   ├── KanbanDemandas.tsx       # Quadro kanban com drag & drop
+│   │   ├── FormularioDemanda.tsx    # Formulário criar/editar
+│   │   └── ModalDemanda.tsx         # Modal de detalhes
 │   └── territorio/
 │       ├── BreadcrumbTerritorio.tsx # Navegação hierárquica
 │       ├── ArvoreHierarquica.tsx    # Árvore lateral
@@ -120,6 +134,17 @@ npm start
 | GET | `/api/territorio/setores?bairroId=` | Listar setores por bairro |
 | GET | `/api/territorio/ruas?bairroId=` | Listar ruas por bairro |
 
+### Gestão de Demandas
+
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| GET | `/api/demandas?page=&status=&categoria=&regiaoId=&busca=` | Lista paginada com filtros |
+| GET | `/api/demandas/[id]` | Detalhe de demanda |
+| POST | `/api/demandas` | Criar demanda |
+| PUT | `/api/demandas/[id]` | Atualizar demanda |
+| PATCH | `/api/demandas/[id]/status` | Atualizar status (drag & drop) |
+| DELETE | `/api/demandas/[id]` | Excluir demanda |
+
 ## Banco de Dados
 
 ### Modelos do Dashboard
@@ -141,6 +166,12 @@ Regiao    → Bairro[]
 Bairro    → Setor[], Rua[], Comunidade[], Demanda[]
 ```
 
+### Modelos da Gestão de Demandas
+
+```
+Demanda → (categoria, tipo, status, prioridade, responsavel, regiaoId, bairroId)
+```
+
 ## Seed Data
 
 - 7 estados (SP, RJ, MG, PR, RS, BA, DF)
@@ -155,3 +186,4 @@ Bairro    → Setor[], Rua[], Comunidade[], Demanda[]
 
 - **Dashboard Executivo** — KPIs, mapa interativo, heatmap, gráficos, ranking, timeline, alertas em tempo real via SSE
 - **Cadastro Territorial** — Hierarquia Estado → Rua com árvore lateral, breadcrumb, formulário dinâmico, mapa com ferramentas de desenho (leaflet-draw), importação GIS (GeoJSON/KML)
+- **Gestão de Demandas** — CRUD completo com tabela filtrável, kanban com drag & drop (@hello-pangea/dnd), modais de criação/edição/detalhes, barra de filtros (status/categoria/busca)
