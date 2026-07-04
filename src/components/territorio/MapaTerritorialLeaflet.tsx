@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, GeoJSON, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
@@ -20,15 +20,11 @@ function DrawControl() {
   useEffect(() => {
     let drawnItems: L.FeatureGroup;
     let drawControl: L.Control;
-    let Draw: typeof L.Draw;
-
     import("leaflet-draw").then(() => {
-      Draw = L.Draw;
-
       drawnItems = new L.FeatureGroup();
       map.addLayer(drawnItems);
 
-      drawControl = new L.Control.Draw({
+      drawControl = new (L.Control as any).Draw({
         edit: { featureGroup: drawnItems },
         draw: {
           polygon: true,
@@ -41,7 +37,7 @@ function DrawControl() {
       });
       map.addControl(drawControl);
 
-      map.on(L.Draw.Event.CREATED, (e: any) => {
+      map.on((L as any).Draw.Event.CREATED, (e: any) => {
         const layer = e.layer;
         drawnItems.addLayer(layer);
       });
