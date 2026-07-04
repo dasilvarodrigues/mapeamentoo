@@ -57,14 +57,17 @@ const coordenadasBairros: Record<string, { lat: number; lng: number }[]> = {
   ],
 };
 
-const categorias = [
-  "iluminação",
-  "pavimentação",
-  "saúde",
-  "educação",
-  "segurança",
-  "saneamento",
-];
+  const categorias = [
+    "iluminação",
+    "pavimentação",
+    "saúde",
+    "educação",
+    "segurança",
+    "saneamento",
+  ];
+
+  const tipos = ["emergencial", "rotina", "projeto"];
+  const responsaveis = ["Carlos Silva", "Ana Oliveira", "Pedro Santos", "Maria Costa", "João Souza"];
 
 async function main() {
   // Estados brasileiros
@@ -155,17 +158,20 @@ async function main() {
     }
   }
 
-  // Create 200 demands distributed across regions
+  // Create demandas distributed across regions
   const demandasData: {
     categoria: string;
     descricao: string;
+    tipo: string;
     status: string;
     prioridade: number;
+    responsavel: string;
     regiaoId: string;
     latitude: number;
     longitude: number;
     createdAt: Date;
     resolvedAt: Date | null;
+    bairroId: null;
   }[] = [];
 
   for (const regiao of regioes) {
@@ -185,18 +191,57 @@ async function main() {
       demandasData.push({
         categoria,
         descricao: `Demanda de ${categoria} na ${regiao.nome} - registro ${i + 1}`,
+        tipo: tipos[i % 3],
         status,
         prioridade: Math.floor(Math.random() * 5) + 1,
+        responsavel: responsaveis[i % responsaveis.length],
         regiaoId: regiao.id,
         latitude: coordsRegiao.latitude + (Math.random() - 0.5) * 0.05,
         longitude: coordsRegiao.longitude + (Math.random() - 0.5) * 0.05,
         createdAt,
         resolvedAt,
+        bairroId: null,
       });
     }
   }
 
   await prisma.demanda.createMany({ data: demandasData });
+
+  // Additional demandas with different tipos
+  const maisDemandas: typeof demandasData = [];
+
+  for (const regiao of regioes) {
+    const coordsRegiao = regioesSP.find((r) => r.nome === regiao.nome)!;
+    for (let i = 0; i < 16; i++) {
+      const categoria = categorias[(i + 2) % categorias.length];
+      const statuses = ["aberta", "em_andamento", "resolvida"];
+      const status = statuses[i % statuses.length];
+      const diasAtras = Math.floor(Math.random() * 90);
+      const createdAt = new Date();
+      createdAt.setDate(createdAt.getDate() - diasAtras);
+      const resolvedAt =
+        status === "resolvida"
+          ? new Date(createdAt.getTime() + Math.random() * 7 * 24 * 60 * 60 * 1000)
+          : null;
+
+      maisDemandas.push({
+        categoria,
+        descricao: `Demanda ${tipos[i % 3]} de ${categoria} - ${regiao.nome} (${i + 1})`,
+        tipo: tipos[i % 3],
+        status,
+        prioridade: Math.floor(Math.random() * 5) + 1,
+        responsavel: responsaveis[i % responsaveis.length],
+        regiaoId: regiao.id,
+        latitude: coordsRegiao.latitude + (Math.random() - 0.5) * 0.05,
+        longitude: coordsRegiao.longitude + (Math.random() - 0.5) * 0.05,
+        createdAt,
+        resolvedAt,
+        bairroId: null,
+      });
+    }
+  }
+
+  await prisma.demanda.createMany({ data: maisDemandas });
 
   // Create visits
   const visitasData: {
