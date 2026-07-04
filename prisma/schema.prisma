@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Regiao {
+  id        String   @id @default(cuid())
+  nome      String
+  municipio String
+  uf        String   @db.VarChar(2)
+  latitude  Float?
+  longitude Float?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  bairros  Bairro[]
+  demandas Demanda[]
+  visitas  Visita[]
+}
+
+model Bairro {
+  id        String   @id @default(cuid())
+  nome      String
+  regiaoId  String
+  regiao    Regiao   @relation(fields: [regiaoId], references: [id])
+  latitude  Float?
+  longitude Float?
+  createdAt DateTime @default(now())
+
+  comunidades Comunidade[]
+  demandas    Demanda[]
+}
+
+model Comunidade {
+  id        String   @id @default(cuid())
+  nome      String
+  bairroId  String
+  bairro    Bairro   @relation(fields: [bairroId], references: [id])
+  latitude  Float?
+  longitude Float?
+  createdAt DateTime @default(now())
+}
+
+model Demanda {
+  id        String    @id @default(cuid())
+  categoria String
+  descricao String    @db.Text
+  status    String    @default("aberta")
+  prioridade Int      @default(0)
+  latitude  Float?
+  longitude Float?
+  regiaoId  String?
+  regiao    Regiao?   @relation(fields: [regiaoId], references: [id])
+  bairroId  String?
+  bairro    Bairro?   @relation(fields: [bairroId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  resolvedAt DateTime?
+}
+
+model Visita {
+  id        String   @id @default(cuid())
+  titulo    String
+  regiaoId  String
+  regiao    Regiao   @relation(fields: [regiaoId], references: [id])
+  data      DateTime @default(now())
+  createdAt DateTime @default(now())
+}
