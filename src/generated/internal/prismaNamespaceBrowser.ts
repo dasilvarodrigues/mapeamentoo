@@ -51,8 +51,12 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Estado: 'Estado',
+  Municipio: 'Municipio',
   Regiao: 'Regiao',
   Bairro: 'Bairro',
+  Setor: 'Setor',
+  Rua: 'Rua',
   Comunidade: 'Comunidade',
   Demanda: 'Demanda',
   Visita: 'Visita'
@@ -74,6 +78,24 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const EstadoScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  uf: 'uf'
+} as const
+
+export type EstadoScalarFieldEnum = (typeof EstadoScalarFieldEnum)[keyof typeof EstadoScalarFieldEnum]
+
+
+export const MunicipioScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  estadoId: 'estadoId'
+} as const
+
+export type MunicipioScalarFieldEnum = (typeof MunicipioScalarFieldEnum)[keyof typeof MunicipioScalarFieldEnum]
+
+
 export const RegiaoScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
@@ -92,12 +114,34 @@ export const BairroScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
   regiaoId: 'regiaoId',
+  municipioId: 'municipioId',
   latitude: 'latitude',
   longitude: 'longitude',
   createdAt: 'createdAt'
 } as const
 
 export type BairroScalarFieldEnum = (typeof BairroScalarFieldEnum)[keyof typeof BairroScalarFieldEnum]
+
+
+export const SetorScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  bairroId: 'bairroId'
+} as const
+
+export type SetorScalarFieldEnum = (typeof SetorScalarFieldEnum)[keyof typeof SetorScalarFieldEnum]
+
+
+export const RuaScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  cep: 'cep',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  bairroId: 'bairroId'
+} as const
+
+export type RuaScalarFieldEnum = (typeof RuaScalarFieldEnum)[keyof typeof RuaScalarFieldEnum]
 
 
 export const ComunidadeScalarFieldEnum = {

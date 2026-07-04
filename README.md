@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cassol Mapeamento Regional
 
-## Getting Started
+SaaS de mapeamento regional com dashboard executivo georreferenciado.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+| Camada | Tecnologia |
+|--------|-----------|
+| Frontend | Next.js 16, TypeScript, Tailwind CSS v4, ShadCN UI |
+| Mapas | Leaflet, react-leaflet, leaflet.heat |
+| Gráficos | Recharts |
+| Data Fetching | TanStack React Query |
+| Animações | Framer Motion |
+| Banco | PostgreSQL via Prisma 7 ORM |
+| Tempo Real | Server-Sent Events (SSE) |
+| Ícones | Lucide React |
+
+## Estrutura
+
+```
+src/
+├── app/
+│   ├── page.tsx                    # Dashboard
+│   ├── layout.tsx                  # Layout global
+│   ├── providers.tsx               # React Query provider
+│   ├── loading.tsx                 # Loading state
+│   └── api/dashboard/
+│       ├── kpis/route.ts           # Indicadores agregados
+│       ├── mapa/route.ts           # GeoJSON pontos
+│       ├── graficos/route.ts       # Série temporal + categorias
+│       ├── ranking/route.ts        # Regiões ordenadas
+│       ├── timeline/route.ts       # Atividades recentes
+│       └── alertas/route.ts        # SSE stream
+├── components/dashboard/
+│   ├── CardKPI.tsx                 # Cartão com contagem animada
+│   ├── MapaInterativo.tsx          # Wrapper dinâmico (SSR-safe)
+│   ├── MapaLeaflet.tsx             # Mapa Leaflet real
+│   ├── MapaCalor.tsx               # Wrapper heatmap
+│   ├── MapaCalorLeaflet.tsx        # Heatmap Leaflet real
+│   ├── GraficoCrescimento.tsx      # Gráfico de linhas
+│   ├── RankingRegional.tsx         # Tabela rankeada
+│   ├── Timeline.tsx                # Linha do tempo
+│   └── PainelAlertas.tsx           # Alertas SSE
+├── lib/
+│   ├── prisma.ts                   # Prisma client config
+│   └── utils.ts                    # cn(), formatDate(), formatDateTime()
+└── types/
+    └── dashboard.ts                # Interfaces TypeScript
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pré-requisitos
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Node.js 20+
+- PostgreSQL 16+ com banco `cassol_mapeamento` criado
+- Usuário `cassol` com senha `cassol123` e permissão no banco
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Setup
 
-## Learn More
+```bash
+# Instalar dependências
+npm install
 
-To learn more about Next.js, take a look at the following resources:
+# Gerar Prisma client e aplicar migrations
+npx prisma migrate dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Popular com dados mockados
+npx prisma db seed
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Rodar em desenvolvimento
+npm run dev
 
-## Deploy on Vercel
+# Build de produção
+npm run build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Rodar produção
+npm start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## API Endpoints
+
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| GET | `/api/dashboard/kpis` | Total de regiões, bairros, comunidades, demandas, visitas |
+| GET | `/api/dashboard/mapa` | GeoJSON FeatureCollection (pontos) |
+| GET | `/api/dashboard/graficos` | { meses, categorias } |
+| GET | `/api/dashboard/ranking` | Regiões ordenadas por total de demandas |
+| GET | `/api/dashboard/timeline` | Últimas 15 atividades |
+| GET | `/api/dashboard/alertas` | SSE — eventos a cada 15s |
+
+## Banco de Dados
+
+```prisma
+Regiao    → Bairro[]  → Comunidade[]
+Regiao    → Demanda[]
+Regiao    → Visita[]
+Bairro    → Demanda[]
+Demanda   → (categoria, status, prioridade, lat/lng)
+```
+
+## Seed Data
+
+- 6 regiões (Zona Norte, Sul, Leste, Oeste, Centro, Rural)
+- 18 bairros (3 por região)
+- 36 comunidades
+- 204 demandas (6 categorias, 3 status)
+- 120 visitas (últimos 6 meses)
+
+## Módulo Atual
+
+**Dashboard Executivo** — primeira entrega do ecossistema. Próximos módulos: Cadastro Territorial, Gestão de Demandas, CRM, BI, IA, App Mobile.

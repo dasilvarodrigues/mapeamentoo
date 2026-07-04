@@ -452,10 +452,6 @@ export type RegiaoNullableScalarRelationFilter = {
   isNot?: Prisma.RegiaoWhereInput | null
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
 export type NullableFloatFieldUpdateOperationsInput = {
   set?: number | null
   increment?: number

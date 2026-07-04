@@ -18,6 +18,16 @@ export { Prisma }
 export * as $Enums from './enums'
 export * from './enums';
 /**
+ * Model Estado
+ * 
+ */
+export type Estado = Prisma.EstadoModel
+/**
+ * Model Municipio
+ * 
+ */
+export type Municipio = Prisma.MunicipioModel
+/**
  * Model Regiao
  * 
  */
@@ -27,6 +37,16 @@ export type Regiao = Prisma.RegiaoModel
  * 
  */
 export type Bairro = Prisma.BairroModel
+/**
+ * Model Setor
+ * 
+ */
+export type Setor = Prisma.SetorModel
+/**
+ * Model Rua
+ * 
+ */
+export type Rua = Prisma.RuaModel
 /**
  * Model Comunidade
  * 

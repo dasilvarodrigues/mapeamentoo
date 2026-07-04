@@ -384,8 +384,12 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
+  Estado: 'Estado',
+  Municipio: 'Municipio',
   Regiao: 'Regiao',
   Bairro: 'Bairro',
+  Setor: 'Setor',
+  Rua: 'Rua',
   Comunidade: 'Comunidade',
   Demanda: 'Demanda',
   Visita: 'Visita'
@@ -404,10 +408,158 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "regiao" | "bairro" | "comunidade" | "demanda" | "visita"
+    modelProps: "estado" | "municipio" | "regiao" | "bairro" | "setor" | "rua" | "comunidade" | "demanda" | "visita"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
+    Estado: {
+      payload: Prisma.$EstadoPayload<ExtArgs>
+      fields: Prisma.EstadoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EstadoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstadoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EstadoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstadoPayload>
+        }
+        findFirst: {
+          args: Prisma.EstadoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstadoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EstadoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstadoPayload>
+        }
+        findMany: {
+          args: Prisma.EstadoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstadoPayload>[]
+        }
+        create: {
+          args: Prisma.EstadoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstadoPayload>
+        }
+        createMany: {
+          args: Prisma.EstadoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EstadoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstadoPayload>[]
+        }
+        delete: {
+          args: Prisma.EstadoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstadoPayload>
+        }
+        update: {
+          args: Prisma.EstadoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstadoPayload>
+        }
+        deleteMany: {
+          args: Prisma.EstadoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EstadoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EstadoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstadoPayload>[]
+        }
+        upsert: {
+          args: Prisma.EstadoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstadoPayload>
+        }
+        aggregate: {
+          args: Prisma.EstadoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEstado>
+        }
+        groupBy: {
+          args: Prisma.EstadoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EstadoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EstadoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EstadoCountAggregateOutputType> | number
+        }
+      }
+    }
+    Municipio: {
+      payload: Prisma.$MunicipioPayload<ExtArgs>
+      fields: Prisma.MunicipioFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MunicipioFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MunicipioPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MunicipioFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MunicipioPayload>
+        }
+        findFirst: {
+          args: Prisma.MunicipioFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MunicipioPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MunicipioFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MunicipioPayload>
+        }
+        findMany: {
+          args: Prisma.MunicipioFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MunicipioPayload>[]
+        }
+        create: {
+          args: Prisma.MunicipioCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MunicipioPayload>
+        }
+        createMany: {
+          args: Prisma.MunicipioCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MunicipioCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MunicipioPayload>[]
+        }
+        delete: {
+          args: Prisma.MunicipioDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MunicipioPayload>
+        }
+        update: {
+          args: Prisma.MunicipioUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MunicipioPayload>
+        }
+        deleteMany: {
+          args: Prisma.MunicipioDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MunicipioUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MunicipioUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MunicipioPayload>[]
+        }
+        upsert: {
+          args: Prisma.MunicipioUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MunicipioPayload>
+        }
+        aggregate: {
+          args: Prisma.MunicipioAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMunicipio>
+        }
+        groupBy: {
+          args: Prisma.MunicipioGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MunicipioGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MunicipioCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MunicipioCountAggregateOutputType> | number
+        }
+      }
+    }
     Regiao: {
       payload: Prisma.$RegiaoPayload<ExtArgs>
       fields: Prisma.RegiaoFieldRefs
@@ -553,6 +705,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.BairroCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.BairroCountAggregateOutputType> | number
+        }
+      }
+    }
+    Setor: {
+      payload: Prisma.$SetorPayload<ExtArgs>
+      fields: Prisma.SetorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SetorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SetorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetorPayload>
+        }
+        findFirst: {
+          args: Prisma.SetorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SetorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetorPayload>
+        }
+        findMany: {
+          args: Prisma.SetorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetorPayload>[]
+        }
+        create: {
+          args: Prisma.SetorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetorPayload>
+        }
+        createMany: {
+          args: Prisma.SetorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SetorCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetorPayload>[]
+        }
+        delete: {
+          args: Prisma.SetorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetorPayload>
+        }
+        update: {
+          args: Prisma.SetorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetorPayload>
+        }
+        deleteMany: {
+          args: Prisma.SetorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SetorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SetorUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetorPayload>[]
+        }
+        upsert: {
+          args: Prisma.SetorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SetorPayload>
+        }
+        aggregate: {
+          args: Prisma.SetorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSetor>
+        }
+        groupBy: {
+          args: Prisma.SetorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SetorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SetorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SetorCountAggregateOutputType> | number
+        }
+      }
+    }
+    Rua: {
+      payload: Prisma.$RuaPayload<ExtArgs>
+      fields: Prisma.RuaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RuaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RuaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RuaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RuaPayload>
+        }
+        findFirst: {
+          args: Prisma.RuaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RuaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RuaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RuaPayload>
+        }
+        findMany: {
+          args: Prisma.RuaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RuaPayload>[]
+        }
+        create: {
+          args: Prisma.RuaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RuaPayload>
+        }
+        createMany: {
+          args: Prisma.RuaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RuaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RuaPayload>[]
+        }
+        delete: {
+          args: Prisma.RuaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RuaPayload>
+        }
+        update: {
+          args: Prisma.RuaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RuaPayload>
+        }
+        deleteMany: {
+          args: Prisma.RuaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RuaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RuaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RuaPayload>[]
+        }
+        upsert: {
+          args: Prisma.RuaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RuaPayload>
+        }
+        aggregate: {
+          args: Prisma.RuaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRua>
+        }
+        groupBy: {
+          args: Prisma.RuaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RuaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RuaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RuaCountAggregateOutputType> | number
         }
       }
     }
@@ -817,6 +1117,24 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const EstadoScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  uf: 'uf'
+} as const
+
+export type EstadoScalarFieldEnum = (typeof EstadoScalarFieldEnum)[keyof typeof EstadoScalarFieldEnum]
+
+
+export const MunicipioScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  estadoId: 'estadoId'
+} as const
+
+export type MunicipioScalarFieldEnum = (typeof MunicipioScalarFieldEnum)[keyof typeof MunicipioScalarFieldEnum]
+
+
 export const RegiaoScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
@@ -835,12 +1153,34 @@ export const BairroScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
   regiaoId: 'regiaoId',
+  municipioId: 'municipioId',
   latitude: 'latitude',
   longitude: 'longitude',
   createdAt: 'createdAt'
 } as const
 
 export type BairroScalarFieldEnum = (typeof BairroScalarFieldEnum)[keyof typeof BairroScalarFieldEnum]
+
+
+export const SetorScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  bairroId: 'bairroId'
+} as const
+
+export type SetorScalarFieldEnum = (typeof SetorScalarFieldEnum)[keyof typeof SetorScalarFieldEnum]
+
+
+export const RuaScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  cep: 'cep',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  bairroId: 'bairroId'
+} as const
+
+export type RuaScalarFieldEnum = (typeof RuaScalarFieldEnum)[keyof typeof RuaScalarFieldEnum]
 
 
 export const ComunidadeScalarFieldEnum = {
@@ -1079,8 +1419,12 @@ export type PrismaClientOptions = ({
   queryPlanCacheMaxSize?: number
 }
 export type GlobalOmitConfig = {
+  estado?: Prisma.EstadoOmit
+  municipio?: Prisma.MunicipioOmit
   regiao?: Prisma.RegiaoOmit
   bairro?: Prisma.BairroOmit
+  setor?: Prisma.SetorOmit
+  rua?: Prisma.RuaOmit
   comunidade?: Prisma.ComunidadeOmit
   demanda?: Prisma.DemandaOmit
   visita?: Prisma.VisitaOmit

@@ -8,8 +8,12 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/Estado'
+export type * from './models/Municipio'
 export type * from './models/Regiao'
 export type * from './models/Bairro'
+export type * from './models/Setor'
+export type * from './models/Rua'
 export type * from './models/Comunidade'
 export type * from './models/Demanda'
 export type * from './models/Visita'

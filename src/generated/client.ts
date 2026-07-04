@@ -31,8 +31,8 @@ export * from "./enums"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Regiaos
- * const regiaos = await prisma.regiao.findMany()
+ * // Fetch zero or more Estados
+ * const estados = await prisma.estado.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -41,6 +41,16 @@ export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
 export { Prisma }
 
+/**
+ * Model Estado
+ * 
+ */
+export type Estado = Prisma.EstadoModel
+/**
+ * Model Municipio
+ * 
+ */
+export type Municipio = Prisma.MunicipioModel
 /**
  * Model Regiao
  * 
@@ -51,6 +61,16 @@ export type Regiao = Prisma.RegiaoModel
  * 
  */
 export type Bairro = Prisma.BairroModel
+/**
+ * Model Setor
+ * 
+ */
+export type Setor = Prisma.SetorModel
+/**
+ * Model Rua
+ * 
+ */
+export type Rua = Prisma.RuaModel
 /**
  * Model Comunidade
  * 

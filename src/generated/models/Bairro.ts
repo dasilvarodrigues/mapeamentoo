@@ -40,6 +40,7 @@ export type BairroMinAggregateOutputType = {
   id: string | null
   nome: string | null
   regiaoId: string | null
+  municipioId: string | null
   latitude: number | null
   longitude: number | null
   createdAt: Date | null
@@ -49,6 +50,7 @@ export type BairroMaxAggregateOutputType = {
   id: string | null
   nome: string | null
   regiaoId: string | null
+  municipioId: string | null
   latitude: number | null
   longitude: number | null
   createdAt: Date | null
@@ -58,6 +60,7 @@ export type BairroCountAggregateOutputType = {
   id: number
   nome: number
   regiaoId: number
+  municipioId: number
   latitude: number
   longitude: number
   createdAt: number
@@ -79,6 +82,7 @@ export type BairroMinAggregateInputType = {
   id?: true
   nome?: true
   regiaoId?: true
+  municipioId?: true
   latitude?: true
   longitude?: true
   createdAt?: true
@@ -88,6 +92,7 @@ export type BairroMaxAggregateInputType = {
   id?: true
   nome?: true
   regiaoId?: true
+  municipioId?: true
   latitude?: true
   longitude?: true
   createdAt?: true
@@ -97,6 +102,7 @@ export type BairroCountAggregateInputType = {
   id?: true
   nome?: true
   regiaoId?: true
+  municipioId?: true
   latitude?: true
   longitude?: true
   createdAt?: true
@@ -193,6 +199,7 @@ export type BairroGroupByOutputType = {
   id: string
   nome: string
   regiaoId: string
+  municipioId: string | null
   latitude: number | null
   longitude: number | null
   createdAt: Date
@@ -225,24 +232,32 @@ export type BairroWhereInput = {
   id?: Prisma.StringFilter<"Bairro"> | string
   nome?: Prisma.StringFilter<"Bairro"> | string
   regiaoId?: Prisma.StringFilter<"Bairro"> | string
+  municipioId?: Prisma.StringNullableFilter<"Bairro"> | string | null
   latitude?: Prisma.FloatNullableFilter<"Bairro"> | number | null
   longitude?: Prisma.FloatNullableFilter<"Bairro"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Bairro"> | Date | string
   regiao?: Prisma.XOR<Prisma.RegiaoScalarRelationFilter, Prisma.RegiaoWhereInput>
+  municipio?: Prisma.XOR<Prisma.MunicipioNullableScalarRelationFilter, Prisma.MunicipioWhereInput> | null
   comunidades?: Prisma.ComunidadeListRelationFilter
   demandas?: Prisma.DemandaListRelationFilter
+  setores?: Prisma.SetorListRelationFilter
+  ruas?: Prisma.RuaListRelationFilter
 }
 
 export type BairroOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   regiaoId?: Prisma.SortOrder
+  municipioId?: Prisma.SortOrderInput | Prisma.SortOrder
   latitude?: Prisma.SortOrderInput | Prisma.SortOrder
   longitude?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   regiao?: Prisma.RegiaoOrderByWithRelationInput
+  municipio?: Prisma.MunicipioOrderByWithRelationInput
   comunidades?: Prisma.ComunidadeOrderByRelationAggregateInput
   demandas?: Prisma.DemandaOrderByRelationAggregateInput
+  setores?: Prisma.SetorOrderByRelationAggregateInput
+  ruas?: Prisma.RuaOrderByRelationAggregateInput
 }
 
 export type BairroWhereUniqueInput = Prisma.AtLeast<{
@@ -252,18 +267,23 @@ export type BairroWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.BairroWhereInput | Prisma.BairroWhereInput[]
   nome?: Prisma.StringFilter<"Bairro"> | string
   regiaoId?: Prisma.StringFilter<"Bairro"> | string
+  municipioId?: Prisma.StringNullableFilter<"Bairro"> | string | null
   latitude?: Prisma.FloatNullableFilter<"Bairro"> | number | null
   longitude?: Prisma.FloatNullableFilter<"Bairro"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Bairro"> | Date | string
   regiao?: Prisma.XOR<Prisma.RegiaoScalarRelationFilter, Prisma.RegiaoWhereInput>
+  municipio?: Prisma.XOR<Prisma.MunicipioNullableScalarRelationFilter, Prisma.MunicipioWhereInput> | null
   comunidades?: Prisma.ComunidadeListRelationFilter
   demandas?: Prisma.DemandaListRelationFilter
+  setores?: Prisma.SetorListRelationFilter
+  ruas?: Prisma.RuaListRelationFilter
 }, "id">
 
 export type BairroOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   regiaoId?: Prisma.SortOrder
+  municipioId?: Prisma.SortOrderInput | Prisma.SortOrder
   latitude?: Prisma.SortOrderInput | Prisma.SortOrder
   longitude?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -281,6 +301,7 @@ export type BairroScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Bairro"> | string
   nome?: Prisma.StringWithAggregatesFilter<"Bairro"> | string
   regiaoId?: Prisma.StringWithAggregatesFilter<"Bairro"> | string
+  municipioId?: Prisma.StringNullableWithAggregatesFilter<"Bairro"> | string | null
   latitude?: Prisma.FloatNullableWithAggregatesFilter<"Bairro"> | number | null
   longitude?: Prisma.FloatNullableWithAggregatesFilter<"Bairro"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Bairro"> | Date | string
@@ -293,19 +314,25 @@ export type BairroCreateInput = {
   longitude?: number | null
   createdAt?: Date | string
   regiao: Prisma.RegiaoCreateNestedOneWithoutBairrosInput
+  municipio?: Prisma.MunicipioCreateNestedOneWithoutBairrosInput
   comunidades?: Prisma.ComunidadeCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaCreateNestedManyWithoutBairroInput
+  setores?: Prisma.SetorCreateNestedManyWithoutBairroInput
+  ruas?: Prisma.RuaCreateNestedManyWithoutBairroInput
 }
 
 export type BairroUncheckedCreateInput = {
   id?: string
   nome: string
   regiaoId: string
+  municipioId?: string | null
   latitude?: number | null
   longitude?: number | null
   createdAt?: Date | string
   comunidades?: Prisma.ComunidadeUncheckedCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaUncheckedCreateNestedManyWithoutBairroInput
+  setores?: Prisma.SetorUncheckedCreateNestedManyWithoutBairroInput
+  ruas?: Prisma.RuaUncheckedCreateNestedManyWithoutBairroInput
 }
 
 export type BairroUpdateInput = {
@@ -315,25 +342,32 @@ export type BairroUpdateInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   regiao?: Prisma.RegiaoUpdateOneRequiredWithoutBairrosNestedInput
+  municipio?: Prisma.MunicipioUpdateOneWithoutBairrosNestedInput
   comunidades?: Prisma.ComunidadeUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUpdateManyWithoutBairroNestedInput
+  setores?: Prisma.SetorUpdateManyWithoutBairroNestedInput
+  ruas?: Prisma.RuaUpdateManyWithoutBairroNestedInput
 }
 
 export type BairroUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   regiaoId?: Prisma.StringFieldUpdateOperationsInput | string
+  municipioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comunidades?: Prisma.ComunidadeUncheckedUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUncheckedUpdateManyWithoutBairroNestedInput
+  setores?: Prisma.SetorUncheckedUpdateManyWithoutBairroNestedInput
+  ruas?: Prisma.RuaUncheckedUpdateManyWithoutBairroNestedInput
 }
 
 export type BairroCreateManyInput = {
   id?: string
   nome: string
   regiaoId: string
+  municipioId?: string | null
   latitude?: number | null
   longitude?: number | null
   createdAt?: Date | string
@@ -351,6 +385,7 @@ export type BairroUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   regiaoId?: Prisma.StringFieldUpdateOperationsInput | string
+  municipioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -370,6 +405,7 @@ export type BairroCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   regiaoId?: Prisma.SortOrder
+  municipioId?: Prisma.SortOrder
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -384,6 +420,7 @@ export type BairroMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   regiaoId?: Prisma.SortOrder
+  municipioId?: Prisma.SortOrder
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -393,6 +430,7 @@ export type BairroMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   regiaoId?: Prisma.SortOrder
+  municipioId?: Prisma.SortOrder
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -411,6 +449,48 @@ export type BairroScalarRelationFilter = {
 export type BairroNullableScalarRelationFilter = {
   is?: Prisma.BairroWhereInput | null
   isNot?: Prisma.BairroWhereInput | null
+}
+
+export type BairroCreateNestedManyWithoutMunicipioInput = {
+  create?: Prisma.XOR<Prisma.BairroCreateWithoutMunicipioInput, Prisma.BairroUncheckedCreateWithoutMunicipioInput> | Prisma.BairroCreateWithoutMunicipioInput[] | Prisma.BairroUncheckedCreateWithoutMunicipioInput[]
+  connectOrCreate?: Prisma.BairroCreateOrConnectWithoutMunicipioInput | Prisma.BairroCreateOrConnectWithoutMunicipioInput[]
+  createMany?: Prisma.BairroCreateManyMunicipioInputEnvelope
+  connect?: Prisma.BairroWhereUniqueInput | Prisma.BairroWhereUniqueInput[]
+}
+
+export type BairroUncheckedCreateNestedManyWithoutMunicipioInput = {
+  create?: Prisma.XOR<Prisma.BairroCreateWithoutMunicipioInput, Prisma.BairroUncheckedCreateWithoutMunicipioInput> | Prisma.BairroCreateWithoutMunicipioInput[] | Prisma.BairroUncheckedCreateWithoutMunicipioInput[]
+  connectOrCreate?: Prisma.BairroCreateOrConnectWithoutMunicipioInput | Prisma.BairroCreateOrConnectWithoutMunicipioInput[]
+  createMany?: Prisma.BairroCreateManyMunicipioInputEnvelope
+  connect?: Prisma.BairroWhereUniqueInput | Prisma.BairroWhereUniqueInput[]
+}
+
+export type BairroUpdateManyWithoutMunicipioNestedInput = {
+  create?: Prisma.XOR<Prisma.BairroCreateWithoutMunicipioInput, Prisma.BairroUncheckedCreateWithoutMunicipioInput> | Prisma.BairroCreateWithoutMunicipioInput[] | Prisma.BairroUncheckedCreateWithoutMunicipioInput[]
+  connectOrCreate?: Prisma.BairroCreateOrConnectWithoutMunicipioInput | Prisma.BairroCreateOrConnectWithoutMunicipioInput[]
+  upsert?: Prisma.BairroUpsertWithWhereUniqueWithoutMunicipioInput | Prisma.BairroUpsertWithWhereUniqueWithoutMunicipioInput[]
+  createMany?: Prisma.BairroCreateManyMunicipioInputEnvelope
+  set?: Prisma.BairroWhereUniqueInput | Prisma.BairroWhereUniqueInput[]
+  disconnect?: Prisma.BairroWhereUniqueInput | Prisma.BairroWhereUniqueInput[]
+  delete?: Prisma.BairroWhereUniqueInput | Prisma.BairroWhereUniqueInput[]
+  connect?: Prisma.BairroWhereUniqueInput | Prisma.BairroWhereUniqueInput[]
+  update?: Prisma.BairroUpdateWithWhereUniqueWithoutMunicipioInput | Prisma.BairroUpdateWithWhereUniqueWithoutMunicipioInput[]
+  updateMany?: Prisma.BairroUpdateManyWithWhereWithoutMunicipioInput | Prisma.BairroUpdateManyWithWhereWithoutMunicipioInput[]
+  deleteMany?: Prisma.BairroScalarWhereInput | Prisma.BairroScalarWhereInput[]
+}
+
+export type BairroUncheckedUpdateManyWithoutMunicipioNestedInput = {
+  create?: Prisma.XOR<Prisma.BairroCreateWithoutMunicipioInput, Prisma.BairroUncheckedCreateWithoutMunicipioInput> | Prisma.BairroCreateWithoutMunicipioInput[] | Prisma.BairroUncheckedCreateWithoutMunicipioInput[]
+  connectOrCreate?: Prisma.BairroCreateOrConnectWithoutMunicipioInput | Prisma.BairroCreateOrConnectWithoutMunicipioInput[]
+  upsert?: Prisma.BairroUpsertWithWhereUniqueWithoutMunicipioInput | Prisma.BairroUpsertWithWhereUniqueWithoutMunicipioInput[]
+  createMany?: Prisma.BairroCreateManyMunicipioInputEnvelope
+  set?: Prisma.BairroWhereUniqueInput | Prisma.BairroWhereUniqueInput[]
+  disconnect?: Prisma.BairroWhereUniqueInput | Prisma.BairroWhereUniqueInput[]
+  delete?: Prisma.BairroWhereUniqueInput | Prisma.BairroWhereUniqueInput[]
+  connect?: Prisma.BairroWhereUniqueInput | Prisma.BairroWhereUniqueInput[]
+  update?: Prisma.BairroUpdateWithWhereUniqueWithoutMunicipioInput | Prisma.BairroUpdateWithWhereUniqueWithoutMunicipioInput[]
+  updateMany?: Prisma.BairroUpdateManyWithWhereWithoutMunicipioInput | Prisma.BairroUpdateManyWithWhereWithoutMunicipioInput[]
+  deleteMany?: Prisma.BairroScalarWhereInput | Prisma.BairroScalarWhereInput[]
 }
 
 export type BairroCreateNestedManyWithoutRegiaoInput = {
@@ -455,6 +535,38 @@ export type BairroUncheckedUpdateManyWithoutRegiaoNestedInput = {
   deleteMany?: Prisma.BairroScalarWhereInput | Prisma.BairroScalarWhereInput[]
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type BairroCreateNestedOneWithoutSetoresInput = {
+  create?: Prisma.XOR<Prisma.BairroCreateWithoutSetoresInput, Prisma.BairroUncheckedCreateWithoutSetoresInput>
+  connectOrCreate?: Prisma.BairroCreateOrConnectWithoutSetoresInput
+  connect?: Prisma.BairroWhereUniqueInput
+}
+
+export type BairroUpdateOneRequiredWithoutSetoresNestedInput = {
+  create?: Prisma.XOR<Prisma.BairroCreateWithoutSetoresInput, Prisma.BairroUncheckedCreateWithoutSetoresInput>
+  connectOrCreate?: Prisma.BairroCreateOrConnectWithoutSetoresInput
+  upsert?: Prisma.BairroUpsertWithoutSetoresInput
+  connect?: Prisma.BairroWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BairroUpdateToOneWithWhereWithoutSetoresInput, Prisma.BairroUpdateWithoutSetoresInput>, Prisma.BairroUncheckedUpdateWithoutSetoresInput>
+}
+
+export type BairroCreateNestedOneWithoutRuasInput = {
+  create?: Prisma.XOR<Prisma.BairroCreateWithoutRuasInput, Prisma.BairroUncheckedCreateWithoutRuasInput>
+  connectOrCreate?: Prisma.BairroCreateOrConnectWithoutRuasInput
+  connect?: Prisma.BairroWhereUniqueInput
+}
+
+export type BairroUpdateOneRequiredWithoutRuasNestedInput = {
+  create?: Prisma.XOR<Prisma.BairroCreateWithoutRuasInput, Prisma.BairroUncheckedCreateWithoutRuasInput>
+  connectOrCreate?: Prisma.BairroCreateOrConnectWithoutRuasInput
+  upsert?: Prisma.BairroUpsertWithoutRuasInput
+  connect?: Prisma.BairroWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BairroUpdateToOneWithWhereWithoutRuasInput, Prisma.BairroUpdateWithoutRuasInput>, Prisma.BairroUncheckedUpdateWithoutRuasInput>
+}
+
 export type BairroCreateNestedOneWithoutComunidadesInput = {
   create?: Prisma.XOR<Prisma.BairroCreateWithoutComunidadesInput, Prisma.BairroUncheckedCreateWithoutComunidadesInput>
   connectOrCreate?: Prisma.BairroCreateOrConnectWithoutComunidadesInput
@@ -485,24 +597,95 @@ export type BairroUpdateOneWithoutDemandasNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.BairroUpdateToOneWithWhereWithoutDemandasInput, Prisma.BairroUpdateWithoutDemandasInput>, Prisma.BairroUncheckedUpdateWithoutDemandasInput>
 }
 
+export type BairroCreateWithoutMunicipioInput = {
+  id?: string
+  nome: string
+  latitude?: number | null
+  longitude?: number | null
+  createdAt?: Date | string
+  regiao: Prisma.RegiaoCreateNestedOneWithoutBairrosInput
+  comunidades?: Prisma.ComunidadeCreateNestedManyWithoutBairroInput
+  demandas?: Prisma.DemandaCreateNestedManyWithoutBairroInput
+  setores?: Prisma.SetorCreateNestedManyWithoutBairroInput
+  ruas?: Prisma.RuaCreateNestedManyWithoutBairroInput
+}
+
+export type BairroUncheckedCreateWithoutMunicipioInput = {
+  id?: string
+  nome: string
+  regiaoId: string
+  latitude?: number | null
+  longitude?: number | null
+  createdAt?: Date | string
+  comunidades?: Prisma.ComunidadeUncheckedCreateNestedManyWithoutBairroInput
+  demandas?: Prisma.DemandaUncheckedCreateNestedManyWithoutBairroInput
+  setores?: Prisma.SetorUncheckedCreateNestedManyWithoutBairroInput
+  ruas?: Prisma.RuaUncheckedCreateNestedManyWithoutBairroInput
+}
+
+export type BairroCreateOrConnectWithoutMunicipioInput = {
+  where: Prisma.BairroWhereUniqueInput
+  create: Prisma.XOR<Prisma.BairroCreateWithoutMunicipioInput, Prisma.BairroUncheckedCreateWithoutMunicipioInput>
+}
+
+export type BairroCreateManyMunicipioInputEnvelope = {
+  data: Prisma.BairroCreateManyMunicipioInput | Prisma.BairroCreateManyMunicipioInput[]
+  skipDuplicates?: boolean
+}
+
+export type BairroUpsertWithWhereUniqueWithoutMunicipioInput = {
+  where: Prisma.BairroWhereUniqueInput
+  update: Prisma.XOR<Prisma.BairroUpdateWithoutMunicipioInput, Prisma.BairroUncheckedUpdateWithoutMunicipioInput>
+  create: Prisma.XOR<Prisma.BairroCreateWithoutMunicipioInput, Prisma.BairroUncheckedCreateWithoutMunicipioInput>
+}
+
+export type BairroUpdateWithWhereUniqueWithoutMunicipioInput = {
+  where: Prisma.BairroWhereUniqueInput
+  data: Prisma.XOR<Prisma.BairroUpdateWithoutMunicipioInput, Prisma.BairroUncheckedUpdateWithoutMunicipioInput>
+}
+
+export type BairroUpdateManyWithWhereWithoutMunicipioInput = {
+  where: Prisma.BairroScalarWhereInput
+  data: Prisma.XOR<Prisma.BairroUpdateManyMutationInput, Prisma.BairroUncheckedUpdateManyWithoutMunicipioInput>
+}
+
+export type BairroScalarWhereInput = {
+  AND?: Prisma.BairroScalarWhereInput | Prisma.BairroScalarWhereInput[]
+  OR?: Prisma.BairroScalarWhereInput[]
+  NOT?: Prisma.BairroScalarWhereInput | Prisma.BairroScalarWhereInput[]
+  id?: Prisma.StringFilter<"Bairro"> | string
+  nome?: Prisma.StringFilter<"Bairro"> | string
+  regiaoId?: Prisma.StringFilter<"Bairro"> | string
+  municipioId?: Prisma.StringNullableFilter<"Bairro"> | string | null
+  latitude?: Prisma.FloatNullableFilter<"Bairro"> | number | null
+  longitude?: Prisma.FloatNullableFilter<"Bairro"> | number | null
+  createdAt?: Prisma.DateTimeFilter<"Bairro"> | Date | string
+}
+
 export type BairroCreateWithoutRegiaoInput = {
   id?: string
   nome: string
   latitude?: number | null
   longitude?: number | null
   createdAt?: Date | string
+  municipio?: Prisma.MunicipioCreateNestedOneWithoutBairrosInput
   comunidades?: Prisma.ComunidadeCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaCreateNestedManyWithoutBairroInput
+  setores?: Prisma.SetorCreateNestedManyWithoutBairroInput
+  ruas?: Prisma.RuaCreateNestedManyWithoutBairroInput
 }
 
 export type BairroUncheckedCreateWithoutRegiaoInput = {
   id?: string
   nome: string
+  municipioId?: string | null
   latitude?: number | null
   longitude?: number | null
   createdAt?: Date | string
   comunidades?: Prisma.ComunidadeUncheckedCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaUncheckedCreateNestedManyWithoutBairroInput
+  setores?: Prisma.SetorUncheckedCreateNestedManyWithoutBairroInput
+  ruas?: Prisma.RuaUncheckedCreateNestedManyWithoutBairroInput
 }
 
 export type BairroCreateOrConnectWithoutRegiaoInput = {
@@ -531,16 +714,140 @@ export type BairroUpdateManyWithWhereWithoutRegiaoInput = {
   data: Prisma.XOR<Prisma.BairroUpdateManyMutationInput, Prisma.BairroUncheckedUpdateManyWithoutRegiaoInput>
 }
 
-export type BairroScalarWhereInput = {
-  AND?: Prisma.BairroScalarWhereInput | Prisma.BairroScalarWhereInput[]
-  OR?: Prisma.BairroScalarWhereInput[]
-  NOT?: Prisma.BairroScalarWhereInput | Prisma.BairroScalarWhereInput[]
-  id?: Prisma.StringFilter<"Bairro"> | string
-  nome?: Prisma.StringFilter<"Bairro"> | string
-  regiaoId?: Prisma.StringFilter<"Bairro"> | string
-  latitude?: Prisma.FloatNullableFilter<"Bairro"> | number | null
-  longitude?: Prisma.FloatNullableFilter<"Bairro"> | number | null
-  createdAt?: Prisma.DateTimeFilter<"Bairro"> | Date | string
+export type BairroCreateWithoutSetoresInput = {
+  id?: string
+  nome: string
+  latitude?: number | null
+  longitude?: number | null
+  createdAt?: Date | string
+  regiao: Prisma.RegiaoCreateNestedOneWithoutBairrosInput
+  municipio?: Prisma.MunicipioCreateNestedOneWithoutBairrosInput
+  comunidades?: Prisma.ComunidadeCreateNestedManyWithoutBairroInput
+  demandas?: Prisma.DemandaCreateNestedManyWithoutBairroInput
+  ruas?: Prisma.RuaCreateNestedManyWithoutBairroInput
+}
+
+export type BairroUncheckedCreateWithoutSetoresInput = {
+  id?: string
+  nome: string
+  regiaoId: string
+  municipioId?: string | null
+  latitude?: number | null
+  longitude?: number | null
+  createdAt?: Date | string
+  comunidades?: Prisma.ComunidadeUncheckedCreateNestedManyWithoutBairroInput
+  demandas?: Prisma.DemandaUncheckedCreateNestedManyWithoutBairroInput
+  ruas?: Prisma.RuaUncheckedCreateNestedManyWithoutBairroInput
+}
+
+export type BairroCreateOrConnectWithoutSetoresInput = {
+  where: Prisma.BairroWhereUniqueInput
+  create: Prisma.XOR<Prisma.BairroCreateWithoutSetoresInput, Prisma.BairroUncheckedCreateWithoutSetoresInput>
+}
+
+export type BairroUpsertWithoutSetoresInput = {
+  update: Prisma.XOR<Prisma.BairroUpdateWithoutSetoresInput, Prisma.BairroUncheckedUpdateWithoutSetoresInput>
+  create: Prisma.XOR<Prisma.BairroCreateWithoutSetoresInput, Prisma.BairroUncheckedCreateWithoutSetoresInput>
+  where?: Prisma.BairroWhereInput
+}
+
+export type BairroUpdateToOneWithWhereWithoutSetoresInput = {
+  where?: Prisma.BairroWhereInput
+  data: Prisma.XOR<Prisma.BairroUpdateWithoutSetoresInput, Prisma.BairroUncheckedUpdateWithoutSetoresInput>
+}
+
+export type BairroUpdateWithoutSetoresInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  regiao?: Prisma.RegiaoUpdateOneRequiredWithoutBairrosNestedInput
+  municipio?: Prisma.MunicipioUpdateOneWithoutBairrosNestedInput
+  comunidades?: Prisma.ComunidadeUpdateManyWithoutBairroNestedInput
+  demandas?: Prisma.DemandaUpdateManyWithoutBairroNestedInput
+  ruas?: Prisma.RuaUpdateManyWithoutBairroNestedInput
+}
+
+export type BairroUncheckedUpdateWithoutSetoresInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  regiaoId?: Prisma.StringFieldUpdateOperationsInput | string
+  municipioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comunidades?: Prisma.ComunidadeUncheckedUpdateManyWithoutBairroNestedInput
+  demandas?: Prisma.DemandaUncheckedUpdateManyWithoutBairroNestedInput
+  ruas?: Prisma.RuaUncheckedUpdateManyWithoutBairroNestedInput
+}
+
+export type BairroCreateWithoutRuasInput = {
+  id?: string
+  nome: string
+  latitude?: number | null
+  longitude?: number | null
+  createdAt?: Date | string
+  regiao: Prisma.RegiaoCreateNestedOneWithoutBairrosInput
+  municipio?: Prisma.MunicipioCreateNestedOneWithoutBairrosInput
+  comunidades?: Prisma.ComunidadeCreateNestedManyWithoutBairroInput
+  demandas?: Prisma.DemandaCreateNestedManyWithoutBairroInput
+  setores?: Prisma.SetorCreateNestedManyWithoutBairroInput
+}
+
+export type BairroUncheckedCreateWithoutRuasInput = {
+  id?: string
+  nome: string
+  regiaoId: string
+  municipioId?: string | null
+  latitude?: number | null
+  longitude?: number | null
+  createdAt?: Date | string
+  comunidades?: Prisma.ComunidadeUncheckedCreateNestedManyWithoutBairroInput
+  demandas?: Prisma.DemandaUncheckedCreateNestedManyWithoutBairroInput
+  setores?: Prisma.SetorUncheckedCreateNestedManyWithoutBairroInput
+}
+
+export type BairroCreateOrConnectWithoutRuasInput = {
+  where: Prisma.BairroWhereUniqueInput
+  create: Prisma.XOR<Prisma.BairroCreateWithoutRuasInput, Prisma.BairroUncheckedCreateWithoutRuasInput>
+}
+
+export type BairroUpsertWithoutRuasInput = {
+  update: Prisma.XOR<Prisma.BairroUpdateWithoutRuasInput, Prisma.BairroUncheckedUpdateWithoutRuasInput>
+  create: Prisma.XOR<Prisma.BairroCreateWithoutRuasInput, Prisma.BairroUncheckedCreateWithoutRuasInput>
+  where?: Prisma.BairroWhereInput
+}
+
+export type BairroUpdateToOneWithWhereWithoutRuasInput = {
+  where?: Prisma.BairroWhereInput
+  data: Prisma.XOR<Prisma.BairroUpdateWithoutRuasInput, Prisma.BairroUncheckedUpdateWithoutRuasInput>
+}
+
+export type BairroUpdateWithoutRuasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  regiao?: Prisma.RegiaoUpdateOneRequiredWithoutBairrosNestedInput
+  municipio?: Prisma.MunicipioUpdateOneWithoutBairrosNestedInput
+  comunidades?: Prisma.ComunidadeUpdateManyWithoutBairroNestedInput
+  demandas?: Prisma.DemandaUpdateManyWithoutBairroNestedInput
+  setores?: Prisma.SetorUpdateManyWithoutBairroNestedInput
+}
+
+export type BairroUncheckedUpdateWithoutRuasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  regiaoId?: Prisma.StringFieldUpdateOperationsInput | string
+  municipioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comunidades?: Prisma.ComunidadeUncheckedUpdateManyWithoutBairroNestedInput
+  demandas?: Prisma.DemandaUncheckedUpdateManyWithoutBairroNestedInput
+  setores?: Prisma.SetorUncheckedUpdateManyWithoutBairroNestedInput
 }
 
 export type BairroCreateWithoutComunidadesInput = {
@@ -550,17 +857,23 @@ export type BairroCreateWithoutComunidadesInput = {
   longitude?: number | null
   createdAt?: Date | string
   regiao: Prisma.RegiaoCreateNestedOneWithoutBairrosInput
+  municipio?: Prisma.MunicipioCreateNestedOneWithoutBairrosInput
   demandas?: Prisma.DemandaCreateNestedManyWithoutBairroInput
+  setores?: Prisma.SetorCreateNestedManyWithoutBairroInput
+  ruas?: Prisma.RuaCreateNestedManyWithoutBairroInput
 }
 
 export type BairroUncheckedCreateWithoutComunidadesInput = {
   id?: string
   nome: string
   regiaoId: string
+  municipioId?: string | null
   latitude?: number | null
   longitude?: number | null
   createdAt?: Date | string
   demandas?: Prisma.DemandaUncheckedCreateNestedManyWithoutBairroInput
+  setores?: Prisma.SetorUncheckedCreateNestedManyWithoutBairroInput
+  ruas?: Prisma.RuaUncheckedCreateNestedManyWithoutBairroInput
 }
 
 export type BairroCreateOrConnectWithoutComunidadesInput = {
@@ -586,17 +899,23 @@ export type BairroUpdateWithoutComunidadesInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   regiao?: Prisma.RegiaoUpdateOneRequiredWithoutBairrosNestedInput
+  municipio?: Prisma.MunicipioUpdateOneWithoutBairrosNestedInput
   demandas?: Prisma.DemandaUpdateManyWithoutBairroNestedInput
+  setores?: Prisma.SetorUpdateManyWithoutBairroNestedInput
+  ruas?: Prisma.RuaUpdateManyWithoutBairroNestedInput
 }
 
 export type BairroUncheckedUpdateWithoutComunidadesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   regiaoId?: Prisma.StringFieldUpdateOperationsInput | string
+  municipioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   demandas?: Prisma.DemandaUncheckedUpdateManyWithoutBairroNestedInput
+  setores?: Prisma.SetorUncheckedUpdateManyWithoutBairroNestedInput
+  ruas?: Prisma.RuaUncheckedUpdateManyWithoutBairroNestedInput
 }
 
 export type BairroCreateWithoutDemandasInput = {
@@ -606,17 +925,23 @@ export type BairroCreateWithoutDemandasInput = {
   longitude?: number | null
   createdAt?: Date | string
   regiao: Prisma.RegiaoCreateNestedOneWithoutBairrosInput
+  municipio?: Prisma.MunicipioCreateNestedOneWithoutBairrosInput
   comunidades?: Prisma.ComunidadeCreateNestedManyWithoutBairroInput
+  setores?: Prisma.SetorCreateNestedManyWithoutBairroInput
+  ruas?: Prisma.RuaCreateNestedManyWithoutBairroInput
 }
 
 export type BairroUncheckedCreateWithoutDemandasInput = {
   id?: string
   nome: string
   regiaoId: string
+  municipioId?: string | null
   latitude?: number | null
   longitude?: number | null
   createdAt?: Date | string
   comunidades?: Prisma.ComunidadeUncheckedCreateNestedManyWithoutBairroInput
+  setores?: Prisma.SetorUncheckedCreateNestedManyWithoutBairroInput
+  ruas?: Prisma.RuaUncheckedCreateNestedManyWithoutBairroInput
 }
 
 export type BairroCreateOrConnectWithoutDemandasInput = {
@@ -642,10 +967,48 @@ export type BairroUpdateWithoutDemandasInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   regiao?: Prisma.RegiaoUpdateOneRequiredWithoutBairrosNestedInput
+  municipio?: Prisma.MunicipioUpdateOneWithoutBairrosNestedInput
   comunidades?: Prisma.ComunidadeUpdateManyWithoutBairroNestedInput
+  setores?: Prisma.SetorUpdateManyWithoutBairroNestedInput
+  ruas?: Prisma.RuaUpdateManyWithoutBairroNestedInput
 }
 
 export type BairroUncheckedUpdateWithoutDemandasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  regiaoId?: Prisma.StringFieldUpdateOperationsInput | string
+  municipioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comunidades?: Prisma.ComunidadeUncheckedUpdateManyWithoutBairroNestedInput
+  setores?: Prisma.SetorUncheckedUpdateManyWithoutBairroNestedInput
+  ruas?: Prisma.RuaUncheckedUpdateManyWithoutBairroNestedInput
+}
+
+export type BairroCreateManyMunicipioInput = {
+  id?: string
+  nome: string
+  regiaoId: string
+  latitude?: number | null
+  longitude?: number | null
+  createdAt?: Date | string
+}
+
+export type BairroUpdateWithoutMunicipioInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  regiao?: Prisma.RegiaoUpdateOneRequiredWithoutBairrosNestedInput
+  comunidades?: Prisma.ComunidadeUpdateManyWithoutBairroNestedInput
+  demandas?: Prisma.DemandaUpdateManyWithoutBairroNestedInput
+  setores?: Prisma.SetorUpdateManyWithoutBairroNestedInput
+  ruas?: Prisma.RuaUpdateManyWithoutBairroNestedInput
+}
+
+export type BairroUncheckedUpdateWithoutMunicipioInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   regiaoId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -653,11 +1016,24 @@ export type BairroUncheckedUpdateWithoutDemandasInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comunidades?: Prisma.ComunidadeUncheckedUpdateManyWithoutBairroNestedInput
+  demandas?: Prisma.DemandaUncheckedUpdateManyWithoutBairroNestedInput
+  setores?: Prisma.SetorUncheckedUpdateManyWithoutBairroNestedInput
+  ruas?: Prisma.RuaUncheckedUpdateManyWithoutBairroNestedInput
+}
+
+export type BairroUncheckedUpdateManyWithoutMunicipioInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  regiaoId?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BairroCreateManyRegiaoInput = {
   id?: string
   nome: string
+  municipioId?: string | null
   latitude?: number | null
   longitude?: number | null
   createdAt?: Date | string
@@ -669,23 +1045,30 @@ export type BairroUpdateWithoutRegiaoInput = {
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  municipio?: Prisma.MunicipioUpdateOneWithoutBairrosNestedInput
   comunidades?: Prisma.ComunidadeUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUpdateManyWithoutBairroNestedInput
+  setores?: Prisma.SetorUpdateManyWithoutBairroNestedInput
+  ruas?: Prisma.RuaUpdateManyWithoutBairroNestedInput
 }
 
 export type BairroUncheckedUpdateWithoutRegiaoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  municipioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comunidades?: Prisma.ComunidadeUncheckedUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUncheckedUpdateManyWithoutBairroNestedInput
+  setores?: Prisma.SetorUncheckedUpdateManyWithoutBairroNestedInput
+  ruas?: Prisma.RuaUncheckedUpdateManyWithoutBairroNestedInput
 }
 
 export type BairroUncheckedUpdateManyWithoutRegiaoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
+  municipioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -699,11 +1082,15 @@ export type BairroUncheckedUpdateManyWithoutRegiaoInput = {
 export type BairroCountOutputType = {
   comunidades: number
   demandas: number
+  setores: number
+  ruas: number
 }
 
 export type BairroCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   comunidades?: boolean | BairroCountOutputTypeCountComunidadesArgs
   demandas?: boolean | BairroCountOutputTypeCountDemandasArgs
+  setores?: boolean | BairroCountOutputTypeCountSetoresArgs
+  ruas?: boolean | BairroCountOutputTypeCountRuasArgs
 }
 
 /**
@@ -730,17 +1117,35 @@ export type BairroCountOutputTypeCountDemandasArgs<ExtArgs extends runtime.Types
   where?: Prisma.DemandaWhereInput
 }
 
+/**
+ * BairroCountOutputType without action
+ */
+export type BairroCountOutputTypeCountSetoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SetorWhereInput
+}
+
+/**
+ * BairroCountOutputType without action
+ */
+export type BairroCountOutputTypeCountRuasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RuaWhereInput
+}
+
 
 export type BairroSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nome?: boolean
   regiaoId?: boolean
+  municipioId?: boolean
   latitude?: boolean
   longitude?: boolean
   createdAt?: boolean
   regiao?: boolean | Prisma.RegiaoDefaultArgs<ExtArgs>
+  municipio?: boolean | Prisma.Bairro$municipioArgs<ExtArgs>
   comunidades?: boolean | Prisma.Bairro$comunidadesArgs<ExtArgs>
   demandas?: boolean | Prisma.Bairro$demandasArgs<ExtArgs>
+  setores?: boolean | Prisma.Bairro$setoresArgs<ExtArgs>
+  ruas?: boolean | Prisma.Bairro$ruasArgs<ExtArgs>
   _count?: boolean | Prisma.BairroCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["bairro"]>
 
@@ -748,56 +1153,70 @@ export type BairroSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   id?: boolean
   nome?: boolean
   regiaoId?: boolean
+  municipioId?: boolean
   latitude?: boolean
   longitude?: boolean
   createdAt?: boolean
   regiao?: boolean | Prisma.RegiaoDefaultArgs<ExtArgs>
+  municipio?: boolean | Prisma.Bairro$municipioArgs<ExtArgs>
 }, ExtArgs["result"]["bairro"]>
 
 export type BairroSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nome?: boolean
   regiaoId?: boolean
+  municipioId?: boolean
   latitude?: boolean
   longitude?: boolean
   createdAt?: boolean
   regiao?: boolean | Prisma.RegiaoDefaultArgs<ExtArgs>
+  municipio?: boolean | Prisma.Bairro$municipioArgs<ExtArgs>
 }, ExtArgs["result"]["bairro"]>
 
 export type BairroSelectScalar = {
   id?: boolean
   nome?: boolean
   regiaoId?: boolean
+  municipioId?: boolean
   latitude?: boolean
   longitude?: boolean
   createdAt?: boolean
 }
 
-export type BairroOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "regiaoId" | "latitude" | "longitude" | "createdAt", ExtArgs["result"]["bairro"]>
+export type BairroOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "regiaoId" | "municipioId" | "latitude" | "longitude" | "createdAt", ExtArgs["result"]["bairro"]>
 export type BairroInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   regiao?: boolean | Prisma.RegiaoDefaultArgs<ExtArgs>
+  municipio?: boolean | Prisma.Bairro$municipioArgs<ExtArgs>
   comunidades?: boolean | Prisma.Bairro$comunidadesArgs<ExtArgs>
   demandas?: boolean | Prisma.Bairro$demandasArgs<ExtArgs>
+  setores?: boolean | Prisma.Bairro$setoresArgs<ExtArgs>
+  ruas?: boolean | Prisma.Bairro$ruasArgs<ExtArgs>
   _count?: boolean | Prisma.BairroCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BairroIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   regiao?: boolean | Prisma.RegiaoDefaultArgs<ExtArgs>
+  municipio?: boolean | Prisma.Bairro$municipioArgs<ExtArgs>
 }
 export type BairroIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   regiao?: boolean | Prisma.RegiaoDefaultArgs<ExtArgs>
+  municipio?: boolean | Prisma.Bairro$municipioArgs<ExtArgs>
 }
 
 export type $BairroPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Bairro"
   objects: {
     regiao: Prisma.$RegiaoPayload<ExtArgs>
+    municipio: Prisma.$MunicipioPayload<ExtArgs> | null
     comunidades: Prisma.$ComunidadePayload<ExtArgs>[]
     demandas: Prisma.$DemandaPayload<ExtArgs>[]
+    setores: Prisma.$SetorPayload<ExtArgs>[]
+    ruas: Prisma.$RuaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     nome: string
     regiaoId: string
+    municipioId: string | null
     latitude: number | null
     longitude: number | null
     createdAt: Date
@@ -1196,8 +1615,11 @@ readonly fields: BairroFieldRefs;
 export interface Prisma__BairroClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   regiao<T extends Prisma.RegiaoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RegiaoDefaultArgs<ExtArgs>>): Prisma.Prisma__RegiaoClient<runtime.Types.Result.GetResult<Prisma.$RegiaoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  municipio<T extends Prisma.Bairro$municipioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bairro$municipioArgs<ExtArgs>>): Prisma.Prisma__MunicipioClient<runtime.Types.Result.GetResult<Prisma.$MunicipioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   comunidades<T extends Prisma.Bairro$comunidadesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bairro$comunidadesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComunidadePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   demandas<T extends Prisma.Bairro$demandasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bairro$demandasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DemandaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  setores<T extends Prisma.Bairro$setoresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bairro$setoresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SetorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ruas<T extends Prisma.Bairro$ruasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bairro$ruasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RuaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1230,6 +1652,7 @@ export interface BairroFieldRefs {
   readonly id: Prisma.FieldRef<"Bairro", 'String'>
   readonly nome: Prisma.FieldRef<"Bairro", 'String'>
   readonly regiaoId: Prisma.FieldRef<"Bairro", 'String'>
+  readonly municipioId: Prisma.FieldRef<"Bairro", 'String'>
   readonly latitude: Prisma.FieldRef<"Bairro", 'Float'>
   readonly longitude: Prisma.FieldRef<"Bairro", 'Float'>
   readonly createdAt: Prisma.FieldRef<"Bairro", 'DateTime'>
@@ -1634,6 +2057,25 @@ export type BairroDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
+ * Bairro.municipio
+ */
+export type Bairro$municipioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Municipio
+   */
+  select?: Prisma.MunicipioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Municipio
+   */
+  omit?: Prisma.MunicipioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MunicipioInclude<ExtArgs> | null
+  where?: Prisma.MunicipioWhereInput
+}
+
+/**
  * Bairro.comunidades
  */
 export type Bairro$comunidadesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1679,6 +2121,54 @@ export type Bairro$demandasArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.DemandaScalarFieldEnum | Prisma.DemandaScalarFieldEnum[]
+}
+
+/**
+ * Bairro.setores
+ */
+export type Bairro$setoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Setor
+   */
+  select?: Prisma.SetorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Setor
+   */
+  omit?: Prisma.SetorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SetorInclude<ExtArgs> | null
+  where?: Prisma.SetorWhereInput
+  orderBy?: Prisma.SetorOrderByWithRelationInput | Prisma.SetorOrderByWithRelationInput[]
+  cursor?: Prisma.SetorWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SetorScalarFieldEnum | Prisma.SetorScalarFieldEnum[]
+}
+
+/**
+ * Bairro.ruas
+ */
+export type Bairro$ruasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Rua
+   */
+  select?: Prisma.RuaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Rua
+   */
+  omit?: Prisma.RuaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RuaInclude<ExtArgs> | null
+  where?: Prisma.RuaWhereInput
+  orderBy?: Prisma.RuaOrderByWithRelationInput | Prisma.RuaOrderByWithRelationInput[]
+  cursor?: Prisma.RuaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RuaScalarFieldEnum | Prisma.RuaScalarFieldEnum[]
 }
 
 /**

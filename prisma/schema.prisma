@@ -7,6 +7,21 @@ datasource db {
   provider = "postgresql"
 }
 
+model Estado {
+  id        String      @id
+  nome      String
+  uf        String      @unique @db.VarChar(2)
+  municipios Municipio[]
+}
+
+model Municipio {
+  id       String @id @default(cuid())
+  nome     String
+  estadoId String
+  estado   Estado @relation(fields: [estadoId], references: [id])
+  bairros  Bairro[]
+}
+
 model Regiao {
   id        String   @id @default(cuid())
   nome      String
@@ -23,16 +38,37 @@ model Regiao {
 }
 
 model Bairro {
-  id        String   @id @default(cuid())
-  nome      String
-  regiaoId  String
-  regiao    Regiao   @relation(fields: [regiaoId], references: [id])
-  latitude  Float?
-  longitude Float?
-  createdAt DateTime @default(now())
+  id          String   @id @default(cuid())
+  nome        String
+  regiaoId    String
+  regiao      Regiao   @relation(fields: [regiaoId], references: [id])
+  municipioId String?
+  municipio   Municipio? @relation(fields: [municipioId], references: [id])
+  latitude    Float?
+  longitude   Float?
+  createdAt   DateTime @default(now())
 
   comunidades Comunidade[]
   demandas    Demanda[]
+  setores     Setor[]
+  ruas        Rua[]
+}
+
+model Setor {
+  id       String @id @default(cuid())
+  nome     String
+  bairroId String
+  bairro   Bairro @relation(fields: [bairroId], references: [id])
+}
+
+model Rua {
+  id        String  @id @default(cuid())
+  nome      String
+  cep       String?
+  latitude  Float?
+  longitude Float?
+  bairroId  String
+  bairro    Bairro  @relation(fields: [bairroId], references: [id])
 }
 
 model Comunidade {
