@@ -96,6 +96,8 @@ async function main() {
   await prisma.municipio.createMany({ data: municipiosData });
 
   // Clear existing data
+  await prisma.interacao.deleteMany();
+  await prisma.contato.deleteMany();
   await prisma.rua.deleteMany();
   await prisma.setor.deleteMany();
   await prisma.visita.deleteMany();
@@ -265,9 +267,51 @@ async function main() {
 
   await prisma.visita.createMany({ data: visitasData });
 
+  // CRM seed
+  await prisma.interacao.deleteMany();
+  await prisma.contato.deleteMany();
+
+  const todosBairros = await prisma.bairro.findMany();
+  const responsaveisCrm = ["Carlos Silva", "Ana Oliveira", "Pedro Santos"];
+
+  const contatosData = [
+    { nome: "Maria Silva", telefone: "(11) 99999-0001", email: "maria@email.com", cargo: "Líder Comunitária", bairroId: todosBairros[0]?.id || null },
+    { nome: "João Santos", telefone: "(11) 99999-0002", email: "joao@email.com", cargo: "Presidente da Associação", bairroId: todosBairros[1]?.id || null },
+    { nome: "Ana Costa", telefone: "(11) 99999-0003", email: null, cargo: "Representante de Rua", bairroId: todosBairros[2]?.id || null },
+    { nome: "Carlos Pereira", telefone: "(11) 99999-0004", email: "carlos@email.com", cargo: "Vice-líder", bairroId: todosBairros[3]?.id || null },
+    { nome: "Lucia Oliveira", telefone: "(11) 99999-0005", email: null, cargo: "Voluntária", bairroId: todosBairros[4]?.id || null },
+    { nome: "Pedro Souza", telefone: "(11) 99999-0006", email: "pedro@email.com", cargo: "Membro do Conselho", bairroId: todosBairros[5]?.id || null },
+    { nome: "Marina Lima", telefone: "(11) 99999-0007", email: "marina@email.com", cargo: "Líder Juvenil", bairroId: todosBairros[6]?.id || null },
+    { nome: "Roberto Alves", telefone: "(11) 99999-0008", email: null, cargo: "Comerciante Local", bairroId: todosBairros[7]?.id || null },
+    { nome: "Carla Mendes", telefone: "(11) 99999-0009", email: "carla@email.com", cargo: "Professora", bairroId: todosBairros[8]?.id || null },
+    { nome: "Fernando Dias", telefone: "(11) 99999-0010", email: null, cargo: "Aposentado", bairroId: todosBairros[0]?.id || null },
+  ];
+
+  for (const c of contatosData) {
+    const contato = await prisma.contato.create({ data: c });
+
+    const numInteracoes = Math.floor(Math.random() * 4) + 1;
+    for (let i = 0; i < numInteracoes; i++) {
+      const diasAtras = Math.floor(Math.random() * 60);
+      const data = new Date();
+      data.setDate(data.getDate() - diasAtras);
+      const tipos = ["visita", "ligacao", "reuniao", "mensagem"];
+      await prisma.interacao.create({
+        data: {
+          tipo: tipos[i % 4],
+          descricao: `${tipos[i % 4].charAt(0).toUpperCase() + tipos[i % 4].slice(1)} com ${c.nome} - ${["Discussão sobre demandas", "Acompanhamento de obra", "Reunião de planejamento", "Contato de rotina"][i % 4]}`,
+          data,
+          responsavel: responsaveisCrm[i % responsaveisCrm.length],
+          contatoId: contato.id,
+        },
+      });
+    }
+  }
+
   const totalDemandas = await prisma.demanda.count();
   const totalVisitas = await prisma.visita.count();
-  console.log(`Seed concluído! ${totalDemandas} demandas, ${totalVisitas} visitas`);
+  const totalContatos = await prisma.contato.count();
+  console.log(`Seed concluído! ${totalDemandas} demandas, ${totalVisitas} visitas, ${totalContatos} contatos`);
 }
 
 main()
