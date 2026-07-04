@@ -53,6 +53,16 @@ export type Rua = Prisma.RuaModel
  */
 export type Comunidade = Prisma.ComunidadeModel
 /**
+ * Model Contato
+ * 
+ */
+export type Contato = Prisma.ContatoModel
+/**
+ * Model Interacao
+ * 
+ */
+export type Interacao = Prisma.InteracaoModel
+/**
  * Model Demanda
  * 
  */

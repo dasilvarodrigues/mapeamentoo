@@ -58,6 +58,8 @@ export const ModelName = {
   Setor: 'Setor',
   Rua: 'Rua',
   Comunidade: 'Comunidade',
+  Contato: 'Contato',
+  Interacao: 'Interacao',
   Demanda: 'Demanda',
   Visita: 'Visita'
 } as const
@@ -156,6 +158,37 @@ export const ComunidadeScalarFieldEnum = {
 export type ComunidadeScalarFieldEnum = (typeof ComunidadeScalarFieldEnum)[keyof typeof ComunidadeScalarFieldEnum]
 
 
+export const ContatoScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  telefone: 'telefone',
+  email: 'email',
+  cargo: 'cargo',
+  redesSociais: 'redesSociais',
+  bairroId: 'bairroId',
+  comunidadeId: 'comunidadeId',
+  observacoes: 'observacoes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ContatoScalarFieldEnum = (typeof ContatoScalarFieldEnum)[keyof typeof ContatoScalarFieldEnum]
+
+
+export const InteracaoScalarFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  descricao: 'descricao',
+  data: 'data',
+  responsavel: 'responsavel',
+  contatoId: 'contatoId',
+  demandaId: 'demandaId',
+  createdAt: 'createdAt'
+} as const
+
+export type InteracaoScalarFieldEnum = (typeof InteracaoScalarFieldEnum)[keyof typeof InteracaoScalarFieldEnum]
+
+
 export const DemandaScalarFieldEnum = {
   id: 'id',
   categoria: 'categoria',
@@ -195,6 +228,14 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -209,4 +250,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

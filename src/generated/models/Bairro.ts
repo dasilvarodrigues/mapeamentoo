@@ -239,6 +239,7 @@ export type BairroWhereInput = {
   regiao?: Prisma.XOR<Prisma.RegiaoScalarRelationFilter, Prisma.RegiaoWhereInput>
   municipio?: Prisma.XOR<Prisma.MunicipioNullableScalarRelationFilter, Prisma.MunicipioWhereInput> | null
   comunidades?: Prisma.ComunidadeListRelationFilter
+  contatos?: Prisma.ContatoListRelationFilter
   demandas?: Prisma.DemandaListRelationFilter
   setores?: Prisma.SetorListRelationFilter
   ruas?: Prisma.RuaListRelationFilter
@@ -255,6 +256,7 @@ export type BairroOrderByWithRelationInput = {
   regiao?: Prisma.RegiaoOrderByWithRelationInput
   municipio?: Prisma.MunicipioOrderByWithRelationInput
   comunidades?: Prisma.ComunidadeOrderByRelationAggregateInput
+  contatos?: Prisma.ContatoOrderByRelationAggregateInput
   demandas?: Prisma.DemandaOrderByRelationAggregateInput
   setores?: Prisma.SetorOrderByRelationAggregateInput
   ruas?: Prisma.RuaOrderByRelationAggregateInput
@@ -274,6 +276,7 @@ export type BairroWhereUniqueInput = Prisma.AtLeast<{
   regiao?: Prisma.XOR<Prisma.RegiaoScalarRelationFilter, Prisma.RegiaoWhereInput>
   municipio?: Prisma.XOR<Prisma.MunicipioNullableScalarRelationFilter, Prisma.MunicipioWhereInput> | null
   comunidades?: Prisma.ComunidadeListRelationFilter
+  contatos?: Prisma.ContatoListRelationFilter
   demandas?: Prisma.DemandaListRelationFilter
   setores?: Prisma.SetorListRelationFilter
   ruas?: Prisma.RuaListRelationFilter
@@ -316,6 +319,7 @@ export type BairroCreateInput = {
   regiao: Prisma.RegiaoCreateNestedOneWithoutBairrosInput
   municipio?: Prisma.MunicipioCreateNestedOneWithoutBairrosInput
   comunidades?: Prisma.ComunidadeCreateNestedManyWithoutBairroInput
+  contatos?: Prisma.ContatoCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaCreateNestedManyWithoutBairroInput
   setores?: Prisma.SetorCreateNestedManyWithoutBairroInput
   ruas?: Prisma.RuaCreateNestedManyWithoutBairroInput
@@ -330,6 +334,7 @@ export type BairroUncheckedCreateInput = {
   longitude?: number | null
   createdAt?: Date | string
   comunidades?: Prisma.ComunidadeUncheckedCreateNestedManyWithoutBairroInput
+  contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaUncheckedCreateNestedManyWithoutBairroInput
   setores?: Prisma.SetorUncheckedCreateNestedManyWithoutBairroInput
   ruas?: Prisma.RuaUncheckedCreateNestedManyWithoutBairroInput
@@ -344,6 +349,7 @@ export type BairroUpdateInput = {
   regiao?: Prisma.RegiaoUpdateOneRequiredWithoutBairrosNestedInput
   municipio?: Prisma.MunicipioUpdateOneWithoutBairrosNestedInput
   comunidades?: Prisma.ComunidadeUpdateManyWithoutBairroNestedInput
+  contatos?: Prisma.ContatoUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUpdateManyWithoutBairroNestedInput
   setores?: Prisma.SetorUpdateManyWithoutBairroNestedInput
   ruas?: Prisma.RuaUpdateManyWithoutBairroNestedInput
@@ -358,6 +364,7 @@ export type BairroUncheckedUpdateInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comunidades?: Prisma.ComunidadeUncheckedUpdateManyWithoutBairroNestedInput
+  contatos?: Prisma.ContatoUncheckedUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUncheckedUpdateManyWithoutBairroNestedInput
   setores?: Prisma.SetorUncheckedUpdateManyWithoutBairroNestedInput
   ruas?: Prisma.RuaUncheckedUpdateManyWithoutBairroNestedInput
@@ -581,6 +588,22 @@ export type BairroUpdateOneRequiredWithoutComunidadesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.BairroUpdateToOneWithWhereWithoutComunidadesInput, Prisma.BairroUpdateWithoutComunidadesInput>, Prisma.BairroUncheckedUpdateWithoutComunidadesInput>
 }
 
+export type BairroCreateNestedOneWithoutContatosInput = {
+  create?: Prisma.XOR<Prisma.BairroCreateWithoutContatosInput, Prisma.BairroUncheckedCreateWithoutContatosInput>
+  connectOrCreate?: Prisma.BairroCreateOrConnectWithoutContatosInput
+  connect?: Prisma.BairroWhereUniqueInput
+}
+
+export type BairroUpdateOneWithoutContatosNestedInput = {
+  create?: Prisma.XOR<Prisma.BairroCreateWithoutContatosInput, Prisma.BairroUncheckedCreateWithoutContatosInput>
+  connectOrCreate?: Prisma.BairroCreateOrConnectWithoutContatosInput
+  upsert?: Prisma.BairroUpsertWithoutContatosInput
+  disconnect?: Prisma.BairroWhereInput | boolean
+  delete?: Prisma.BairroWhereInput | boolean
+  connect?: Prisma.BairroWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BairroUpdateToOneWithWhereWithoutContatosInput, Prisma.BairroUpdateWithoutContatosInput>, Prisma.BairroUncheckedUpdateWithoutContatosInput>
+}
+
 export type BairroCreateNestedOneWithoutDemandasInput = {
   create?: Prisma.XOR<Prisma.BairroCreateWithoutDemandasInput, Prisma.BairroUncheckedCreateWithoutDemandasInput>
   connectOrCreate?: Prisma.BairroCreateOrConnectWithoutDemandasInput
@@ -605,6 +628,7 @@ export type BairroCreateWithoutMunicipioInput = {
   createdAt?: Date | string
   regiao: Prisma.RegiaoCreateNestedOneWithoutBairrosInput
   comunidades?: Prisma.ComunidadeCreateNestedManyWithoutBairroInput
+  contatos?: Prisma.ContatoCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaCreateNestedManyWithoutBairroInput
   setores?: Prisma.SetorCreateNestedManyWithoutBairroInput
   ruas?: Prisma.RuaCreateNestedManyWithoutBairroInput
@@ -618,6 +642,7 @@ export type BairroUncheckedCreateWithoutMunicipioInput = {
   longitude?: number | null
   createdAt?: Date | string
   comunidades?: Prisma.ComunidadeUncheckedCreateNestedManyWithoutBairroInput
+  contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaUncheckedCreateNestedManyWithoutBairroInput
   setores?: Prisma.SetorUncheckedCreateNestedManyWithoutBairroInput
   ruas?: Prisma.RuaUncheckedCreateNestedManyWithoutBairroInput
@@ -670,6 +695,7 @@ export type BairroCreateWithoutRegiaoInput = {
   createdAt?: Date | string
   municipio?: Prisma.MunicipioCreateNestedOneWithoutBairrosInput
   comunidades?: Prisma.ComunidadeCreateNestedManyWithoutBairroInput
+  contatos?: Prisma.ContatoCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaCreateNestedManyWithoutBairroInput
   setores?: Prisma.SetorCreateNestedManyWithoutBairroInput
   ruas?: Prisma.RuaCreateNestedManyWithoutBairroInput
@@ -683,6 +709,7 @@ export type BairroUncheckedCreateWithoutRegiaoInput = {
   longitude?: number | null
   createdAt?: Date | string
   comunidades?: Prisma.ComunidadeUncheckedCreateNestedManyWithoutBairroInput
+  contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaUncheckedCreateNestedManyWithoutBairroInput
   setores?: Prisma.SetorUncheckedCreateNestedManyWithoutBairroInput
   ruas?: Prisma.RuaUncheckedCreateNestedManyWithoutBairroInput
@@ -723,6 +750,7 @@ export type BairroCreateWithoutSetoresInput = {
   regiao: Prisma.RegiaoCreateNestedOneWithoutBairrosInput
   municipio?: Prisma.MunicipioCreateNestedOneWithoutBairrosInput
   comunidades?: Prisma.ComunidadeCreateNestedManyWithoutBairroInput
+  contatos?: Prisma.ContatoCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaCreateNestedManyWithoutBairroInput
   ruas?: Prisma.RuaCreateNestedManyWithoutBairroInput
 }
@@ -736,6 +764,7 @@ export type BairroUncheckedCreateWithoutSetoresInput = {
   longitude?: number | null
   createdAt?: Date | string
   comunidades?: Prisma.ComunidadeUncheckedCreateNestedManyWithoutBairroInput
+  contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaUncheckedCreateNestedManyWithoutBairroInput
   ruas?: Prisma.RuaUncheckedCreateNestedManyWithoutBairroInput
 }
@@ -765,6 +794,7 @@ export type BairroUpdateWithoutSetoresInput = {
   regiao?: Prisma.RegiaoUpdateOneRequiredWithoutBairrosNestedInput
   municipio?: Prisma.MunicipioUpdateOneWithoutBairrosNestedInput
   comunidades?: Prisma.ComunidadeUpdateManyWithoutBairroNestedInput
+  contatos?: Prisma.ContatoUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUpdateManyWithoutBairroNestedInput
   ruas?: Prisma.RuaUpdateManyWithoutBairroNestedInput
 }
@@ -778,6 +808,7 @@ export type BairroUncheckedUpdateWithoutSetoresInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comunidades?: Prisma.ComunidadeUncheckedUpdateManyWithoutBairroNestedInput
+  contatos?: Prisma.ContatoUncheckedUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUncheckedUpdateManyWithoutBairroNestedInput
   ruas?: Prisma.RuaUncheckedUpdateManyWithoutBairroNestedInput
 }
@@ -791,6 +822,7 @@ export type BairroCreateWithoutRuasInput = {
   regiao: Prisma.RegiaoCreateNestedOneWithoutBairrosInput
   municipio?: Prisma.MunicipioCreateNestedOneWithoutBairrosInput
   comunidades?: Prisma.ComunidadeCreateNestedManyWithoutBairroInput
+  contatos?: Prisma.ContatoCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaCreateNestedManyWithoutBairroInput
   setores?: Prisma.SetorCreateNestedManyWithoutBairroInput
 }
@@ -804,6 +836,7 @@ export type BairroUncheckedCreateWithoutRuasInput = {
   longitude?: number | null
   createdAt?: Date | string
   comunidades?: Prisma.ComunidadeUncheckedCreateNestedManyWithoutBairroInput
+  contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaUncheckedCreateNestedManyWithoutBairroInput
   setores?: Prisma.SetorUncheckedCreateNestedManyWithoutBairroInput
 }
@@ -833,6 +866,7 @@ export type BairroUpdateWithoutRuasInput = {
   regiao?: Prisma.RegiaoUpdateOneRequiredWithoutBairrosNestedInput
   municipio?: Prisma.MunicipioUpdateOneWithoutBairrosNestedInput
   comunidades?: Prisma.ComunidadeUpdateManyWithoutBairroNestedInput
+  contatos?: Prisma.ContatoUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUpdateManyWithoutBairroNestedInput
   setores?: Prisma.SetorUpdateManyWithoutBairroNestedInput
 }
@@ -846,6 +880,7 @@ export type BairroUncheckedUpdateWithoutRuasInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comunidades?: Prisma.ComunidadeUncheckedUpdateManyWithoutBairroNestedInput
+  contatos?: Prisma.ContatoUncheckedUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUncheckedUpdateManyWithoutBairroNestedInput
   setores?: Prisma.SetorUncheckedUpdateManyWithoutBairroNestedInput
 }
@@ -858,6 +893,7 @@ export type BairroCreateWithoutComunidadesInput = {
   createdAt?: Date | string
   regiao: Prisma.RegiaoCreateNestedOneWithoutBairrosInput
   municipio?: Prisma.MunicipioCreateNestedOneWithoutBairrosInput
+  contatos?: Prisma.ContatoCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaCreateNestedManyWithoutBairroInput
   setores?: Prisma.SetorCreateNestedManyWithoutBairroInput
   ruas?: Prisma.RuaCreateNestedManyWithoutBairroInput
@@ -871,6 +907,7 @@ export type BairroUncheckedCreateWithoutComunidadesInput = {
   latitude?: number | null
   longitude?: number | null
   createdAt?: Date | string
+  contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutBairroInput
   demandas?: Prisma.DemandaUncheckedCreateNestedManyWithoutBairroInput
   setores?: Prisma.SetorUncheckedCreateNestedManyWithoutBairroInput
   ruas?: Prisma.RuaUncheckedCreateNestedManyWithoutBairroInput
@@ -900,6 +937,7 @@ export type BairroUpdateWithoutComunidadesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   regiao?: Prisma.RegiaoUpdateOneRequiredWithoutBairrosNestedInput
   municipio?: Prisma.MunicipioUpdateOneWithoutBairrosNestedInput
+  contatos?: Prisma.ContatoUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUpdateManyWithoutBairroNestedInput
   setores?: Prisma.SetorUpdateManyWithoutBairroNestedInput
   ruas?: Prisma.RuaUpdateManyWithoutBairroNestedInput
@@ -913,6 +951,79 @@ export type BairroUncheckedUpdateWithoutComunidadesInput = {
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contatos?: Prisma.ContatoUncheckedUpdateManyWithoutBairroNestedInput
+  demandas?: Prisma.DemandaUncheckedUpdateManyWithoutBairroNestedInput
+  setores?: Prisma.SetorUncheckedUpdateManyWithoutBairroNestedInput
+  ruas?: Prisma.RuaUncheckedUpdateManyWithoutBairroNestedInput
+}
+
+export type BairroCreateWithoutContatosInput = {
+  id?: string
+  nome: string
+  latitude?: number | null
+  longitude?: number | null
+  createdAt?: Date | string
+  regiao: Prisma.RegiaoCreateNestedOneWithoutBairrosInput
+  municipio?: Prisma.MunicipioCreateNestedOneWithoutBairrosInput
+  comunidades?: Prisma.ComunidadeCreateNestedManyWithoutBairroInput
+  demandas?: Prisma.DemandaCreateNestedManyWithoutBairroInput
+  setores?: Prisma.SetorCreateNestedManyWithoutBairroInput
+  ruas?: Prisma.RuaCreateNestedManyWithoutBairroInput
+}
+
+export type BairroUncheckedCreateWithoutContatosInput = {
+  id?: string
+  nome: string
+  regiaoId: string
+  municipioId?: string | null
+  latitude?: number | null
+  longitude?: number | null
+  createdAt?: Date | string
+  comunidades?: Prisma.ComunidadeUncheckedCreateNestedManyWithoutBairroInput
+  demandas?: Prisma.DemandaUncheckedCreateNestedManyWithoutBairroInput
+  setores?: Prisma.SetorUncheckedCreateNestedManyWithoutBairroInput
+  ruas?: Prisma.RuaUncheckedCreateNestedManyWithoutBairroInput
+}
+
+export type BairroCreateOrConnectWithoutContatosInput = {
+  where: Prisma.BairroWhereUniqueInput
+  create: Prisma.XOR<Prisma.BairroCreateWithoutContatosInput, Prisma.BairroUncheckedCreateWithoutContatosInput>
+}
+
+export type BairroUpsertWithoutContatosInput = {
+  update: Prisma.XOR<Prisma.BairroUpdateWithoutContatosInput, Prisma.BairroUncheckedUpdateWithoutContatosInput>
+  create: Prisma.XOR<Prisma.BairroCreateWithoutContatosInput, Prisma.BairroUncheckedCreateWithoutContatosInput>
+  where?: Prisma.BairroWhereInput
+}
+
+export type BairroUpdateToOneWithWhereWithoutContatosInput = {
+  where?: Prisma.BairroWhereInput
+  data: Prisma.XOR<Prisma.BairroUpdateWithoutContatosInput, Prisma.BairroUncheckedUpdateWithoutContatosInput>
+}
+
+export type BairroUpdateWithoutContatosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  regiao?: Prisma.RegiaoUpdateOneRequiredWithoutBairrosNestedInput
+  municipio?: Prisma.MunicipioUpdateOneWithoutBairrosNestedInput
+  comunidades?: Prisma.ComunidadeUpdateManyWithoutBairroNestedInput
+  demandas?: Prisma.DemandaUpdateManyWithoutBairroNestedInput
+  setores?: Prisma.SetorUpdateManyWithoutBairroNestedInput
+  ruas?: Prisma.RuaUpdateManyWithoutBairroNestedInput
+}
+
+export type BairroUncheckedUpdateWithoutContatosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  regiaoId?: Prisma.StringFieldUpdateOperationsInput | string
+  municipioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comunidades?: Prisma.ComunidadeUncheckedUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUncheckedUpdateManyWithoutBairroNestedInput
   setores?: Prisma.SetorUncheckedUpdateManyWithoutBairroNestedInput
   ruas?: Prisma.RuaUncheckedUpdateManyWithoutBairroNestedInput
@@ -927,6 +1038,7 @@ export type BairroCreateWithoutDemandasInput = {
   regiao: Prisma.RegiaoCreateNestedOneWithoutBairrosInput
   municipio?: Prisma.MunicipioCreateNestedOneWithoutBairrosInput
   comunidades?: Prisma.ComunidadeCreateNestedManyWithoutBairroInput
+  contatos?: Prisma.ContatoCreateNestedManyWithoutBairroInput
   setores?: Prisma.SetorCreateNestedManyWithoutBairroInput
   ruas?: Prisma.RuaCreateNestedManyWithoutBairroInput
 }
@@ -940,6 +1052,7 @@ export type BairroUncheckedCreateWithoutDemandasInput = {
   longitude?: number | null
   createdAt?: Date | string
   comunidades?: Prisma.ComunidadeUncheckedCreateNestedManyWithoutBairroInput
+  contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutBairroInput
   setores?: Prisma.SetorUncheckedCreateNestedManyWithoutBairroInput
   ruas?: Prisma.RuaUncheckedCreateNestedManyWithoutBairroInput
 }
@@ -969,6 +1082,7 @@ export type BairroUpdateWithoutDemandasInput = {
   regiao?: Prisma.RegiaoUpdateOneRequiredWithoutBairrosNestedInput
   municipio?: Prisma.MunicipioUpdateOneWithoutBairrosNestedInput
   comunidades?: Prisma.ComunidadeUpdateManyWithoutBairroNestedInput
+  contatos?: Prisma.ContatoUpdateManyWithoutBairroNestedInput
   setores?: Prisma.SetorUpdateManyWithoutBairroNestedInput
   ruas?: Prisma.RuaUpdateManyWithoutBairroNestedInput
 }
@@ -982,6 +1096,7 @@ export type BairroUncheckedUpdateWithoutDemandasInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comunidades?: Prisma.ComunidadeUncheckedUpdateManyWithoutBairroNestedInput
+  contatos?: Prisma.ContatoUncheckedUpdateManyWithoutBairroNestedInput
   setores?: Prisma.SetorUncheckedUpdateManyWithoutBairroNestedInput
   ruas?: Prisma.RuaUncheckedUpdateManyWithoutBairroNestedInput
 }
@@ -1003,6 +1118,7 @@ export type BairroUpdateWithoutMunicipioInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   regiao?: Prisma.RegiaoUpdateOneRequiredWithoutBairrosNestedInput
   comunidades?: Prisma.ComunidadeUpdateManyWithoutBairroNestedInput
+  contatos?: Prisma.ContatoUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUpdateManyWithoutBairroNestedInput
   setores?: Prisma.SetorUpdateManyWithoutBairroNestedInput
   ruas?: Prisma.RuaUpdateManyWithoutBairroNestedInput
@@ -1016,6 +1132,7 @@ export type BairroUncheckedUpdateWithoutMunicipioInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comunidades?: Prisma.ComunidadeUncheckedUpdateManyWithoutBairroNestedInput
+  contatos?: Prisma.ContatoUncheckedUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUncheckedUpdateManyWithoutBairroNestedInput
   setores?: Prisma.SetorUncheckedUpdateManyWithoutBairroNestedInput
   ruas?: Prisma.RuaUncheckedUpdateManyWithoutBairroNestedInput
@@ -1047,6 +1164,7 @@ export type BairroUpdateWithoutRegiaoInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   municipio?: Prisma.MunicipioUpdateOneWithoutBairrosNestedInput
   comunidades?: Prisma.ComunidadeUpdateManyWithoutBairroNestedInput
+  contatos?: Prisma.ContatoUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUpdateManyWithoutBairroNestedInput
   setores?: Prisma.SetorUpdateManyWithoutBairroNestedInput
   ruas?: Prisma.RuaUpdateManyWithoutBairroNestedInput
@@ -1060,6 +1178,7 @@ export type BairroUncheckedUpdateWithoutRegiaoInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comunidades?: Prisma.ComunidadeUncheckedUpdateManyWithoutBairroNestedInput
+  contatos?: Prisma.ContatoUncheckedUpdateManyWithoutBairroNestedInput
   demandas?: Prisma.DemandaUncheckedUpdateManyWithoutBairroNestedInput
   setores?: Prisma.SetorUncheckedUpdateManyWithoutBairroNestedInput
   ruas?: Prisma.RuaUncheckedUpdateManyWithoutBairroNestedInput
@@ -1081,6 +1200,7 @@ export type BairroUncheckedUpdateManyWithoutRegiaoInput = {
 
 export type BairroCountOutputType = {
   comunidades: number
+  contatos: number
   demandas: number
   setores: number
   ruas: number
@@ -1088,6 +1208,7 @@ export type BairroCountOutputType = {
 
 export type BairroCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   comunidades?: boolean | BairroCountOutputTypeCountComunidadesArgs
+  contatos?: boolean | BairroCountOutputTypeCountContatosArgs
   demandas?: boolean | BairroCountOutputTypeCountDemandasArgs
   setores?: boolean | BairroCountOutputTypeCountSetoresArgs
   ruas?: boolean | BairroCountOutputTypeCountRuasArgs
@@ -1108,6 +1229,13 @@ export type BairroCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
  */
 export type BairroCountOutputTypeCountComunidadesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ComunidadeWhereInput
+}
+
+/**
+ * BairroCountOutputType without action
+ */
+export type BairroCountOutputTypeCountContatosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContatoWhereInput
 }
 
 /**
@@ -1143,6 +1271,7 @@ export type BairroSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   regiao?: boolean | Prisma.RegiaoDefaultArgs<ExtArgs>
   municipio?: boolean | Prisma.Bairro$municipioArgs<ExtArgs>
   comunidades?: boolean | Prisma.Bairro$comunidadesArgs<ExtArgs>
+  contatos?: boolean | Prisma.Bairro$contatosArgs<ExtArgs>
   demandas?: boolean | Prisma.Bairro$demandasArgs<ExtArgs>
   setores?: boolean | Prisma.Bairro$setoresArgs<ExtArgs>
   ruas?: boolean | Prisma.Bairro$ruasArgs<ExtArgs>
@@ -1188,6 +1317,7 @@ export type BairroInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   regiao?: boolean | Prisma.RegiaoDefaultArgs<ExtArgs>
   municipio?: boolean | Prisma.Bairro$municipioArgs<ExtArgs>
   comunidades?: boolean | Prisma.Bairro$comunidadesArgs<ExtArgs>
+  contatos?: boolean | Prisma.Bairro$contatosArgs<ExtArgs>
   demandas?: boolean | Prisma.Bairro$demandasArgs<ExtArgs>
   setores?: boolean | Prisma.Bairro$setoresArgs<ExtArgs>
   ruas?: boolean | Prisma.Bairro$ruasArgs<ExtArgs>
@@ -1208,6 +1338,7 @@ export type $BairroPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     regiao: Prisma.$RegiaoPayload<ExtArgs>
     municipio: Prisma.$MunicipioPayload<ExtArgs> | null
     comunidades: Prisma.$ComunidadePayload<ExtArgs>[]
+    contatos: Prisma.$ContatoPayload<ExtArgs>[]
     demandas: Prisma.$DemandaPayload<ExtArgs>[]
     setores: Prisma.$SetorPayload<ExtArgs>[]
     ruas: Prisma.$RuaPayload<ExtArgs>[]
@@ -1617,6 +1748,7 @@ export interface Prisma__BairroClient<T, Null = never, ExtArgs extends runtime.T
   regiao<T extends Prisma.RegiaoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RegiaoDefaultArgs<ExtArgs>>): Prisma.Prisma__RegiaoClient<runtime.Types.Result.GetResult<Prisma.$RegiaoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   municipio<T extends Prisma.Bairro$municipioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bairro$municipioArgs<ExtArgs>>): Prisma.Prisma__MunicipioClient<runtime.Types.Result.GetResult<Prisma.$MunicipioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   comunidades<T extends Prisma.Bairro$comunidadesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bairro$comunidadesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComunidadePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  contatos<T extends Prisma.Bairro$contatosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bairro$contatosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   demandas<T extends Prisma.Bairro$demandasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bairro$demandasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DemandaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   setores<T extends Prisma.Bairro$setoresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bairro$setoresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SetorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ruas<T extends Prisma.Bairro$ruasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bairro$ruasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RuaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2097,6 +2229,30 @@ export type Bairro$comunidadesArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.ComunidadeScalarFieldEnum | Prisma.ComunidadeScalarFieldEnum[]
+}
+
+/**
+ * Bairro.contatos
+ */
+export type Bairro$contatosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Contato
+   */
+  select?: Prisma.ContatoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Contato
+   */
+  omit?: Prisma.ContatoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContatoInclude<ExtArgs> | null
+  where?: Prisma.ContatoWhereInput
+  orderBy?: Prisma.ContatoOrderByWithRelationInput | Prisma.ContatoOrderByWithRelationInput[]
+  cursor?: Prisma.ContatoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContatoScalarFieldEnum | Prisma.ContatoScalarFieldEnum[]
 }
 
 /**

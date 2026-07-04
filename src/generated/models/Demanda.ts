@@ -298,6 +298,7 @@ export type DemandaWhereInput = {
   resolvedAt?: Prisma.DateTimeNullableFilter<"Demanda"> | Date | string | null
   regiao?: Prisma.XOR<Prisma.RegiaoNullableScalarRelationFilter, Prisma.RegiaoWhereInput> | null
   bairro?: Prisma.XOR<Prisma.BairroNullableScalarRelationFilter, Prisma.BairroWhereInput> | null
+  interacoes?: Prisma.InteracaoListRelationFilter
 }
 
 export type DemandaOrderByWithRelationInput = {
@@ -317,6 +318,7 @@ export type DemandaOrderByWithRelationInput = {
   resolvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   regiao?: Prisma.RegiaoOrderByWithRelationInput
   bairro?: Prisma.BairroOrderByWithRelationInput
+  interacoes?: Prisma.InteracaoOrderByRelationAggregateInput
 }
 
 export type DemandaWhereUniqueInput = Prisma.AtLeast<{
@@ -339,6 +341,7 @@ export type DemandaWhereUniqueInput = Prisma.AtLeast<{
   resolvedAt?: Prisma.DateTimeNullableFilter<"Demanda"> | Date | string | null
   regiao?: Prisma.XOR<Prisma.RegiaoNullableScalarRelationFilter, Prisma.RegiaoWhereInput> | null
   bairro?: Prisma.XOR<Prisma.BairroNullableScalarRelationFilter, Prisma.BairroWhereInput> | null
+  interacoes?: Prisma.InteracaoListRelationFilter
 }, "id">
 
 export type DemandaOrderByWithAggregationInput = {
@@ -398,6 +401,7 @@ export type DemandaCreateInput = {
   resolvedAt?: Date | string | null
   regiao?: Prisma.RegiaoCreateNestedOneWithoutDemandasInput
   bairro?: Prisma.BairroCreateNestedOneWithoutDemandasInput
+  interacoes?: Prisma.InteracaoCreateNestedManyWithoutDemandaInput
 }
 
 export type DemandaUncheckedCreateInput = {
@@ -415,6 +419,7 @@ export type DemandaUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   resolvedAt?: Date | string | null
+  interacoes?: Prisma.InteracaoUncheckedCreateNestedManyWithoutDemandaInput
 }
 
 export type DemandaUpdateInput = {
@@ -432,6 +437,7 @@ export type DemandaUpdateInput = {
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   regiao?: Prisma.RegiaoUpdateOneWithoutDemandasNestedInput
   bairro?: Prisma.BairroUpdateOneWithoutDemandasNestedInput
+  interacoes?: Prisma.InteracaoUpdateManyWithoutDemandaNestedInput
 }
 
 export type DemandaUncheckedUpdateInput = {
@@ -449,6 +455,7 @@ export type DemandaUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  interacoes?: Prisma.InteracaoUncheckedUpdateManyWithoutDemandaNestedInput
 }
 
 export type DemandaCreateManyInput = {
@@ -508,6 +515,11 @@ export type DemandaListRelationFilter = {
 
 export type DemandaOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type DemandaNullableScalarRelationFilter = {
+  is?: Prisma.DemandaWhereInput | null
+  isNot?: Prisma.DemandaWhereInput | null
 }
 
 export type DemandaCountOrderByAggregateInput = {
@@ -657,6 +669,22 @@ export type DemandaUncheckedUpdateManyWithoutBairroNestedInput = {
   deleteMany?: Prisma.DemandaScalarWhereInput | Prisma.DemandaScalarWhereInput[]
 }
 
+export type DemandaCreateNestedOneWithoutInteracoesInput = {
+  create?: Prisma.XOR<Prisma.DemandaCreateWithoutInteracoesInput, Prisma.DemandaUncheckedCreateWithoutInteracoesInput>
+  connectOrCreate?: Prisma.DemandaCreateOrConnectWithoutInteracoesInput
+  connect?: Prisma.DemandaWhereUniqueInput
+}
+
+export type DemandaUpdateOneWithoutInteracoesNestedInput = {
+  create?: Prisma.XOR<Prisma.DemandaCreateWithoutInteracoesInput, Prisma.DemandaUncheckedCreateWithoutInteracoesInput>
+  connectOrCreate?: Prisma.DemandaCreateOrConnectWithoutInteracoesInput
+  upsert?: Prisma.DemandaUpsertWithoutInteracoesInput
+  disconnect?: Prisma.DemandaWhereInput | boolean
+  delete?: Prisma.DemandaWhereInput | boolean
+  connect?: Prisma.DemandaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DemandaUpdateToOneWithWhereWithoutInteracoesInput, Prisma.DemandaUpdateWithoutInteracoesInput>, Prisma.DemandaUncheckedUpdateWithoutInteracoesInput>
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -683,6 +711,7 @@ export type DemandaCreateWithoutRegiaoInput = {
   updatedAt?: Date | string
   resolvedAt?: Date | string | null
   bairro?: Prisma.BairroCreateNestedOneWithoutDemandasInput
+  interacoes?: Prisma.InteracaoCreateNestedManyWithoutDemandaInput
 }
 
 export type DemandaUncheckedCreateWithoutRegiaoInput = {
@@ -699,6 +728,7 @@ export type DemandaUncheckedCreateWithoutRegiaoInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   resolvedAt?: Date | string | null
+  interacoes?: Prisma.InteracaoUncheckedCreateNestedManyWithoutDemandaInput
 }
 
 export type DemandaCreateOrConnectWithoutRegiaoInput = {
@@ -761,6 +791,7 @@ export type DemandaCreateWithoutBairroInput = {
   updatedAt?: Date | string
   resolvedAt?: Date | string | null
   regiao?: Prisma.RegiaoCreateNestedOneWithoutDemandasInput
+  interacoes?: Prisma.InteracaoCreateNestedManyWithoutDemandaInput
 }
 
 export type DemandaUncheckedCreateWithoutBairroInput = {
@@ -777,6 +808,7 @@ export type DemandaUncheckedCreateWithoutBairroInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   resolvedAt?: Date | string | null
+  interacoes?: Prisma.InteracaoUncheckedCreateNestedManyWithoutDemandaInput
 }
 
 export type DemandaCreateOrConnectWithoutBairroInput = {
@@ -803,6 +835,90 @@ export type DemandaUpdateWithWhereUniqueWithoutBairroInput = {
 export type DemandaUpdateManyWithWhereWithoutBairroInput = {
   where: Prisma.DemandaScalarWhereInput
   data: Prisma.XOR<Prisma.DemandaUpdateManyMutationInput, Prisma.DemandaUncheckedUpdateManyWithoutBairroInput>
+}
+
+export type DemandaCreateWithoutInteracoesInput = {
+  id?: string
+  categoria: string
+  descricao: string
+  tipo?: string
+  status?: string
+  prioridade?: number
+  responsavel?: string | null
+  latitude?: number | null
+  longitude?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  resolvedAt?: Date | string | null
+  regiao?: Prisma.RegiaoCreateNestedOneWithoutDemandasInput
+  bairro?: Prisma.BairroCreateNestedOneWithoutDemandasInput
+}
+
+export type DemandaUncheckedCreateWithoutInteracoesInput = {
+  id?: string
+  categoria: string
+  descricao: string
+  tipo?: string
+  status?: string
+  prioridade?: number
+  responsavel?: string | null
+  latitude?: number | null
+  longitude?: number | null
+  regiaoId?: string | null
+  bairroId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  resolvedAt?: Date | string | null
+}
+
+export type DemandaCreateOrConnectWithoutInteracoesInput = {
+  where: Prisma.DemandaWhereUniqueInput
+  create: Prisma.XOR<Prisma.DemandaCreateWithoutInteracoesInput, Prisma.DemandaUncheckedCreateWithoutInteracoesInput>
+}
+
+export type DemandaUpsertWithoutInteracoesInput = {
+  update: Prisma.XOR<Prisma.DemandaUpdateWithoutInteracoesInput, Prisma.DemandaUncheckedUpdateWithoutInteracoesInput>
+  create: Prisma.XOR<Prisma.DemandaCreateWithoutInteracoesInput, Prisma.DemandaUncheckedCreateWithoutInteracoesInput>
+  where?: Prisma.DemandaWhereInput
+}
+
+export type DemandaUpdateToOneWithWhereWithoutInteracoesInput = {
+  where?: Prisma.DemandaWhereInput
+  data: Prisma.XOR<Prisma.DemandaUpdateWithoutInteracoesInput, Prisma.DemandaUncheckedUpdateWithoutInteracoesInput>
+}
+
+export type DemandaUpdateWithoutInteracoesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  categoria?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  prioridade?: Prisma.IntFieldUpdateOperationsInput | number
+  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  regiao?: Prisma.RegiaoUpdateOneWithoutDemandasNestedInput
+  bairro?: Prisma.BairroUpdateOneWithoutDemandasNestedInput
+}
+
+export type DemandaUncheckedUpdateWithoutInteracoesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  categoria?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  prioridade?: Prisma.IntFieldUpdateOperationsInput | number
+  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  regiaoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bairroId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type DemandaCreateManyRegiaoInput = {
@@ -835,6 +951,7 @@ export type DemandaUpdateWithoutRegiaoInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   bairro?: Prisma.BairroUpdateOneWithoutDemandasNestedInput
+  interacoes?: Prisma.InteracaoUpdateManyWithoutDemandaNestedInput
 }
 
 export type DemandaUncheckedUpdateWithoutRegiaoInput = {
@@ -851,6 +968,7 @@ export type DemandaUncheckedUpdateWithoutRegiaoInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  interacoes?: Prisma.InteracaoUncheckedUpdateManyWithoutDemandaNestedInput
 }
 
 export type DemandaUncheckedUpdateManyWithoutRegiaoInput = {
@@ -899,6 +1017,7 @@ export type DemandaUpdateWithoutBairroInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   regiao?: Prisma.RegiaoUpdateOneWithoutDemandasNestedInput
+  interacoes?: Prisma.InteracaoUpdateManyWithoutDemandaNestedInput
 }
 
 export type DemandaUncheckedUpdateWithoutBairroInput = {
@@ -915,6 +1034,7 @@ export type DemandaUncheckedUpdateWithoutBairroInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  interacoes?: Prisma.InteracaoUncheckedUpdateManyWithoutDemandaNestedInput
 }
 
 export type DemandaUncheckedUpdateManyWithoutBairroInput = {
@@ -934,6 +1054,35 @@ export type DemandaUncheckedUpdateManyWithoutBairroInput = {
 }
 
 
+/**
+ * Count Type DemandaCountOutputType
+ */
+
+export type DemandaCountOutputType = {
+  interacoes: number
+}
+
+export type DemandaCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  interacoes?: boolean | DemandaCountOutputTypeCountInteracoesArgs
+}
+
+/**
+ * DemandaCountOutputType without action
+ */
+export type DemandaCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DemandaCountOutputType
+   */
+  select?: Prisma.DemandaCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * DemandaCountOutputType without action
+ */
+export type DemandaCountOutputTypeCountInteracoesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InteracaoWhereInput
+}
+
 
 export type DemandaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -952,6 +1101,8 @@ export type DemandaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   resolvedAt?: boolean
   regiao?: boolean | Prisma.Demanda$regiaoArgs<ExtArgs>
   bairro?: boolean | Prisma.Demanda$bairroArgs<ExtArgs>
+  interacoes?: boolean | Prisma.Demanda$interacoesArgs<ExtArgs>
+  _count?: boolean | Prisma.DemandaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["demanda"]>
 
 export type DemandaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1013,6 +1164,8 @@ export type DemandaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type DemandaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   regiao?: boolean | Prisma.Demanda$regiaoArgs<ExtArgs>
   bairro?: boolean | Prisma.Demanda$bairroArgs<ExtArgs>
+  interacoes?: boolean | Prisma.Demanda$interacoesArgs<ExtArgs>
+  _count?: boolean | Prisma.DemandaCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DemandaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   regiao?: boolean | Prisma.Demanda$regiaoArgs<ExtArgs>
@@ -1028,6 +1181,7 @@ export type $DemandaPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     regiao: Prisma.$RegiaoPayload<ExtArgs> | null
     bairro: Prisma.$BairroPayload<ExtArgs> | null
+    interacoes: Prisma.$InteracaoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1440,6 +1594,7 @@ export interface Prisma__DemandaClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   regiao<T extends Prisma.Demanda$regiaoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Demanda$regiaoArgs<ExtArgs>>): Prisma.Prisma__RegiaoClient<runtime.Types.Result.GetResult<Prisma.$RegiaoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   bairro<T extends Prisma.Demanda$bairroArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Demanda$bairroArgs<ExtArgs>>): Prisma.Prisma__BairroClient<runtime.Types.Result.GetResult<Prisma.$BairroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  interacoes<T extends Prisma.Demanda$interacoesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Demanda$interacoesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InteracaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1919,6 +2074,30 @@ export type Demanda$bairroArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   include?: Prisma.BairroInclude<ExtArgs> | null
   where?: Prisma.BairroWhereInput
+}
+
+/**
+ * Demanda.interacoes
+ */
+export type Demanda$interacoesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Interacao
+   */
+  select?: Prisma.InteracaoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Interacao
+   */
+  omit?: Prisma.InteracaoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InteracaoInclude<ExtArgs> | null
+  where?: Prisma.InteracaoWhereInput
+  orderBy?: Prisma.InteracaoOrderByWithRelationInput | Prisma.InteracaoOrderByWithRelationInput[]
+  cursor?: Prisma.InteracaoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InteracaoScalarFieldEnum | Prisma.InteracaoScalarFieldEnum[]
 }
 
 /**

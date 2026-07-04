@@ -49,6 +49,7 @@ model Bairro {
   createdAt   DateTime @default(now())
 
   comunidades Comunidade[]
+  contatos    Contato[]
   demandas    Demanda[]
   setores     Setor[]
   ruas        Rua[]
@@ -79,6 +80,39 @@ model Comunidade {
   latitude  Float?
   longitude Float?
   createdAt DateTime @default(now())
+
+  contatos  Contato[]
+}
+
+model Contato {
+  id            String      @id @default(cuid())
+  nome          String
+  telefone      String
+  email         String?
+  cargo         String?
+  redesSociais  Json?
+  bairroId      String?
+  bairro        Bairro?     @relation(fields: [bairroId], references: [id])
+  comunidadeId  String?
+  comunidade    Comunidade? @relation(fields: [comunidadeId], references: [id])
+  observacoes   String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  interacoes    Interacao[]
+}
+
+model Interacao {
+  id          String   @id @default(cuid())
+  tipo        String
+  descricao   String   @db.Text
+  data        DateTime
+  responsavel String
+  contatoId   String
+  contato     Contato  @relation(fields: [contatoId], references: [id])
+  demandaId   String?
+  demanda     Demanda? @relation(fields: [demandaId], references: [id])
+  createdAt   DateTime @default(now())
 }
 
 model Demanda {
@@ -98,6 +132,8 @@ model Demanda {
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
   resolvedAt DateTime?
+
+  interacoes Interacao[]
 }
 
 model Visita {

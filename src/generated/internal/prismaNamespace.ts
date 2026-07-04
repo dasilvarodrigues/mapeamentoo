@@ -391,6 +391,8 @@ export const ModelName = {
   Setor: 'Setor',
   Rua: 'Rua',
   Comunidade: 'Comunidade',
+  Contato: 'Contato',
+  Interacao: 'Interacao',
   Demanda: 'Demanda',
   Visita: 'Visita'
 } as const
@@ -408,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "estado" | "municipio" | "regiao" | "bairro" | "setor" | "rua" | "comunidade" | "demanda" | "visita"
+    modelProps: "estado" | "municipio" | "regiao" | "bairro" | "setor" | "rua" | "comunidade" | "contato" | "interacao" | "demanda" | "visita"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -930,6 +932,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Contato: {
+      payload: Prisma.$ContatoPayload<ExtArgs>
+      fields: Prisma.ContatoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ContatoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ContatoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>
+        }
+        findFirst: {
+          args: Prisma.ContatoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ContatoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>
+        }
+        findMany: {
+          args: Prisma.ContatoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>[]
+        }
+        create: {
+          args: Prisma.ContatoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>
+        }
+        createMany: {
+          args: Prisma.ContatoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ContatoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>[]
+        }
+        delete: {
+          args: Prisma.ContatoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>
+        }
+        update: {
+          args: Prisma.ContatoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>
+        }
+        deleteMany: {
+          args: Prisma.ContatoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ContatoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ContatoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>[]
+        }
+        upsert: {
+          args: Prisma.ContatoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>
+        }
+        aggregate: {
+          args: Prisma.ContatoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateContato>
+        }
+        groupBy: {
+          args: Prisma.ContatoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContatoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ContatoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContatoCountAggregateOutputType> | number
+        }
+      }
+    }
+    Interacao: {
+      payload: Prisma.$InteracaoPayload<ExtArgs>
+      fields: Prisma.InteracaoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.InteracaoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InteracaoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.InteracaoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InteracaoPayload>
+        }
+        findFirst: {
+          args: Prisma.InteracaoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InteracaoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.InteracaoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InteracaoPayload>
+        }
+        findMany: {
+          args: Prisma.InteracaoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InteracaoPayload>[]
+        }
+        create: {
+          args: Prisma.InteracaoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InteracaoPayload>
+        }
+        createMany: {
+          args: Prisma.InteracaoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.InteracaoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InteracaoPayload>[]
+        }
+        delete: {
+          args: Prisma.InteracaoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InteracaoPayload>
+        }
+        update: {
+          args: Prisma.InteracaoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InteracaoPayload>
+        }
+        deleteMany: {
+          args: Prisma.InteracaoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.InteracaoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.InteracaoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InteracaoPayload>[]
+        }
+        upsert: {
+          args: Prisma.InteracaoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InteracaoPayload>
+        }
+        aggregate: {
+          args: Prisma.InteracaoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateInteracao>
+        }
+        groupBy: {
+          args: Prisma.InteracaoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InteracaoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.InteracaoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InteracaoCountAggregateOutputType> | number
+        }
+      }
+    }
     Demanda: {
       payload: Prisma.$DemandaPayload<ExtArgs>
       fields: Prisma.DemandaFieldRefs
@@ -1195,6 +1345,37 @@ export const ComunidadeScalarFieldEnum = {
 export type ComunidadeScalarFieldEnum = (typeof ComunidadeScalarFieldEnum)[keyof typeof ComunidadeScalarFieldEnum]
 
 
+export const ContatoScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  telefone: 'telefone',
+  email: 'email',
+  cargo: 'cargo',
+  redesSociais: 'redesSociais',
+  bairroId: 'bairroId',
+  comunidadeId: 'comunidadeId',
+  observacoes: 'observacoes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ContatoScalarFieldEnum = (typeof ContatoScalarFieldEnum)[keyof typeof ContatoScalarFieldEnum]
+
+
+export const InteracaoScalarFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  descricao: 'descricao',
+  data: 'data',
+  responsavel: 'responsavel',
+  contatoId: 'contatoId',
+  demandaId: 'demandaId',
+  createdAt: 'createdAt'
+} as const
+
+export type InteracaoScalarFieldEnum = (typeof InteracaoScalarFieldEnum)[keyof typeof InteracaoScalarFieldEnum]
+
+
 export const DemandaScalarFieldEnum = {
   id: 'id',
   categoria: 'categoria',
@@ -1234,6 +1415,14 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -1248,6 +1437,15 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -1295,6 +1493,20 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -1428,6 +1640,8 @@ export type GlobalOmitConfig = {
   setor?: Prisma.SetorOmit
   rua?: Prisma.RuaOmit
   comunidade?: Prisma.ComunidadeOmit
+  contato?: Prisma.ContatoOmit
+  interacao?: Prisma.InteracaoOmit
   demanda?: Prisma.DemandaOmit
   visita?: Prisma.VisitaOmit
 }

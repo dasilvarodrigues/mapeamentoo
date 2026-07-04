@@ -229,6 +229,7 @@ export type ComunidadeWhereInput = {
   longitude?: Prisma.FloatNullableFilter<"Comunidade"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Comunidade"> | Date | string
   bairro?: Prisma.XOR<Prisma.BairroScalarRelationFilter, Prisma.BairroWhereInput>
+  contatos?: Prisma.ContatoListRelationFilter
 }
 
 export type ComunidadeOrderByWithRelationInput = {
@@ -239,6 +240,7 @@ export type ComunidadeOrderByWithRelationInput = {
   longitude?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   bairro?: Prisma.BairroOrderByWithRelationInput
+  contatos?: Prisma.ContatoOrderByRelationAggregateInput
 }
 
 export type ComunidadeWhereUniqueInput = Prisma.AtLeast<{
@@ -252,6 +254,7 @@ export type ComunidadeWhereUniqueInput = Prisma.AtLeast<{
   longitude?: Prisma.FloatNullableFilter<"Comunidade"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Comunidade"> | Date | string
   bairro?: Prisma.XOR<Prisma.BairroScalarRelationFilter, Prisma.BairroWhereInput>
+  contatos?: Prisma.ContatoListRelationFilter
 }, "id">
 
 export type ComunidadeOrderByWithAggregationInput = {
@@ -287,6 +290,7 @@ export type ComunidadeCreateInput = {
   longitude?: number | null
   createdAt?: Date | string
   bairro: Prisma.BairroCreateNestedOneWithoutComunidadesInput
+  contatos?: Prisma.ContatoCreateNestedManyWithoutComunidadeInput
 }
 
 export type ComunidadeUncheckedCreateInput = {
@@ -296,6 +300,7 @@ export type ComunidadeUncheckedCreateInput = {
   latitude?: number | null
   longitude?: number | null
   createdAt?: Date | string
+  contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutComunidadeInput
 }
 
 export type ComunidadeUpdateInput = {
@@ -305,6 +310,7 @@ export type ComunidadeUpdateInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bairro?: Prisma.BairroUpdateOneRequiredWithoutComunidadesNestedInput
+  contatos?: Prisma.ContatoUpdateManyWithoutComunidadeNestedInput
 }
 
 export type ComunidadeUncheckedUpdateInput = {
@@ -314,6 +320,7 @@ export type ComunidadeUncheckedUpdateInput = {
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contatos?: Prisma.ContatoUncheckedUpdateManyWithoutComunidadeNestedInput
 }
 
 export type ComunidadeCreateManyInput = {
@@ -389,6 +396,11 @@ export type ComunidadeSumOrderByAggregateInput = {
   longitude?: Prisma.SortOrder
 }
 
+export type ComunidadeNullableScalarRelationFilter = {
+  is?: Prisma.ComunidadeWhereInput | null
+  isNot?: Prisma.ComunidadeWhereInput | null
+}
+
 export type ComunidadeCreateNestedManyWithoutBairroInput = {
   create?: Prisma.XOR<Prisma.ComunidadeCreateWithoutBairroInput, Prisma.ComunidadeUncheckedCreateWithoutBairroInput> | Prisma.ComunidadeCreateWithoutBairroInput[] | Prisma.ComunidadeUncheckedCreateWithoutBairroInput[]
   connectOrCreate?: Prisma.ComunidadeCreateOrConnectWithoutBairroInput | Prisma.ComunidadeCreateOrConnectWithoutBairroInput[]
@@ -431,12 +443,29 @@ export type ComunidadeUncheckedUpdateManyWithoutBairroNestedInput = {
   deleteMany?: Prisma.ComunidadeScalarWhereInput | Prisma.ComunidadeScalarWhereInput[]
 }
 
+export type ComunidadeCreateNestedOneWithoutContatosInput = {
+  create?: Prisma.XOR<Prisma.ComunidadeCreateWithoutContatosInput, Prisma.ComunidadeUncheckedCreateWithoutContatosInput>
+  connectOrCreate?: Prisma.ComunidadeCreateOrConnectWithoutContatosInput
+  connect?: Prisma.ComunidadeWhereUniqueInput
+}
+
+export type ComunidadeUpdateOneWithoutContatosNestedInput = {
+  create?: Prisma.XOR<Prisma.ComunidadeCreateWithoutContatosInput, Prisma.ComunidadeUncheckedCreateWithoutContatosInput>
+  connectOrCreate?: Prisma.ComunidadeCreateOrConnectWithoutContatosInput
+  upsert?: Prisma.ComunidadeUpsertWithoutContatosInput
+  disconnect?: Prisma.ComunidadeWhereInput | boolean
+  delete?: Prisma.ComunidadeWhereInput | boolean
+  connect?: Prisma.ComunidadeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ComunidadeUpdateToOneWithWhereWithoutContatosInput, Prisma.ComunidadeUpdateWithoutContatosInput>, Prisma.ComunidadeUncheckedUpdateWithoutContatosInput>
+}
+
 export type ComunidadeCreateWithoutBairroInput = {
   id?: string
   nome: string
   latitude?: number | null
   longitude?: number | null
   createdAt?: Date | string
+  contatos?: Prisma.ContatoCreateNestedManyWithoutComunidadeInput
 }
 
 export type ComunidadeUncheckedCreateWithoutBairroInput = {
@@ -445,6 +474,7 @@ export type ComunidadeUncheckedCreateWithoutBairroInput = {
   latitude?: number | null
   longitude?: number | null
   createdAt?: Date | string
+  contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutComunidadeInput
 }
 
 export type ComunidadeCreateOrConnectWithoutBairroInput = {
@@ -485,6 +515,58 @@ export type ComunidadeScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Comunidade"> | Date | string
 }
 
+export type ComunidadeCreateWithoutContatosInput = {
+  id?: string
+  nome: string
+  latitude?: number | null
+  longitude?: number | null
+  createdAt?: Date | string
+  bairro: Prisma.BairroCreateNestedOneWithoutComunidadesInput
+}
+
+export type ComunidadeUncheckedCreateWithoutContatosInput = {
+  id?: string
+  nome: string
+  bairroId: string
+  latitude?: number | null
+  longitude?: number | null
+  createdAt?: Date | string
+}
+
+export type ComunidadeCreateOrConnectWithoutContatosInput = {
+  where: Prisma.ComunidadeWhereUniqueInput
+  create: Prisma.XOR<Prisma.ComunidadeCreateWithoutContatosInput, Prisma.ComunidadeUncheckedCreateWithoutContatosInput>
+}
+
+export type ComunidadeUpsertWithoutContatosInput = {
+  update: Prisma.XOR<Prisma.ComunidadeUpdateWithoutContatosInput, Prisma.ComunidadeUncheckedUpdateWithoutContatosInput>
+  create: Prisma.XOR<Prisma.ComunidadeCreateWithoutContatosInput, Prisma.ComunidadeUncheckedCreateWithoutContatosInput>
+  where?: Prisma.ComunidadeWhereInput
+}
+
+export type ComunidadeUpdateToOneWithWhereWithoutContatosInput = {
+  where?: Prisma.ComunidadeWhereInput
+  data: Prisma.XOR<Prisma.ComunidadeUpdateWithoutContatosInput, Prisma.ComunidadeUncheckedUpdateWithoutContatosInput>
+}
+
+export type ComunidadeUpdateWithoutContatosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bairro?: Prisma.BairroUpdateOneRequiredWithoutComunidadesNestedInput
+}
+
+export type ComunidadeUncheckedUpdateWithoutContatosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  bairroId?: Prisma.StringFieldUpdateOperationsInput | string
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type ComunidadeCreateManyBairroInput = {
   id?: string
   nome: string
@@ -499,6 +581,7 @@ export type ComunidadeUpdateWithoutBairroInput = {
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contatos?: Prisma.ContatoUpdateManyWithoutComunidadeNestedInput
 }
 
 export type ComunidadeUncheckedUpdateWithoutBairroInput = {
@@ -507,6 +590,7 @@ export type ComunidadeUncheckedUpdateWithoutBairroInput = {
   latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contatos?: Prisma.ContatoUncheckedUpdateManyWithoutComunidadeNestedInput
 }
 
 export type ComunidadeUncheckedUpdateManyWithoutBairroInput = {
@@ -518,6 +602,35 @@ export type ComunidadeUncheckedUpdateManyWithoutBairroInput = {
 }
 
 
+/**
+ * Count Type ComunidadeCountOutputType
+ */
+
+export type ComunidadeCountOutputType = {
+  contatos: number
+}
+
+export type ComunidadeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  contatos?: boolean | ComunidadeCountOutputTypeCountContatosArgs
+}
+
+/**
+ * ComunidadeCountOutputType without action
+ */
+export type ComunidadeCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ComunidadeCountOutputType
+   */
+  select?: Prisma.ComunidadeCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ComunidadeCountOutputType without action
+ */
+export type ComunidadeCountOutputTypeCountContatosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContatoWhereInput
+}
+
 
 export type ComunidadeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -527,6 +640,8 @@ export type ComunidadeSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   longitude?: boolean
   createdAt?: boolean
   bairro?: boolean | Prisma.BairroDefaultArgs<ExtArgs>
+  contatos?: boolean | Prisma.Comunidade$contatosArgs<ExtArgs>
+  _count?: boolean | Prisma.ComunidadeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["comunidade"]>
 
 export type ComunidadeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -561,6 +676,8 @@ export type ComunidadeSelectScalar = {
 export type ComunidadeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "bairroId" | "latitude" | "longitude" | "createdAt", ExtArgs["result"]["comunidade"]>
 export type ComunidadeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bairro?: boolean | Prisma.BairroDefaultArgs<ExtArgs>
+  contatos?: boolean | Prisma.Comunidade$contatosArgs<ExtArgs>
+  _count?: boolean | Prisma.ComunidadeCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ComunidadeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bairro?: boolean | Prisma.BairroDefaultArgs<ExtArgs>
@@ -573,6 +690,7 @@ export type $ComunidadePayload<ExtArgs extends runtime.Types.Extensions.Internal
   name: "Comunidade"
   objects: {
     bairro: Prisma.$BairroPayload<ExtArgs>
+    contatos: Prisma.$ContatoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -976,6 +1094,7 @@ readonly fields: ComunidadeFieldRefs;
 export interface Prisma__ComunidadeClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   bairro<T extends Prisma.BairroDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BairroDefaultArgs<ExtArgs>>): Prisma.Prisma__BairroClient<runtime.Types.Result.GetResult<Prisma.$BairroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  contatos<T extends Prisma.Comunidade$contatosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Comunidade$contatosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1409,6 +1528,30 @@ export type ComunidadeDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many Comunidades to delete.
    */
   limit?: number
+}
+
+/**
+ * Comunidade.contatos
+ */
+export type Comunidade$contatosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Contato
+   */
+  select?: Prisma.ContatoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Contato
+   */
+  omit?: Prisma.ContatoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContatoInclude<ExtArgs> | null
+  where?: Prisma.ContatoWhereInput
+  orderBy?: Prisma.ContatoOrderByWithRelationInput | Prisma.ContatoOrderByWithRelationInput[]
+  cursor?: Prisma.ContatoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContatoScalarFieldEnum | Prisma.ContatoScalarFieldEnum[]
 }
 
 /**
