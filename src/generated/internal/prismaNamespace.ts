@@ -393,6 +393,7 @@ export const ModelName = {
   Comunidade: 'Comunidade',
   Contato: 'Contato',
   Interacao: 'Interacao',
+  Anexo: 'Anexo',
   Demanda: 'Demanda',
   Visita: 'Visita',
   User: 'User'
@@ -411,7 +412,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "estado" | "municipio" | "regiao" | "bairro" | "setor" | "rua" | "comunidade" | "contato" | "interacao" | "demanda" | "visita" | "user"
+    modelProps: "estado" | "municipio" | "regiao" | "bairro" | "setor" | "rua" | "comunidade" | "contato" | "interacao" | "anexo" | "demanda" | "visita" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1081,6 +1082,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Anexo: {
+      payload: Prisma.$AnexoPayload<ExtArgs>
+      fields: Prisma.AnexoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AnexoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnexoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AnexoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnexoPayload>
+        }
+        findFirst: {
+          args: Prisma.AnexoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnexoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AnexoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnexoPayload>
+        }
+        findMany: {
+          args: Prisma.AnexoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnexoPayload>[]
+        }
+        create: {
+          args: Prisma.AnexoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnexoPayload>
+        }
+        createMany: {
+          args: Prisma.AnexoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AnexoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnexoPayload>[]
+        }
+        delete: {
+          args: Prisma.AnexoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnexoPayload>
+        }
+        update: {
+          args: Prisma.AnexoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnexoPayload>
+        }
+        deleteMany: {
+          args: Prisma.AnexoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AnexoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AnexoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnexoPayload>[]
+        }
+        upsert: {
+          args: Prisma.AnexoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnexoPayload>
+        }
+        aggregate: {
+          args: Prisma.AnexoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAnexo>
+        }
+        groupBy: {
+          args: Prisma.AnexoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AnexoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AnexoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AnexoCountAggregateOutputType> | number
+        }
+      }
+    }
     Demanda: {
       payload: Prisma.$DemandaPayload<ExtArgs>
       fields: Prisma.DemandaFieldRefs
@@ -1451,6 +1526,21 @@ export const InteracaoScalarFieldEnum = {
 export type InteracaoScalarFieldEnum = (typeof InteracaoScalarFieldEnum)[keyof typeof InteracaoScalarFieldEnum]
 
 
+export const AnexoScalarFieldEnum = {
+  id: 'id',
+  nomeOriginal: 'nomeOriginal',
+  nomeArquivo: 'nomeArquivo',
+  tamanho: 'tamanho',
+  mimeType: 'mimeType',
+  entidadeTipo: 'entidadeTipo',
+  entidadeId: 'entidadeId',
+  criadoPor: 'criadoPor',
+  createdAt: 'createdAt'
+} as const
+
+export type AnexoScalarFieldEnum = (typeof AnexoScalarFieldEnum)[keyof typeof AnexoScalarFieldEnum]
+
+
 export const DemandaScalarFieldEnum = {
   id: 'id',
   categoria: 'categoria',
@@ -1730,6 +1820,7 @@ export type GlobalOmitConfig = {
   comunidade?: Prisma.ComunidadeOmit
   contato?: Prisma.ContatoOmit
   interacao?: Prisma.InteracaoOmit
+  anexo?: Prisma.AnexoOmit
   demanda?: Prisma.DemandaOmit
   visita?: Prisma.VisitaOmit
   user?: Prisma.UserOmit

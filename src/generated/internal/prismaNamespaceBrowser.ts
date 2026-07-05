@@ -60,6 +60,7 @@ export const ModelName = {
   Comunidade: 'Comunidade',
   Contato: 'Contato',
   Interacao: 'Interacao',
+  Anexo: 'Anexo',
   Demanda: 'Demanda',
   Visita: 'Visita',
   User: 'User'
@@ -188,6 +189,21 @@ export const InteracaoScalarFieldEnum = {
 } as const
 
 export type InteracaoScalarFieldEnum = (typeof InteracaoScalarFieldEnum)[keyof typeof InteracaoScalarFieldEnum]
+
+
+export const AnexoScalarFieldEnum = {
+  id: 'id',
+  nomeOriginal: 'nomeOriginal',
+  nomeArquivo: 'nomeArquivo',
+  tamanho: 'tamanho',
+  mimeType: 'mimeType',
+  entidadeTipo: 'entidadeTipo',
+  entidadeId: 'entidadeId',
+  criadoPor: 'criadoPor',
+  createdAt: 'createdAt'
+} as const
+
+export type AnexoScalarFieldEnum = (typeof AnexoScalarFieldEnum)[keyof typeof AnexoScalarFieldEnum]
 
 
 export const DemandaScalarFieldEnum = {

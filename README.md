@@ -1,6 +1,6 @@
 # Cassol Mapeamento Regional
 
-SaaS de mapeamento regional com dashboard executivo e cadastro territorial georreferenciados.
+SaaS de mapeamento regional com dashboard executivo, cadastro territorial georreferenciado, gestão de demandas, CRM comunitário e relatórios/BI.
 
 ## Stack
 
@@ -12,8 +12,18 @@ SaaS de mapeamento regional com dashboard executivo e cadastro territorial georr
 | Data Fetching | TanStack React Query |
 | Animações | Framer Motion |
 | Banco | PostgreSQL via Prisma 7 ORM |
+| Autenticação | Auth.js v5 (CredentialsProvider, JWT) |
 | Tempo Real | Server-Sent Events (SSE) |
 | Ícones | Lucide React |
+
+## Variáveis de Ambiente
+
+```env
+DATABASE_URL="postgresql://usuario:senha@host:5432/cassol_mapeamento"
+AUTH_SECRET="<gerar com: openssl rand -base64 32>"
+AUTH_URL="https://seudominio.com.br"
+NEXT_PUBLIC_MAPBOX_TOKEN=""  # opcional
+```
 
 ## Estrutura
 
@@ -21,9 +31,11 @@ SaaS de mapeamento regional com dashboard executivo e cadastro territorial georr
 src/
 ├── app/
 │   ├── page.tsx                    # Dashboard
-│   ├── layout.tsx                  # Layout global
+│   ├── layout.tsx                  # Layout global (inclui SessionProvider)
 │   ├── providers.tsx               # React Query provider
 │   ├── loading.tsx                 # Loading state
+│   ├── login/
+│   │   └── page.tsx                # Página de login
 │   ├── territorio/
 │   │   ├── page.tsx                # Cadastro Territorial
 │   │   └── layout.tsx              # Metadata
@@ -33,7 +45,15 @@ src/
 │   ├── crm/
 │   │   ├── page.tsx                # CRM Comunitário
 │   │   └── layout.tsx              # Metadata
+│   ├── relatorios/
+│   │   ├── page.tsx                # Relatórios / BI
+│   │   └── layout.tsx              # Metadata
 │   └── api/
+│       ├── auth/
+│       │   ├── [...nextauth]/
+│       │   │   └── route.ts        # Auth.js catch-all
+│       │   ├── csrf/route.ts       # CSRF token (implícito)
+│       │   └── callback/...        # Credentials callback (implícito)
 │       ├── dashboard/
 │       │   ├── kpis/route.ts       # Indicadores agregados
 │       │   ├── mapa/route.ts       # GeoJSON pontos
@@ -41,21 +61,24 @@ src/
 │       │   ├── ranking/route.ts    # Regiões ordenadas
 │       │   ├── timeline/route.ts   # Atividades recentes
 │       │   └── alertas/route.ts    # SSE stream
-│       └── territorio/
-│           ├── estados/route.ts    # CRUD Estado
-│           ├── municipios/route.ts # CRUD Municipio
-│           ├── bairros/route.ts    # CRUD Bairro
-│           ├── comunidades/route.ts# CRUD Comunidade
-│           ├── setores/route.ts    # CRUD Setor
-│           └── ruas/route.ts       # CRUD Rua
+│       ├── territorio/
+│       │   ├── estados/route.ts    # CRUD Estado
+│       │   ├── municipios/route.ts # CRUD Municipio
+│       │   ├── bairros/route.ts    # CRUD Bairro
+│       │   ├── comunidades/route.ts# CRUD Comunidade
+│       │   ├── setores/route.ts    # CRUD Setor
+│       │   └── ruas/route.ts       # CRUD Rua
 │       ├── demandas/
 │       │   ├── route.ts            # GET (list) + POST (create)
 │       │   ├── [id]/route.ts       # GET + PUT + DELETE
 │       │   └── [id]/status/route.ts# PATCH (status)
-│       └── crm/
-│           ├── contatos/route.ts   # GET (list) + POST (create)
-│           ├── contatos/[id]/route.ts # GET + PUT + DELETE
-│           └── interacoes/route.ts # GET (by contatoId) + POST
+│       ├── crm/
+│       │   ├── contatos/route.ts   # GET (list) + POST (create)
+│       │   ├── contatos/[id]/route.ts # GET + PUT + DELETE
+│       │   └── interacoes/route.ts # GET (by contatoId) + POST
+│       └── relatorios/
+│           ├── pre-definidos/route.ts  # Relatórios pré-definidos
+│           └── customizado/route.ts    # Relatório customizado
 ├── components/
 │   ├── dashboard/
 │   │   ├── CardKPI.tsx             # Cartão com contagem animada
@@ -80,20 +103,87 @@ src/
 │   │   ├── FormularioContato.tsx   # Form criar/editar contato
 │   │   ├── FormularioInteracao.tsx # Form registrar interação
 │   │   └── ModalContato.tsx        # Modal detalhes + timeline
-│   └── territorio/
-│       ├── BreadcrumbTerritorio.tsx # Navegação hierárquica
-│       ├── ArvoreHierarquica.tsx    # Árvore lateral
-│       ├── FormularioLocalidade.tsx # Formulário dinâmico
-│       ├── MapaTerritorial.tsx      # Wrapper SSR-safe
-│       ├── MapaTerritorialLeaflet.tsx # Mapa + draw controls
-│       └── ModalImportacao.tsx      # Upload GIS
+│   ├── territorio/
+│   │   ├── BreadcrumbTerritorio.tsx # Navegação hierárquica
+│   │   ├── ArvoreHierarquica.tsx    # Árvore lateral
+│   │   ├── FormularioLocalidade.tsx # Formulário dinâmico
+│   │   ├── MapaTerritorial.tsx      # Wrapper SSR-safe
+│   │   ├── MapaTerritorialLeaflet.tsx # Mapa + draw controls
+│   │   └── ModalImportacao.tsx      # Upload GIS
+│   └── relatorios/
+│       ├── SidebarRelatorios.tsx    # Navegação entre tipos
+│       ├── FiltrosRelatorio.tsx     # Filtros (data, região, etc)
+│       ├── RelatorioPreview.tsx     # Preview do relatório
+│       ├── RelatorioCustomizado.tsx # Construtor customizado
+│       ├── RelatorioPrint.tsx       # Versão para impressão
+│       ├── GraficoBarra.tsx         # Gráfico de barras (Recharts)
+│       ├── GraficoLinha.tsx         # Gráfico de linhas (Recharts)
+│       ├── GraficoPizza.tsx         # Gráfico de pizza (Recharts)
+│       ├── TabelaRelatorio.tsx      # Tabela de dados
+│       └── ExportarPDF.tsx          # Exportação via window.print()
 ├── lib/
 │   ├── prisma.ts                   # Prisma client config
+│   ├── auth.ts                     # Auth.js config + withAuth helper
 │   └── utils.ts                    # cn(), formatDate(), formatDateTime()
+├── middleware.ts                   # Proteção de rotas por cookie de sessão
 └── types/
     ├── dashboard.ts                # Interfaces do dashboard
-    └── territorio.ts               # Interfaces do cadastro territorial
+    ├── territorio.ts               # Interfaces do cadastro territorial
+    └── relatorios.ts               # Interfaces de relatórios/BI
 ```
+
+## Autenticação
+
+O sistema usa **Auth.js v5** com **CredentialsProvider** (email + senha) e estratégia **JWT**.
+
+### Roles
+
+| Role | Acesso |
+|------|--------|
+| `admin` | Acesso total — todas as rotas, CRUD completo, relatórios sem restrição |
+| `agente` | Acesso limitado — vê apenas demandas onde é responsável, filtro automático nas API routes |
+
+### Fluxo
+
+1. Usuário acessa rota protegida → middleware redireciona para `/login`
+2. Login via `signIn("credentials", { email, password })` → valida contra hash bcrypt no banco
+3. Sessão armazenada em cookie `__Secure-authjs.session-token` (JWT encryptado)
+4. Middleware verifica cookie nas requisições seguintes
+5. API routes usam `withAuth()` para proteger endpoints e filtrar por role
+
+### Usuários padrão (seed)
+
+| Email | Senha | Role |
+|-------|-------|------|
+| admin@cassol.com | admin123 | admin |
+| agente@cassol.com | agente123 | agente |
+
+### Criar novo usuário
+
+```bash
+npx prisma db seed  # apenas se quiser recriar os seeds padrão
+```
+
+Ou insira manualmente no banco com senha bcrypt:
+```sql
+INSERT INTO "User" (id, nome, email, "senhaHash", role)
+VALUES (gen_random_uuid(), 'Nome', 'email@exemplo.com',
+  -- hash via: node -e "require('bcryptjs').hash('senha123',10).then(console.log)"
+  '$2a$10$...', 'agente');
+```
+
+### Rotas públicas vs protegidas
+
+| Rota | Protegida | Descrição |
+|------|-----------|-----------|
+| `/login` | Não | Página de login |
+| `/api/auth/*` | Não | Endpoints do Auth.js (CSRF, callback, session) |
+| `/` | Sim | Dashboard |
+| `/territorio/*` | Sim | Cadastro territorial |
+| `/demandas/*` | Sim | Gestão de demandas |
+| `/crm/*` | Sim | CRM comunitário |
+| `/relatorios/*` | Sim | Relatórios/BI |
+| Demais API routes | Sim | Todas usam `withAuth()` |
 
 ## Pré-requisitos
 
@@ -170,6 +260,30 @@ npm start
 | GET | `/api/crm/interacoes?contatoId=` | Listar interações |
 | POST | `/api/crm/interacoes` | Criar interação |
 
+### Relatórios / BI
+
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| GET | `/api/relatorios/pre-definidos?tipo=&dataInicio=&dataFim=` | Relatórios pré-definidos (geral, localidade, tipo, responsaveis, cobertura, crm) |
+| GET | `/api/relatorios/customizado?metricas[]=&dataInicio=&dataFim=&regiaoId=&bairroId=&tipo=&status=&agruparPor=` | Relatório customizado com métricas selecionáveis |
+
+#### Tipos de relatório pré-definido
+
+| Tipo | Descrição |
+|------|-----------|
+| `geral` | KPIs gerais + evolução mensal de demandas |
+| `localidade` | Demandas agrupadas por bairro |
+| `tipo` | Distribuição por tipo de demanda |
+| `responsaveis` | Ranking de responsáveis (total, resolvidas, pendentes) |
+| `cobertura` | Cobertura por região (bairros, demandas, comunidades) |
+| `crm` | Interações do CRM, contatos ativos, interações por mês |
+
+#### Relatório customizado
+
+- **Métricas**: demandas, visitas, contatos, interações
+- **Agrupamento**: bairro, tipo, responsável, mês, nenhum
+- **Filtros**: data (início/fim), região, bairro, tipo, status, responsável
+
 ## Banco de Dados
 
 ### Modelos do Dashboard
@@ -205,6 +319,12 @@ Contato → Bairro?, Comunidade?
 Interacao → Contato, Demanda?
 ```
 
+### Modelo de Usuário (Auth)
+
+```
+User → (nome, email, senhaHash, role: "admin" | "agente")
+```
+
 ## Seed Data
 
 - 7 estados (SP, RJ, MG, PR, RS, BA, DF)
@@ -221,3 +341,5 @@ Interacao → Contato, Demanda?
 - **Cadastro Territorial** — Hierarquia Estado → Rua com árvore lateral, breadcrumb, formulário dinâmico, mapa com ferramentas de desenho (leaflet-draw), importação GIS (GeoJSON/KML)
 - **Gestão de Demandas** — CRUD completo com tabela filtrável, kanban com drag & drop (@hello-pangea/dnd), modais de criação/edição/detalhes, barra de filtros (status/categoria/busca)
 - **CRM Comunitário** — Cadastro de contatos (nome, telefone, email, cargo, redes sociais, vínculo territorial), timeline de interações (visita/ligação/reunião/mensagem), modal de detalhes com timeline + formulários de criação/edição
+- **BI/Relatórios** — 6 relatórios pré-definidos (geral, localidade, tipo, responsaveis, cobertura, crm), relatório customizado com métricas e agrupamentos, gráficos Recharts, exportação PDF via `window.print()`
+- **Autenticação e Autorização** — Login email+senha com Auth.js v5, JWT, duas roles (admin/agente), proteção de rotas via middleware, API guard com `withAuth()`, filtro automático de dados por role do usuário

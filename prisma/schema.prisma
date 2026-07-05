@@ -115,6 +115,18 @@ model Interacao {
   createdAt   DateTime @default(now())
 }
 
+model Anexo {
+  id           String   @id @default(cuid())
+  nomeOriginal String
+  nomeArquivo  String   @unique
+  tamanho      Int
+  mimeType     String
+  entidadeTipo String
+  entidadeId   String
+  criadoPor    String?
+  createdAt    DateTime @default(now())
+}
+
 model Demanda {
   id         String    @id @default(cuid())
   categoria  String

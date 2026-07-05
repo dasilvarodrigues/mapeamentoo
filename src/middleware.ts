@@ -1,13 +1,16 @@
-import { auth } from "@/lib/auth";
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-export default auth((req) => {
-  if (!req.auth) {
-    const url = new URL("/login", req.url);
-    return NextResponse.redirect(url);
+export function middleware(request: NextRequest) {
+  const sessionToken = request.cookies.get("__Secure-authjs.session-token")
+    || request.cookies.get("authjs.session-token");
+
+  if (!sessionToken?.value) {
+    return NextResponse.redirect(new URL("/login", request.url));
   }
+
   return NextResponse.next();
-});
+}
 
 export const config = {
   matcher: ["/((?!api/auth|login|_next/static|_next/image|favicon.ico).*)"],

@@ -63,6 +63,11 @@ export type Contato = Prisma.ContatoModel
  */
 export type Interacao = Prisma.InteracaoModel
 /**
+ * Model Anexo
+ * 
+ */
+export type Anexo = Prisma.AnexoModel
+/**
  * Model Demanda
  * 
  */
