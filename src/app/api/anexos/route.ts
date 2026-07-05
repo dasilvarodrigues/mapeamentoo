@@ -10,6 +10,33 @@ export const dynamic = "force-dynamic";
 const MAX_SIZE = 2 * 1024 * 1024; // 2MB
 const ENTIDADES_VALIDAS = ["demanda", "contato", "interacao"] as const;
 
+export async function GET(request: NextRequest) {
+  const session = await withAuth();
+  if (session instanceof NextResponse) return session;
+  const { searchParams } = new URL(request.url);
+  const entidadeTipo = searchParams.get("entidadeTipo");
+  const entidadeId = searchParams.get("entidadeId");
+
+  if (!entidadeTipo || !entidadeId) {
+    return NextResponse.json({ error: "entidadeTipo e entidadeId são obrigatórios" }, { status: 400 });
+  }
+
+  const anexos = await prisma.anexo.findMany({
+    where: { entidadeTipo, entidadeId },
+    orderBy: { createdAt: "desc" },
+    select: {
+      id: true,
+      nomeOriginal: true,
+      tamanho: true,
+      mimeType: true,
+      criadoPor: true,
+      createdAt: true,
+    },
+  });
+
+  return NextResponse.json(anexos);
+}
+
 export async function POST(request: NextRequest) {
   const session = await withAuth();
   if (session instanceof NextResponse) return session;
