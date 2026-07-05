@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { withAuth } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(request: NextRequest) {
+  const session = await withAuth();
+  if (session instanceof NextResponse) return session;
   const { searchParams } = new URL(request.url);
   const contatoId = searchParams.get("contatoId");
   if (!contatoId) return NextResponse.json({ error: "contatoId required" }, { status: 400 });
@@ -15,6 +18,8 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: Request) {
+  const session = await withAuth();
+  if (session instanceof NextResponse) return session;
   const data = await request.json();
   const interacao = await prisma.interacao.create({
     data: {

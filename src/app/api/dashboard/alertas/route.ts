@@ -1,3 +1,6 @@
+import { NextResponse } from "next/server";
+import { withAuth } from "@/lib/auth";
+
 const categorias = [
   "iluminação", "pavimentação", "saúde", "educação", "segurança", "saneamento",
 ];
@@ -29,6 +32,8 @@ function gerarEvento() {
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  const session = await withAuth();
+  if (session instanceof NextResponse) return session;
   const stream = new ReadableStream({
     start(controller) {
       const encoder = new TextEncoder();

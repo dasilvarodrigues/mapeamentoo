@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { withAuth } from "@/lib/auth";
 
 export async function GET(_: Request, { params }: { params: Promise<{ id: string }> }) {
+  const session = await withAuth();
+  if (session instanceof NextResponse) return session;
   const { id } = await params;
   const demanda = await prisma.demanda.findUnique({ where: { id } });
   if (!demanda) return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -9,6 +12,8 @@ export async function GET(_: Request, { params }: { params: Promise<{ id: string
 }
 
 export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
+  const session = await withAuth();
+  if (session instanceof NextResponse) return session;
   const { id } = await params;
   const data = await request.json();
   const demanda = await prisma.demanda.update({
@@ -31,6 +36,8 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
 }
 
 export async function DELETE(_: Request, { params }: { params: Promise<{ id: string }> }) {
+  const session = await withAuth();
+  if (session instanceof NextResponse) return session;
   const { id } = await params;
   await prisma.demanda.delete({ where: { id } });
   return NextResponse.json({ success: true });

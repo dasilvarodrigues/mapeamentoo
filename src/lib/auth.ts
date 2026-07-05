@@ -3,6 +3,7 @@ import { NextAuthConfig } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
+import { NextResponse } from "next/server";
 
 export const config: NextAuthConfig = {
   providers: [
@@ -60,3 +61,14 @@ export const config: NextAuthConfig = {
 };
 
 export const { handlers, auth, signIn, signOut } = NextAuth(config);
+
+export async function withAuth() {
+  const session = await auth();
+  if (!session?.user) {
+    return NextResponse.json(
+      { error: "Não autenticado" },
+      { status: 401 }
+    );
+  }
+  return session;
+}

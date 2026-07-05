@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { withAuth } from "@/lib/auth";
 
 export async function GET(_: Request, { params }: { params: Promise<{ id: string }> }) {
+  const session = await withAuth();
+  if (session instanceof NextResponse) return session;
   const { id } = await params;
   const contato = await prisma.contato.findUnique({
     where: { id },
@@ -12,6 +15,8 @@ export async function GET(_: Request, { params }: { params: Promise<{ id: string
 }
 
 export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
+  const session = await withAuth();
+  if (session instanceof NextResponse) return session;
   const { id } = await params;
   const data = await request.json();
   const contato = await prisma.contato.update({
@@ -31,6 +36,8 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
 }
 
 export async function DELETE(_: Request, { params }: { params: Promise<{ id: string }> }) {
+  const session = await withAuth();
+  if (session instanceof NextResponse) return session;
   const { id } = await params;
   await prisma.contato.delete({ where: { id } });
   return NextResponse.json({ success: true });
