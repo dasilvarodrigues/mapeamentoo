@@ -72,3 +72,8 @@ export type Demanda = Prisma.DemandaModel
  * 
  */
 export type Visita = Prisma.VisitaModel
+/**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel

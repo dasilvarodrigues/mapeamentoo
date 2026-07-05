@@ -144,3 +144,13 @@ model Visita {
   data      DateTime @default(now())
   createdAt DateTime @default(now())
 }
+
+model User {
+  id        String   @id @default(cuid())
+  nome      String
+  email     String   @unique
+  senhaHash String
+  role      String   @default("agente")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
