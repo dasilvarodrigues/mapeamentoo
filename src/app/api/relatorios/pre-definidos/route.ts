@@ -16,9 +16,17 @@ export async function GET(request: NextRequest) {
   if (dataInicio) dateFilter.gte = new Date(dataInicio);
   if (dataFim) dateFilter.lte = new Date(dataFim);
 
-  const whereDate = Object.keys(dateFilter).length
+  let whereDate: Record<string, unknown> = Object.keys(dateFilter).length
     ? { createdAt: dateFilter }
     : {};
+
+  if (session.user.role === "agente") {
+    if (Object.keys(whereDate).length) {
+      whereDate.responsavel = session.user.nome;
+    } else {
+      whereDate = { responsavel: session.user.nome as string };
+    }
+  }
 
   switch (tipo) {
     case "geral": {
@@ -174,6 +182,9 @@ export async function GET(request: NextRequest) {
       if (dataInicio) dataFilterInteracao.gte = new Date(dataInicio);
       if (dataFim) dataFilterInteracao.lte = new Date(dataFim);
       if (Object.keys(dataFilterInteracao).length) whereInteracao.data = dataFilterInteracao;
+      if (session.user.role === "agente") {
+        whereInteracao.responsavel = session.user.nome;
+      }
 
       const interacoes = await prisma.interacao.findMany({
         where: whereInteracao,

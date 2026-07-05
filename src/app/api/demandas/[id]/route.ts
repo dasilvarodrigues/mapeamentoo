@@ -8,6 +8,9 @@ export async function GET(_: Request, { params }: { params: Promise<{ id: string
   const { id } = await params;
   const demanda = await prisma.demanda.findUnique({ where: { id } });
   if (!demanda) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (session.user.role === "agente" && demanda.responsavel !== session.user.nome) {
+    return NextResponse.json({ error: "Sem permissão" }, { status: 403 });
+  }
   return NextResponse.json(demanda);
 }
 
@@ -15,6 +18,12 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
   const session = await withAuth();
   if (session instanceof NextResponse) return session;
   const { id } = await params;
+  if (session.user.role === "agente") {
+    const demanda = await prisma.demanda.findUnique({ where: { id } });
+    if (!demanda || demanda.responsavel !== session.user.nome) {
+      return NextResponse.json({ error: "Sem permissão" }, { status: 403 });
+    }
+  }
   const data = await request.json();
   const demanda = await prisma.demanda.update({
     where: { id },
@@ -39,6 +48,12 @@ export async function DELETE(_: Request, { params }: { params: Promise<{ id: str
   const session = await withAuth();
   if (session instanceof NextResponse) return session;
   const { id } = await params;
+  if (session.user.role === "agente") {
+    const demanda = await prisma.demanda.findUnique({ where: { id } });
+    if (!demanda || demanda.responsavel !== session.user.nome) {
+      return NextResponse.json({ error: "Sem permissão" }, { status: 403 });
+    }
+  }
   await prisma.demanda.delete({ where: { id } });
   return NextResponse.json({ success: true });
 }

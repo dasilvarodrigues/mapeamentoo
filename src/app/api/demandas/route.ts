@@ -20,6 +20,9 @@ export async function GET(request: NextRequest) {
   if (categoria) where.categoria = categoria;
   if (regiaoId) where.regiaoId = regiaoId;
   if (busca) where.descricao = { contains: busca, mode: "insensitive" };
+  if (session.user.role === "agente") {
+    where.responsavel = session.user.nome;
+  }
 
   const [demandas, total] = await Promise.all([
     prisma.demanda.findMany({
@@ -43,6 +46,9 @@ export async function POST(request: Request) {
   const session = await withAuth();
   if (session instanceof NextResponse) return session;
   const data = await request.json();
+  if (session.user.role === "agente") {
+    data.responsavel = session.user.nome;
+  }
   const demanda = await prisma.demanda.create({
     data: {
       categoria: data.categoria,

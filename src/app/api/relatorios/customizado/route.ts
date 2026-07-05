@@ -27,6 +27,9 @@ export async function GET(request: NextRequest) {
   if (tipo) where.tipo = tipo;
   if (status) where.status = status;
   if (responsavel) where.responsavel = responsavel;
+  if (session.user.role === "agente") {
+    where.responsavel = session.user.nome;
+  }
 
   const result: Record<string, unknown> = {};
 
