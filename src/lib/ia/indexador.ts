@@ -118,10 +118,12 @@ export async function reindexarTudo() {
     .slice(0, 10);
 
   if (topBairros.length > 0) {
+    const textoBairros = topBairros.map((c) => {
+      const bairro = bairroMap.get(c.bairroId!)!
+      return bairro.nome!.toString() + " (" + c._count + ")"
+    }).join(", ")
     await criarChunk(
-      `Top bairros com mais contatos no CRM: ${topBairros
-        .map((c) => `${bairroMap.get(c.bairroId)!.nome} (${c._count})`)
-        .join(", ")}. Total de contatos: ${totalContatos}.`,
+      "Top bairros com mais contatos no CRM: " + textoBairros + ". Total de contatos: " + totalContatos + ".",
       { tipo: "crm_resumo" },
       "crm"
     );

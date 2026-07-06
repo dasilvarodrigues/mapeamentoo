@@ -29,7 +29,7 @@ export type IaMensagemMinAggregateOutputType = {
   conversaId: string | null
   papel: string | null
   conteudo: string | null
-  criado_em: Date | null
+  createdAt: Date | null
 }
 
 export type IaMensagemMaxAggregateOutputType = {
@@ -37,7 +37,7 @@ export type IaMensagemMaxAggregateOutputType = {
   conversaId: string | null
   papel: string | null
   conteudo: string | null
-  criado_em: Date | null
+  createdAt: Date | null
 }
 
 export type IaMensagemCountAggregateOutputType = {
@@ -46,7 +46,7 @@ export type IaMensagemCountAggregateOutputType = {
   papel: number
   conteudo: number
   chunksFonte: number
-  criado_em: number
+  createdAt: number
   _all: number
 }
 
@@ -56,7 +56,7 @@ export type IaMensagemMinAggregateInputType = {
   conversaId?: true
   papel?: true
   conteudo?: true
-  criado_em?: true
+  createdAt?: true
 }
 
 export type IaMensagemMaxAggregateInputType = {
@@ -64,7 +64,7 @@ export type IaMensagemMaxAggregateInputType = {
   conversaId?: true
   papel?: true
   conteudo?: true
-  criado_em?: true
+  createdAt?: true
 }
 
 export type IaMensagemCountAggregateInputType = {
@@ -73,7 +73,7 @@ export type IaMensagemCountAggregateInputType = {
   papel?: true
   conteudo?: true
   chunksFonte?: true
-  criado_em?: true
+  createdAt?: true
   _all?: true
 }
 
@@ -155,7 +155,7 @@ export type IaMensagemGroupByOutputType = {
   papel: string
   conteudo: string
   chunksFonte: runtime.JsonValue | null
-  criado_em: Date
+  createdAt: Date
   _count: IaMensagemCountAggregateOutputType | null
   _min: IaMensagemMinAggregateOutputType | null
   _max: IaMensagemMaxAggregateOutputType | null
@@ -185,7 +185,7 @@ export type IaMensagemWhereInput = {
   papel?: Prisma.StringFilter<"IaMensagem"> | string
   conteudo?: Prisma.StringFilter<"IaMensagem"> | string
   chunksFonte?: Prisma.JsonNullableFilter<"IaMensagem">
-  criado_em?: Prisma.DateTimeFilter<"IaMensagem"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"IaMensagem"> | Date | string
   conversa?: Prisma.XOR<Prisma.IaConversaScalarRelationFilter, Prisma.IaConversaWhereInput>
 }
 
@@ -195,7 +195,7 @@ export type IaMensagemOrderByWithRelationInput = {
   papel?: Prisma.SortOrder
   conteudo?: Prisma.SortOrder
   chunksFonte?: Prisma.SortOrderInput | Prisma.SortOrder
-  criado_em?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   conversa?: Prisma.IaConversaOrderByWithRelationInput
 }
 
@@ -208,7 +208,7 @@ export type IaMensagemWhereUniqueInput = Prisma.AtLeast<{
   papel?: Prisma.StringFilter<"IaMensagem"> | string
   conteudo?: Prisma.StringFilter<"IaMensagem"> | string
   chunksFonte?: Prisma.JsonNullableFilter<"IaMensagem">
-  criado_em?: Prisma.DateTimeFilter<"IaMensagem"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"IaMensagem"> | Date | string
   conversa?: Prisma.XOR<Prisma.IaConversaScalarRelationFilter, Prisma.IaConversaWhereInput>
 }, "id">
 
@@ -218,7 +218,7 @@ export type IaMensagemOrderByWithAggregationInput = {
   papel?: Prisma.SortOrder
   conteudo?: Prisma.SortOrder
   chunksFonte?: Prisma.SortOrderInput | Prisma.SortOrder
-  criado_em?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   _count?: Prisma.IaMensagemCountOrderByAggregateInput
   _max?: Prisma.IaMensagemMaxOrderByAggregateInput
   _min?: Prisma.IaMensagemMinOrderByAggregateInput
@@ -233,7 +233,7 @@ export type IaMensagemScalarWhereWithAggregatesInput = {
   papel?: Prisma.StringWithAggregatesFilter<"IaMensagem"> | string
   conteudo?: Prisma.StringWithAggregatesFilter<"IaMensagem"> | string
   chunksFonte?: Prisma.JsonNullableWithAggregatesFilter<"IaMensagem">
-  criado_em?: Prisma.DateTimeWithAggregatesFilter<"IaMensagem"> | Date | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"IaMensagem"> | Date | string
 }
 
 export type IaMensagemCreateInput = {
@@ -241,7 +241,7 @@ export type IaMensagemCreateInput = {
   papel: string
   conteudo: string
   chunksFonte?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  criado_em?: Date | string
+  createdAt?: Date | string
   conversa: Prisma.IaConversaCreateNestedOneWithoutMensagensInput
 }
 
@@ -251,7 +251,7 @@ export type IaMensagemUncheckedCreateInput = {
   papel: string
   conteudo: string
   chunksFonte?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  criado_em?: Date | string
+  createdAt?: Date | string
 }
 
 export type IaMensagemUpdateInput = {
@@ -259,7 +259,7 @@ export type IaMensagemUpdateInput = {
   papel?: Prisma.StringFieldUpdateOperationsInput | string
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
   chunksFonte?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  criado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conversa?: Prisma.IaConversaUpdateOneRequiredWithoutMensagensNestedInput
 }
 
@@ -269,7 +269,7 @@ export type IaMensagemUncheckedUpdateInput = {
   papel?: Prisma.StringFieldUpdateOperationsInput | string
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
   chunksFonte?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  criado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type IaMensagemCreateManyInput = {
@@ -278,7 +278,7 @@ export type IaMensagemCreateManyInput = {
   papel: string
   conteudo: string
   chunksFonte?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  criado_em?: Date | string
+  createdAt?: Date | string
 }
 
 export type IaMensagemUpdateManyMutationInput = {
@@ -286,7 +286,7 @@ export type IaMensagemUpdateManyMutationInput = {
   papel?: Prisma.StringFieldUpdateOperationsInput | string
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
   chunksFonte?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  criado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type IaMensagemUncheckedUpdateManyInput = {
@@ -295,7 +295,7 @@ export type IaMensagemUncheckedUpdateManyInput = {
   papel?: Prisma.StringFieldUpdateOperationsInput | string
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
   chunksFonte?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  criado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type IaMensagemListRelationFilter = {
@@ -314,7 +314,7 @@ export type IaMensagemCountOrderByAggregateInput = {
   papel?: Prisma.SortOrder
   conteudo?: Prisma.SortOrder
   chunksFonte?: Prisma.SortOrder
-  criado_em?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type IaMensagemMaxOrderByAggregateInput = {
@@ -322,7 +322,7 @@ export type IaMensagemMaxOrderByAggregateInput = {
   conversaId?: Prisma.SortOrder
   papel?: Prisma.SortOrder
   conteudo?: Prisma.SortOrder
-  criado_em?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type IaMensagemMinOrderByAggregateInput = {
@@ -330,7 +330,7 @@ export type IaMensagemMinOrderByAggregateInput = {
   conversaId?: Prisma.SortOrder
   papel?: Prisma.SortOrder
   conteudo?: Prisma.SortOrder
-  criado_em?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type IaMensagemCreateNestedManyWithoutConversaInput = {
@@ -380,7 +380,7 @@ export type IaMensagemCreateWithoutConversaInput = {
   papel: string
   conteudo: string
   chunksFonte?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  criado_em?: Date | string
+  createdAt?: Date | string
 }
 
 export type IaMensagemUncheckedCreateWithoutConversaInput = {
@@ -388,7 +388,7 @@ export type IaMensagemUncheckedCreateWithoutConversaInput = {
   papel: string
   conteudo: string
   chunksFonte?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  criado_em?: Date | string
+  createdAt?: Date | string
 }
 
 export type IaMensagemCreateOrConnectWithoutConversaInput = {
@@ -426,7 +426,7 @@ export type IaMensagemScalarWhereInput = {
   papel?: Prisma.StringFilter<"IaMensagem"> | string
   conteudo?: Prisma.StringFilter<"IaMensagem"> | string
   chunksFonte?: Prisma.JsonNullableFilter<"IaMensagem">
-  criado_em?: Prisma.DateTimeFilter<"IaMensagem"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"IaMensagem"> | Date | string
 }
 
 export type IaMensagemCreateManyConversaInput = {
@@ -434,7 +434,7 @@ export type IaMensagemCreateManyConversaInput = {
   papel: string
   conteudo: string
   chunksFonte?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  criado_em?: Date | string
+  createdAt?: Date | string
 }
 
 export type IaMensagemUpdateWithoutConversaInput = {
@@ -442,7 +442,7 @@ export type IaMensagemUpdateWithoutConversaInput = {
   papel?: Prisma.StringFieldUpdateOperationsInput | string
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
   chunksFonte?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  criado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type IaMensagemUncheckedUpdateWithoutConversaInput = {
@@ -450,7 +450,7 @@ export type IaMensagemUncheckedUpdateWithoutConversaInput = {
   papel?: Prisma.StringFieldUpdateOperationsInput | string
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
   chunksFonte?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  criado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type IaMensagemUncheckedUpdateManyWithoutConversaInput = {
@@ -458,7 +458,7 @@ export type IaMensagemUncheckedUpdateManyWithoutConversaInput = {
   papel?: Prisma.StringFieldUpdateOperationsInput | string
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
   chunksFonte?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  criado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -469,7 +469,7 @@ export type IaMensagemSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   papel?: boolean
   conteudo?: boolean
   chunksFonte?: boolean
-  criado_em?: boolean
+  createdAt?: boolean
   conversa?: boolean | Prisma.IaConversaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["iaMensagem"]>
 
@@ -479,7 +479,7 @@ export type IaMensagemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   papel?: boolean
   conteudo?: boolean
   chunksFonte?: boolean
-  criado_em?: boolean
+  createdAt?: boolean
   conversa?: boolean | Prisma.IaConversaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["iaMensagem"]>
 
@@ -489,7 +489,7 @@ export type IaMensagemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   papel?: boolean
   conteudo?: boolean
   chunksFonte?: boolean
-  criado_em?: boolean
+  createdAt?: boolean
   conversa?: boolean | Prisma.IaConversaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["iaMensagem"]>
 
@@ -499,10 +499,10 @@ export type IaMensagemSelectScalar = {
   papel?: boolean
   conteudo?: boolean
   chunksFonte?: boolean
-  criado_em?: boolean
+  createdAt?: boolean
 }
 
-export type IaMensagemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "conversaId" | "papel" | "conteudo" | "chunksFonte" | "criado_em", ExtArgs["result"]["iaMensagem"]>
+export type IaMensagemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "conversaId" | "papel" | "conteudo" | "chunksFonte" | "createdAt", ExtArgs["result"]["iaMensagem"]>
 export type IaMensagemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   conversa?: boolean | Prisma.IaConversaDefaultArgs<ExtArgs>
 }
@@ -524,7 +524,7 @@ export type $IaMensagemPayload<ExtArgs extends runtime.Types.Extensions.Internal
     papel: string
     conteudo: string
     chunksFonte: runtime.JsonValue | null
-    criado_em: Date
+    createdAt: Date
   }, ExtArgs["result"]["iaMensagem"]>
   composites: {}
 }
@@ -954,7 +954,7 @@ export interface IaMensagemFieldRefs {
   readonly papel: Prisma.FieldRef<"IaMensagem", 'String'>
   readonly conteudo: Prisma.FieldRef<"IaMensagem", 'String'>
   readonly chunksFonte: Prisma.FieldRef<"IaMensagem", 'Json'>
-  readonly criado_em: Prisma.FieldRef<"IaMensagem", 'DateTime'>
+  readonly createdAt: Prisma.FieldRef<"IaMensagem", 'DateTime'>
 }
     
 

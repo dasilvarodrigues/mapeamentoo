@@ -245,8 +245,8 @@ export const IaChunkScalarFieldEnum = {
   conteudo: 'conteudo',
   metadata: 'metadata',
   fonte: 'fonte',
-  criado_em: 'criado_em',
-  atualizado_em: 'atualizado_em'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type IaChunkScalarFieldEnum = (typeof IaChunkScalarFieldEnum)[keyof typeof IaChunkScalarFieldEnum]
@@ -256,8 +256,8 @@ export const IaConversaScalarFieldEnum = {
   id: 'id',
   usuarioId: 'usuarioId',
   titulo: 'titulo',
-  criado_em: 'criado_em',
-  atualizado_em: 'atualizado_em'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type IaConversaScalarFieldEnum = (typeof IaConversaScalarFieldEnum)[keyof typeof IaConversaScalarFieldEnum]
@@ -269,7 +269,7 @@ export const IaMensagemScalarFieldEnum = {
   papel: 'papel',
   conteudo: 'conteudo',
   chunksFonte: 'chunksFonte',
-  criado_em: 'criado_em'
+  createdAt: 'createdAt'
 } as const
 
 export type IaMensagemScalarFieldEnum = (typeof IaMensagemScalarFieldEnum)[keyof typeof IaMensagemScalarFieldEnum]

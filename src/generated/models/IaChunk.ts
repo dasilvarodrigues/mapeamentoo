@@ -28,16 +28,16 @@ export type IaChunkMinAggregateOutputType = {
   id: string | null
   conteudo: string | null
   fonte: string | null
-  criado_em: Date | null
-  atualizado_em: Date | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type IaChunkMaxAggregateOutputType = {
   id: string | null
   conteudo: string | null
   fonte: string | null
-  criado_em: Date | null
-  atualizado_em: Date | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type IaChunkCountAggregateOutputType = {
@@ -45,8 +45,8 @@ export type IaChunkCountAggregateOutputType = {
   conteudo: number
   metadata: number
   fonte: number
-  criado_em: number
-  atualizado_em: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -55,16 +55,16 @@ export type IaChunkMinAggregateInputType = {
   id?: true
   conteudo?: true
   fonte?: true
-  criado_em?: true
-  atualizado_em?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type IaChunkMaxAggregateInputType = {
   id?: true
   conteudo?: true
   fonte?: true
-  criado_em?: true
-  atualizado_em?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type IaChunkCountAggregateInputType = {
@@ -72,8 +72,8 @@ export type IaChunkCountAggregateInputType = {
   conteudo?: true
   metadata?: true
   fonte?: true
-  criado_em?: true
-  atualizado_em?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -154,8 +154,8 @@ export type IaChunkGroupByOutputType = {
   conteudo: string
   metadata: runtime.JsonValue
   fonte: string
-  criado_em: Date
-  atualizado_em: Date
+  createdAt: Date
+  updatedAt: Date
   _count: IaChunkCountAggregateOutputType | null
   _min: IaChunkMinAggregateOutputType | null
   _max: IaChunkMaxAggregateOutputType | null
@@ -184,8 +184,8 @@ export type IaChunkWhereInput = {
   conteudo?: Prisma.StringFilter<"IaChunk"> | string
   metadata?: Prisma.JsonFilter<"IaChunk">
   fonte?: Prisma.StringFilter<"IaChunk"> | string
-  criado_em?: Prisma.DateTimeFilter<"IaChunk"> | Date | string
-  atualizado_em?: Prisma.DateTimeFilter<"IaChunk"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"IaChunk"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"IaChunk"> | Date | string
 }
 
 export type IaChunkOrderByWithRelationInput = {
@@ -193,8 +193,8 @@ export type IaChunkOrderByWithRelationInput = {
   conteudo?: Prisma.SortOrder
   metadata?: Prisma.SortOrder
   fonte?: Prisma.SortOrder
-  criado_em?: Prisma.SortOrder
-  atualizado_em?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type IaChunkWhereUniqueInput = Prisma.AtLeast<{
@@ -205,8 +205,8 @@ export type IaChunkWhereUniqueInput = Prisma.AtLeast<{
   conteudo?: Prisma.StringFilter<"IaChunk"> | string
   metadata?: Prisma.JsonFilter<"IaChunk">
   fonte?: Prisma.StringFilter<"IaChunk"> | string
-  criado_em?: Prisma.DateTimeFilter<"IaChunk"> | Date | string
-  atualizado_em?: Prisma.DateTimeFilter<"IaChunk"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"IaChunk"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"IaChunk"> | Date | string
 }, "id">
 
 export type IaChunkOrderByWithAggregationInput = {
@@ -214,8 +214,8 @@ export type IaChunkOrderByWithAggregationInput = {
   conteudo?: Prisma.SortOrder
   metadata?: Prisma.SortOrder
   fonte?: Prisma.SortOrder
-  criado_em?: Prisma.SortOrder
-  atualizado_em?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.IaChunkCountOrderByAggregateInput
   _max?: Prisma.IaChunkMaxOrderByAggregateInput
   _min?: Prisma.IaChunkMinOrderByAggregateInput
@@ -229,8 +229,8 @@ export type IaChunkScalarWhereWithAggregatesInput = {
   conteudo?: Prisma.StringWithAggregatesFilter<"IaChunk"> | string
   metadata?: Prisma.JsonWithAggregatesFilter<"IaChunk">
   fonte?: Prisma.StringWithAggregatesFilter<"IaChunk"> | string
-  criado_em?: Prisma.DateTimeWithAggregatesFilter<"IaChunk"> | Date | string
-  atualizado_em?: Prisma.DateTimeWithAggregatesFilter<"IaChunk"> | Date | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"IaChunk"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"IaChunk"> | Date | string
 }
 
 export type IaChunkCreateInput = {
@@ -238,8 +238,8 @@ export type IaChunkCreateInput = {
   conteudo: string
   metadata?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   fonte: string
-  criado_em?: Date | string
-  atualizado_em?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type IaChunkUncheckedCreateInput = {
@@ -247,8 +247,8 @@ export type IaChunkUncheckedCreateInput = {
   conteudo: string
   metadata?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   fonte: string
-  criado_em?: Date | string
-  atualizado_em?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type IaChunkUpdateInput = {
@@ -256,8 +256,8 @@ export type IaChunkUpdateInput = {
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
   metadata?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   fonte?: Prisma.StringFieldUpdateOperationsInput | string
-  criado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  atualizado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type IaChunkUncheckedUpdateInput = {
@@ -265,8 +265,8 @@ export type IaChunkUncheckedUpdateInput = {
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
   metadata?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   fonte?: Prisma.StringFieldUpdateOperationsInput | string
-  criado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  atualizado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type IaChunkCreateManyInput = {
@@ -274,8 +274,8 @@ export type IaChunkCreateManyInput = {
   conteudo: string
   metadata?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   fonte: string
-  criado_em?: Date | string
-  atualizado_em?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type IaChunkUpdateManyMutationInput = {
@@ -283,8 +283,8 @@ export type IaChunkUpdateManyMutationInput = {
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
   metadata?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   fonte?: Prisma.StringFieldUpdateOperationsInput | string
-  criado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  atualizado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type IaChunkUncheckedUpdateManyInput = {
@@ -292,8 +292,8 @@ export type IaChunkUncheckedUpdateManyInput = {
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
   metadata?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   fonte?: Prisma.StringFieldUpdateOperationsInput | string
-  criado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  atualizado_em?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type IaChunkCountOrderByAggregateInput = {
@@ -301,24 +301,24 @@ export type IaChunkCountOrderByAggregateInput = {
   conteudo?: Prisma.SortOrder
   metadata?: Prisma.SortOrder
   fonte?: Prisma.SortOrder
-  criado_em?: Prisma.SortOrder
-  atualizado_em?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type IaChunkMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   conteudo?: Prisma.SortOrder
   fonte?: Prisma.SortOrder
-  criado_em?: Prisma.SortOrder
-  atualizado_em?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type IaChunkMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   conteudo?: Prisma.SortOrder
   fonte?: Prisma.SortOrder
-  criado_em?: Prisma.SortOrder
-  atualizado_em?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 
@@ -328,8 +328,8 @@ export type IaChunkSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   conteudo?: boolean
   metadata?: boolean
   fonte?: boolean
-  criado_em?: boolean
-  atualizado_em?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["iaChunk"]>
 
 export type IaChunkSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -337,8 +337,8 @@ export type IaChunkSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   conteudo?: boolean
   metadata?: boolean
   fonte?: boolean
-  criado_em?: boolean
-  atualizado_em?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["iaChunk"]>
 
 export type IaChunkSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -346,8 +346,8 @@ export type IaChunkSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   conteudo?: boolean
   metadata?: boolean
   fonte?: boolean
-  criado_em?: boolean
-  atualizado_em?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["iaChunk"]>
 
 export type IaChunkSelectScalar = {
@@ -355,11 +355,11 @@ export type IaChunkSelectScalar = {
   conteudo?: boolean
   metadata?: boolean
   fonte?: boolean
-  criado_em?: boolean
-  atualizado_em?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type IaChunkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "conteudo" | "metadata" | "fonte" | "criado_em" | "atualizado_em", ExtArgs["result"]["iaChunk"]>
+export type IaChunkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "conteudo" | "metadata" | "fonte" | "createdAt" | "updatedAt", ExtArgs["result"]["iaChunk"]>
 
 export type $IaChunkPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "IaChunk"
@@ -369,8 +369,8 @@ export type $IaChunkPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     conteudo: string
     metadata: runtime.JsonValue
     fonte: string
-    criado_em: Date
-    atualizado_em: Date
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["iaChunk"]>
   composites: {}
 }
@@ -798,8 +798,8 @@ export interface IaChunkFieldRefs {
   readonly conteudo: Prisma.FieldRef<"IaChunk", 'String'>
   readonly metadata: Prisma.FieldRef<"IaChunk", 'Json'>
   readonly fonte: Prisma.FieldRef<"IaChunk", 'String'>
-  readonly criado_em: Prisma.FieldRef<"IaChunk", 'DateTime'>
-  readonly atualizado_em: Prisma.FieldRef<"IaChunk", 'DateTime'>
+  readonly createdAt: Prisma.FieldRef<"IaChunk", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"IaChunk", 'DateTime'>
 }
     
 
