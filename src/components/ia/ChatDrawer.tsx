@@ -182,7 +182,7 @@ export function ChatDrawer({ open, onClose }: ChatDrawerProps) {
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
       <div className="absolute inset-0 bg-black/30" onClick={onClose} />
-      <div className="relative w-full max-w-md bg-background border-l shadow-2xl flex flex-col animate-in slide-in-from-right">
+      <div className="relative w-full max-w-md bg-white dark:bg-gray-900 border-l shadow-2xl flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b">
           <div className="flex items-center gap-2">
@@ -280,7 +280,7 @@ export function ChatDrawer({ open, onClose }: ChatDrawerProps) {
 
           {/* Sidebar historico */}
           {mostrarHistorico && (
-            <div className="w-56 border-l bg-muted/30 flex-shrink-0">
+            <div className="w-56 border-l bg-gray-50 dark:bg-gray-800 flex-shrink-0">
               <ChatHistory
                 conversas={conversas}
                 conversaAtiva={conversaId}
