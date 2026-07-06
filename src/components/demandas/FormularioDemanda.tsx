@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { Save } from "lucide-react";
+import { AnexosUpload } from "@/components/anexos/AnexosUpload";
+import { AnexosLista } from "@/components/anexos/AnexosLista";
+import type { AnexoType } from "@/types/anexos";
 import type { DemandaFormData, DemandaType } from "@/types/demandas";
 
 interface FormularioDemandaProps {
@@ -24,6 +27,8 @@ export function FormularioDemanda({ demanda, onSaved, onCancel }: FormularioDema
     responsavel: "",
   });
   const [salvando, setSalvando] = useState(false);
+  const [demandaSalva, setDemandaSalva] = useState<DemandaType | null>(null);
+  const [refreshAnexos, setRefreshAnexos] = useState(0);
 
   useEffect(() => {
     if (demanda) {
@@ -38,23 +43,33 @@ export function FormularioDemanda({ demanda, onSaved, onCancel }: FormularioDema
     }
   }, [demanda]);
 
+  const demandaId = demanda?.id || demandaSalva?.id;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSalvando(true);
     try {
       const url = demanda ? `/api/demandas/${demanda.id}` : "/api/demandas";
       const method = demanda ? "PUT" : "POST";
-      await fetch(url, {
+      const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+      if (!demanda) {
+        const criada = await res.json();
+        setDemandaSalva(criada);
+      }
       onSaved();
     } catch (err) {
       console.error(err);
     } finally {
       setSalvando(false);
     }
+  };
+
+  const handleUpload = (anexo: AnexoType) => {
+    setRefreshAnexos((prev) => prev + 1);
   };
 
   return (
@@ -128,6 +143,13 @@ export function FormularioDemanda({ demanda, onSaved, onCancel }: FormularioDema
           className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
         />
       </div>
+      {demandaId && (
+        <div className="border-t border-border pt-4 space-y-2">
+          <p className="text-sm font-medium">Anexos</p>
+          <AnexosLista entidadeTipo="demanda" entidadeId={demandaId} refreshKey={refreshAnexos} />
+          <AnexosUpload entidadeTipo="demanda" entidadeId={demandaId} onUpload={handleUpload} />
+        </div>
+      )}
       <div className="flex gap-3 justify-end pt-2">
         <button
           type="button"
