@@ -19,6 +19,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Mensagem é obrigatória" }, { status: 400 });
     }
 
+    const mensagemTruncada = mensagem.trim().slice(0, 4000);
+
     // 1. Buscar ou criar conversa
     let conversa = conversaId
       ? await prisma.iaConversa.findFirst({
@@ -31,7 +33,7 @@ export async function POST(request: NextRequest) {
       conversa = await prisma.iaConversa.create({
         data: {
           usuarioId: session.user.id,
-          titulo: mensagem.slice(0, 80),
+          titulo: mensagemTruncada.slice(0, 80),
         },
         include: { mensagens: { orderBy: { createdAt: "asc" }, take: 0 } },
       });
@@ -42,14 +44,14 @@ export async function POST(request: NextRequest) {
       data: {
         conversaId: conversa.id,
         papel: "user",
-        conteudo: mensagem,
+        conteudo: mensagemTruncada,
       },
     });
 
     // 3. Gerar embedding e buscar chunks
     let chunks: { id: string; conteudo: string }[] = [];
     try {
-      const embedding = await gerarEmbedding(mensagem);
+      const embedding = await gerarEmbedding(mensagemTruncada);
       const embeddingStr = `[${embedding.join(",")}]`;
       const resultados = await prisma.$queryRawUnsafe<{ id: string; conteudo: string }[]>(
         `SELECT id, conteudo FROM "IaChunk"
@@ -73,7 +75,7 @@ export async function POST(request: NextRequest) {
     const messages = montarPrompt({
       chunks: chunks.map((c) => c.conteudo),
       historico,
-      pergunta: mensagem,
+      pergunta: mensagemTruncada,
     });
 
     // 6. Criar stream SSE
@@ -97,7 +99,8 @@ export async function POST(request: NextRequest) {
             conversaId: conversa!.id,
           });
           controller.enqueue(encoder.encode(`data: ${data}\n\n`));
-          fullResponse = "Desculpe, o assistente está temporariamente indisponível. Tente novamente em alguns instantes.";
+          controller.close();
+          return;
         }
 
         // Salvar resposta

@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS vector;
+
 -- CreateTable
 CREATE TABLE "IaChunk" (
     "id" TEXT NOT NULL,
@@ -39,3 +41,5 @@ ALTER TABLE "IaConversa" ADD CONSTRAINT "IaConversa_usuarioId_fkey" FOREIGN KEY 
 
 -- AddForeignKey
 ALTER TABLE "IaMensagem" ADD CONSTRAINT "IaMensagem_conversaId_fkey" FOREIGN KEY ("conversaId") REFERENCES "IaConversa"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+CREATE INDEX ON "IaChunk" USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);
