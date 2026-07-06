@@ -161,7 +161,7 @@ model IaChunk {
   id         String   @id @default(cuid())
   conteudo   String   @db.Text
   metadata   Json     @default("{}")
-  embedding  Unsupported("vector(384)")?
+embedding    Unsupported("vector(768)")?
   fonte      String
   createdAt  DateTime @default(now()) @map("criado_em")
   updatedAt  DateTime @updatedAt @map("atualizado_em")

@@ -5,7 +5,7 @@ CREATE TABLE "IaChunk" (
     "id" TEXT NOT NULL,
     "conteudo" TEXT NOT NULL,
     "metadata" JSONB NOT NULL DEFAULT '{}',
-    "embedding" vector(384),
+    "embedding" vector(768),
     "fonte" TEXT NOT NULL,
     "criado_em" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "atualizado_em" TIMESTAMP(3) NOT NULL,
