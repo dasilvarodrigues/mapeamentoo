@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { X, Trash2, Edit3 } from "lucide-react";
 import { FormularioDemanda } from "./FormularioDemanda";
+import { AnexosLista } from "@/components/anexos/AnexosLista";
 import type { DemandaType } from "@/types/demandas";
 
 interface ModalDemandaProps {
@@ -90,6 +91,11 @@ export function ModalDemanda({ demanda, open, onClose, onSaved, onDeleted }: Mod
                 </p>
               </div>
             )}
+
+            <div className="border-t border-border pt-4 space-y-2">
+              <p className="text-sm font-medium">Anexos</p>
+              <AnexosLista entidadeTipo="demanda" entidadeId={demanda.id} />
+            </div>
 
             <div className="flex gap-3 pt-2 border-t border-border">
               <button
