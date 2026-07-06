@@ -5,6 +5,8 @@ import { X, Trash2, Edit3, Phone, Mail, Globe, Plus } from "lucide-react";
 import { TimelineInteracoes } from "./TimelineInteracoes";
 import { FormularioInteracao } from "./FormularioInteracao";
 import { FormularioContato } from "./FormularioContato";
+import { AnexosUpload } from "@/components/anexos/AnexosUpload";
+import { AnexosLista } from "@/components/anexos/AnexosLista";
 import type { ContatoType, InteracaoType } from "@/types/crm";
 
 interface ModalContatoProps {
@@ -91,6 +93,16 @@ export function ModalContato({ contato, open, onClose, onSaved, onDeleted }: Mod
               {contato.observacoes && (
                 <p className="text-sm text-muted-foreground italic">{contato.observacoes}</p>
               )}
+            </div>
+
+            <div className="border-t border-border pt-4 space-y-2">
+              <p className="text-sm font-medium">Anexos</p>
+              <AnexosLista entidadeTipo="contato" entidadeId={contato.id} />
+              <AnexosUpload
+                entidadeTipo="contato"
+                entidadeId={contato.id}
+                onUpload={() => {}}
+              />
             </div>
 
             <div className="border-t border-border pt-4">
