@@ -396,6 +396,9 @@ export const ModelName = {
   Anexo: 'Anexo',
   Demanda: 'Demanda',
   Visita: 'Visita',
+  IaChunk: 'IaChunk',
+  IaConversa: 'IaConversa',
+  IaMensagem: 'IaMensagem',
   User: 'User'
 } as const
 
@@ -412,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "estado" | "municipio" | "regiao" | "bairro" | "setor" | "rua" | "comunidade" | "contato" | "interacao" | "anexo" | "demanda" | "visita" | "user"
+    modelProps: "estado" | "municipio" | "regiao" | "bairro" | "setor" | "rua" | "comunidade" | "contato" | "interacao" | "anexo" | "demanda" | "visita" | "iaChunk" | "iaConversa" | "iaMensagem" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1304,6 +1307,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    IaChunk: {
+      payload: Prisma.$IaChunkPayload<ExtArgs>
+      fields: Prisma.IaChunkFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.IaChunkFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaChunkPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.IaChunkFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaChunkPayload>
+        }
+        findFirst: {
+          args: Prisma.IaChunkFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaChunkPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.IaChunkFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaChunkPayload>
+        }
+        findMany: {
+          args: Prisma.IaChunkFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaChunkPayload>[]
+        }
+        create: {
+          args: Prisma.IaChunkCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaChunkPayload>
+        }
+        createMany: {
+          args: Prisma.IaChunkCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.IaChunkCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaChunkPayload>[]
+        }
+        delete: {
+          args: Prisma.IaChunkDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaChunkPayload>
+        }
+        update: {
+          args: Prisma.IaChunkUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaChunkPayload>
+        }
+        deleteMany: {
+          args: Prisma.IaChunkDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.IaChunkUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.IaChunkUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaChunkPayload>[]
+        }
+        upsert: {
+          args: Prisma.IaChunkUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaChunkPayload>
+        }
+        aggregate: {
+          args: Prisma.IaChunkAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateIaChunk>
+        }
+        groupBy: {
+          args: Prisma.IaChunkGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IaChunkGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.IaChunkCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IaChunkCountAggregateOutputType> | number
+        }
+      }
+    }
+    IaConversa: {
+      payload: Prisma.$IaConversaPayload<ExtArgs>
+      fields: Prisma.IaConversaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.IaConversaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaConversaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.IaConversaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaConversaPayload>
+        }
+        findFirst: {
+          args: Prisma.IaConversaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaConversaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.IaConversaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaConversaPayload>
+        }
+        findMany: {
+          args: Prisma.IaConversaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaConversaPayload>[]
+        }
+        create: {
+          args: Prisma.IaConversaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaConversaPayload>
+        }
+        createMany: {
+          args: Prisma.IaConversaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.IaConversaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaConversaPayload>[]
+        }
+        delete: {
+          args: Prisma.IaConversaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaConversaPayload>
+        }
+        update: {
+          args: Prisma.IaConversaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaConversaPayload>
+        }
+        deleteMany: {
+          args: Prisma.IaConversaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.IaConversaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.IaConversaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaConversaPayload>[]
+        }
+        upsert: {
+          args: Prisma.IaConversaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaConversaPayload>
+        }
+        aggregate: {
+          args: Prisma.IaConversaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateIaConversa>
+        }
+        groupBy: {
+          args: Prisma.IaConversaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IaConversaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.IaConversaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IaConversaCountAggregateOutputType> | number
+        }
+      }
+    }
+    IaMensagem: {
+      payload: Prisma.$IaMensagemPayload<ExtArgs>
+      fields: Prisma.IaMensagemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.IaMensagemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaMensagemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.IaMensagemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaMensagemPayload>
+        }
+        findFirst: {
+          args: Prisma.IaMensagemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaMensagemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.IaMensagemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaMensagemPayload>
+        }
+        findMany: {
+          args: Prisma.IaMensagemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaMensagemPayload>[]
+        }
+        create: {
+          args: Prisma.IaMensagemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaMensagemPayload>
+        }
+        createMany: {
+          args: Prisma.IaMensagemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.IaMensagemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaMensagemPayload>[]
+        }
+        delete: {
+          args: Prisma.IaMensagemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaMensagemPayload>
+        }
+        update: {
+          args: Prisma.IaMensagemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaMensagemPayload>
+        }
+        deleteMany: {
+          args: Prisma.IaMensagemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.IaMensagemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.IaMensagemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaMensagemPayload>[]
+        }
+        upsert: {
+          args: Prisma.IaMensagemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IaMensagemPayload>
+        }
+        aggregate: {
+          args: Prisma.IaMensagemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateIaMensagem>
+        }
+        groupBy: {
+          args: Prisma.IaMensagemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IaMensagemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.IaMensagemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IaMensagemCountAggregateOutputType> | number
+        }
+      }
+    }
     User: {
       payload: Prisma.$UserPayload<ExtArgs>
       fields: Prisma.UserFieldRefs
@@ -1572,6 +1797,41 @@ export const VisitaScalarFieldEnum = {
 export type VisitaScalarFieldEnum = (typeof VisitaScalarFieldEnum)[keyof typeof VisitaScalarFieldEnum]
 
 
+export const IaChunkScalarFieldEnum = {
+  id: 'id',
+  conteudo: 'conteudo',
+  metadata: 'metadata',
+  fonte: 'fonte',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
+} as const
+
+export type IaChunkScalarFieldEnum = (typeof IaChunkScalarFieldEnum)[keyof typeof IaChunkScalarFieldEnum]
+
+
+export const IaConversaScalarFieldEnum = {
+  id: 'id',
+  usuarioId: 'usuarioId',
+  titulo: 'titulo',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
+} as const
+
+export type IaConversaScalarFieldEnum = (typeof IaConversaScalarFieldEnum)[keyof typeof IaConversaScalarFieldEnum]
+
+
+export const IaMensagemScalarFieldEnum = {
+  id: 'id',
+  conversaId: 'conversaId',
+  papel: 'papel',
+  conteudo: 'conteudo',
+  chunksFonte: 'chunksFonte',
+  criado_em: 'criado_em'
+} as const
+
+export type IaMensagemScalarFieldEnum = (typeof IaMensagemScalarFieldEnum)[keyof typeof IaMensagemScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
@@ -1599,6 +1859,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -1823,6 +2090,9 @@ export type GlobalOmitConfig = {
   anexo?: Prisma.AnexoOmit
   demanda?: Prisma.DemandaOmit
   visita?: Prisma.VisitaOmit
+  iaChunk?: Prisma.IaChunkOmit
+  iaConversa?: Prisma.IaConversaOmit
+  iaMensagem?: Prisma.IaMensagemOmit
   user?: Prisma.UserOmit
 }
 

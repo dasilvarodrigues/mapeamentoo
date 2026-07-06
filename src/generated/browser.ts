@@ -78,6 +78,21 @@ export type Demanda = Prisma.DemandaModel
  */
 export type Visita = Prisma.VisitaModel
 /**
+ * Model IaChunk
+ * 
+ */
+export type IaChunk = Prisma.IaChunkModel
+/**
+ * Model IaConversa
+ * 
+ */
+export type IaConversa = Prisma.IaConversaModel
+/**
+ * Model IaMensagem
+ * 
+ */
+export type IaMensagem = Prisma.IaMensagemModel
+/**
  * Model User
  * 
  */

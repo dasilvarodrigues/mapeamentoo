@@ -63,6 +63,9 @@ export const ModelName = {
   Anexo: 'Anexo',
   Demanda: 'Demanda',
   Visita: 'Visita',
+  IaChunk: 'IaChunk',
+  IaConversa: 'IaConversa',
+  IaMensagem: 'IaMensagem',
   User: 'User'
 } as const
 
@@ -237,6 +240,41 @@ export const VisitaScalarFieldEnum = {
 export type VisitaScalarFieldEnum = (typeof VisitaScalarFieldEnum)[keyof typeof VisitaScalarFieldEnum]
 
 
+export const IaChunkScalarFieldEnum = {
+  id: 'id',
+  conteudo: 'conteudo',
+  metadata: 'metadata',
+  fonte: 'fonte',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
+} as const
+
+export type IaChunkScalarFieldEnum = (typeof IaChunkScalarFieldEnum)[keyof typeof IaChunkScalarFieldEnum]
+
+
+export const IaConversaScalarFieldEnum = {
+  id: 'id',
+  usuarioId: 'usuarioId',
+  titulo: 'titulo',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
+} as const
+
+export type IaConversaScalarFieldEnum = (typeof IaConversaScalarFieldEnum)[keyof typeof IaConversaScalarFieldEnum]
+
+
+export const IaMensagemScalarFieldEnum = {
+  id: 'id',
+  conversaId: 'conversaId',
+  papel: 'papel',
+  conteudo: 'conteudo',
+  chunksFonte: 'chunksFonte',
+  criado_em: 'criado_em'
+} as const
+
+export type IaMensagemScalarFieldEnum = (typeof IaMensagemScalarFieldEnum)[keyof typeof IaMensagemScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
@@ -264,6 +302,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {

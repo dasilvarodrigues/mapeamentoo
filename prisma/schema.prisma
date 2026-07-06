@@ -157,6 +157,37 @@ model Visita {
   createdAt DateTime @default(now())
 }
 
+model IaChunk {
+  id           String   @id @default(cuid())
+  conteudo     String   @db.Text
+  metadata     Json     @default("{}")
+  embedding    Unsupported("vector(384)")?
+  fonte        String
+  criado_em    DateTime @default(now())
+  atualizado_em DateTime @updatedAt
+}
+
+model IaConversa {
+  id          String   @id @default(cuid())
+  usuarioId   String
+  usuario     User     @relation(fields: [usuarioId], references: [id])
+  titulo      String   @default("Nova conversa")
+  criado_em   DateTime @default(now())
+  atualizado_em DateTime @updatedAt
+
+  mensagens   IaMensagem[]
+}
+
+model IaMensagem {
+  id          String   @id @default(cuid())
+  conversaId  String
+  conversa    IaConversa @relation(fields: [conversaId], references: [id])
+  papel       String
+  conteudo    String   @db.Text
+  chunksFonte Json?
+  criado_em   DateTime @default(now())
+}
+
 model User {
   id        String   @id @default(cuid())
   nome      String
@@ -165,4 +196,6 @@ model User {
   role      String   @default("agente")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  conversas IaConversa[]
 }
